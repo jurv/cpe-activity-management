@@ -1,0 +1,18 @@
+package com.cpeeterprise;
+
+import javax.ejb.Stateful;
+
+/**
+ * Session Bean implementation class CustomerModule
+ */
+@Stateful(mappedName = "Customer")
+public class CustomerModule implements CustomerModuleRemote {
+
+    /**
+     * Default constructor. 
+     */
+    public CustomerModule() {
+        // TODO Auto-generated constructor stub
+    }
+
+}

@@ -1,0 +1,8 @@
+package com.cpeeterprise;
+
+import javax.ejb.Remote;
+
+@Remote
+public interface BeanCustomerRemote {
+
+}
