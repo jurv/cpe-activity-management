@@ -1,0 +1,21 @@
+package com.cpeeterprise;
+
+import javax.ejb.Stateful;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
+
+/**
+ * Session Bean implementation class BeanCustomer
+ */
+@Stateful(mappedName = "Customer")
+@TransactionManagement(TransactionManagementType.BEAN)
+public class BeanCustomer implements BeanCustomerRemote {
+
+    /**
+     * Default constructor. 
+     */
+    public BeanCustomer() {
+        // TODO Auto-generated constructor stub
+    }
+
+}
