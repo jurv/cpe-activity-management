@@ -17,8 +17,9 @@ import model.Customer;
 @TransactionManagement(TransactionManagementType.BEAN)
 public class BeanCustomer implements BeanCustomerRemote {
 	
-	  @PersistenceContext
-	  private EntityManager em;
+	 @PersistenceContext
+	 private EntityManager em;
+	 
     /**
      * Default constructor. 
      */
@@ -42,8 +43,7 @@ public class BeanCustomer implements BeanCustomerRemote {
 
       public List <Customer> findCustomers () {
 
-        return (List <Customer>) em.createQuery("select t from Customer t")
-                                      .getResultList();
+        return (List <Customer>) em.createQuery("select t from Customer t").getResultList();
       }
 
       public Customer findCustomer (String id) {
