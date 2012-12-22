@@ -7,6 +7,16 @@
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <jta-data-source>jdbc_2</jta-data-source>
         <class>model.Customer</class>
+        <class>model.Connection</class>
+        <class>model.Function</class>
+        <class>model.Message</class>
+        <class>model.Project</class>
+        <class>model.Task</class>
+        <class>model.TaskStatus</class>
+        <class>model.TaskType</class>
+        <class>model.User</class>
+        <class>model.User2Project</class>
+        <class>model.UserStatus</class>
         <properties>
             <property name="hibernate.show_sql" value="true"/>
         </properties>
