@@ -1,39 +1,37 @@
 
-<%@page contentType="text/html"%>
-<%@taglib uri="http://java.sun.com/jsf/core" prefix="f"%>
-<%@taglib uri="http://java.sun.com/jsf/html" prefix="h"%>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<body>
+	<%@ include file="Template/header.jsp" %>
+	<body id="login">
 	<f:view>
-		<h1><h:outputText value="Connexion à l'application" /></h1>
-		<h:form>
-		<table>
-			<tr>
-				<td>
-					<h:outputText value="Identifiant : " />
-				</td>
-				<td>
-					<h:inputText id="loginname" value="" />
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<h:outputText value="Mot de passe : " />
-				</td>
-				<td>
-					<h:inputSecret id="password" value="" />
-				</td>
-			</tr>
-			<tr>
-				<td> </td>
-				<td>
-					<h:commandButton value="Se connecter" action="welcome"/>
-				</td>
-			</tr>
-		</table>
-	</h:form>
+		<header>
+			<h:outputText value="Connexion à l'application" />
+		</header>
+		<section id="content">
+			<h:form id="loginform">
+				<fieldset>
+					<section>
+						<label for="loginname"> Identifiant </label>
+						<div>
+							<h:inputText id="loginname" value="" />
+						</div>
+					</section>
+					<section>
+						<label for="password"> Mot de passe </label>
+						<div>
+							<h:inputSecret id="password" value="" />
+						</div>
+					</section>
+					<section>
+						<div>
+							<h:commandButton value="Se connecter" action="connection"/>
+						</div>
+					</section>
+				</fieldset>
+			</h:form>
+
+		</section>
 
 	</f:view>
-</body>
-</html>
+	<footer> CPE Activity Management all right reserved </footer>
+	</body>
+	
+	<%@ include file="Template/footer.jsp" %>
