@@ -57,7 +57,7 @@ public class BeanUser implements BeanUserRemote {
 		List<User> usrs = (List <User>) em.createQuery("select t from User t where usr_login = '" + login + "' and usr_password = '" + password + "'").getResultList();
 		if(!usrs.isEmpty())
 			return "Connected";
-		return "Unregistered";
+		return "Unconnected";
 	}
 
 
