@@ -11,18 +11,18 @@
 					<section>
 						<label for="loginname"> Identifiant </label>
 						<div>
-							<h:inputText id="loginname" value="" />
+							<h:inputText id="loginname" value="#{LoginFormBean.current.usrLogin}" />
 						</div>
 					</section>
 					<section>
 						<label for="password"> Mot de passe </label>
 						<div>
-							<h:inputSecret id="password" value="" />
+							<h:inputSecret id="password" value="#{LoginFormBean.current.usrPassword}" />
 						</div>
 					</section>
 					<section>
 						<div>
-							<h:commandButton value="Se connecter" action="connection"/>
+							<h:commandButton value="Se connecter" action="#{LoginFormBean.connectUser}"/>
 						</div>
 					</section>
 				</fieldset>
