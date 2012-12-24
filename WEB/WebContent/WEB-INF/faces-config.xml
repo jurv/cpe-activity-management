@@ -21,7 +21,17 @@
 			<supported-locale>fr</supported-locale>
 		</locale-config>
 	</application>
+	
 	<navigation-rule>
+		<from-view-id>index.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>Connected</from-outcome>
+			<to-view-id>/Pages/dashboard.jsp</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>Unconnected</from-outcome>
+			<to-view-id>/index.jsp</to-view-id>
+		</navigation-case>
 	</navigation-rule>
 
 </faces-config>
