@@ -16,9 +16,17 @@ public class LoginFormBean {
 	
 	@EJB
 	public BeanUserRemote userRemote;
-	public User current;
+	private User current = new User();
 
-	public boolean connectUser() {
-		return userRemote.connectUser(current);
+	public String connectUser() {
+		return userRemote.connectUser(getCurrent().getUsrLogin(), getCurrent().getUsrPassword());
+	}
+
+	public User getCurrent() {
+		return current;
+	}
+
+	public void setCurrent(User current) {
+		this.current = current;
 	}
 }
