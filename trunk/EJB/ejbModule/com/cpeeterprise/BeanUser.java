@@ -52,9 +52,12 @@ public class BeanUser implements BeanUserRemote {
       }
 
 	@Override
-	public boolean connectUser(User user) {
+	public String connectUser(String login, String password) {
 		
-		return false;
+		List<User> usrs = (List <User>) em.createQuery("select t from User t where usr_login = '" + login + "' and usr_password = '" + password + "'").getResultList();
+		if(!usrs.isEmpty())
+			return "Connected";
+		return "Unregistered";
 	}
 
 
