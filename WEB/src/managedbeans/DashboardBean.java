@@ -4,6 +4,8 @@ package managedbeans;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 import model.User;
 
@@ -16,13 +18,13 @@ public class DashboardBean {
 	
 	@EJB
 	public BeanUserRemote userRemote;
-	private User currentUser = new User();
+	private User currentUser;
 
-	public User getCurrent() {
+	public User getCurrentUser() {
 		return currentUser;
 	}
 
-	public void setCurrent(User currentUser) {
+	public void setCurrentUser(User currentUser) {
 		this.currentUser = currentUser;
 	}
 }
