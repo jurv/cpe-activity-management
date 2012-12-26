@@ -19,6 +19,10 @@
 		<managed-bean-name>DashboardBean</managed-bean-name>
 		<managed-bean-class>managedbeans.DashboardBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>currentUser</property-name>
+			<value>#{LoginFormBean.current}</value>
+		</managed-property>
 	</managed-bean>
 	<application>
 		<message-bundle></message-bundle>
