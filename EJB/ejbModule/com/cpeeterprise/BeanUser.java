@@ -46,18 +46,18 @@ public class BeanUser implements BeanUserRemote {
         return (List <User>) em.createQuery("select t from User t").getResultList();
       }
 
-      public User findUser (String id) {
+      public User findUser (int id) {
 
-        return (User) em.find(User.class, Long.parseLong(id));
+        return (User) em.find(User.class, id);
       }
 
 	@Override
-	public String connectUser(String login, String password) {
+	public int connectUser(String login, String password) {
 		
 		List<User> usrs = (List <User>) em.createQuery("select t from User t where usr_login = '" + login + "' and usr_password = '" + password + "'").getResultList();
 		if(!usrs.isEmpty())
-			return "Connected";
-		return "Unconnected";
+			return usrs.get(0).getUsrId();
+		return -1;
 	}
 
 
