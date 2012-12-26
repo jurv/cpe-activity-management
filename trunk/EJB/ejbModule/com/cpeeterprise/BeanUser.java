@@ -60,5 +60,10 @@ public class BeanUser implements BeanUserRemote {
 		return -1;
 	}
 
+	@Override
+	public boolean disconnectUser(User user) {
+		return true;
+	}
+
 
 }
