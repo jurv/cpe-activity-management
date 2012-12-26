@@ -15,6 +15,11 @@
 		<managed-bean-class>managedbeans.LoginFormBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>DashboardBean</managed-bean-name>
+		<managed-bean-class>managedbeans.DashboardBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
 	<application>
 		<message-bundle></message-bundle>
 		<locale-config>
