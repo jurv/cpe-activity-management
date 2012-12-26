@@ -1,4 +1,9 @@
-<header>
+		<div id="pageoptions">
+        	<ul>
+        		<li> <h:outputText value="#{GeneralBean.currentUser.usrFirstname}" /> <h:commandButton value="Se déconnecter" action="#{GeneralBean.disconnectUser}"/></li>
+        	</ul>
+		</div>
+		<header>
         	<div id=""> CPE Activity Management Logo </div>
         	<div id="header">
                 <ul id="headernav">
