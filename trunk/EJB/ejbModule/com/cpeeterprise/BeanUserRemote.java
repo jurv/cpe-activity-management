@@ -13,6 +13,6 @@ public interface BeanUserRemote {
 	public void delete (User user);
 	public void update (User user);
 	public List <User> findUsers ();
-	public User findUser (String id);
-	public String connectUser(String login, String password);
+	public User findUser (int id);
+	public int connectUser(String login, String password);
 }
