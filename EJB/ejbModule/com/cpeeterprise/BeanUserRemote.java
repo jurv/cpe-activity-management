@@ -15,4 +15,5 @@ public interface BeanUserRemote {
 	public List <User> findUsers ();
 	public User findUser (int id);
 	public int connectUser(String login, String password);
+	public boolean disconnectUser(User user);
 }
