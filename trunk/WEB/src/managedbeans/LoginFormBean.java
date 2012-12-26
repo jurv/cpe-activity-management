@@ -4,6 +4,8 @@ package managedbeans;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 import model.User;
 
@@ -19,7 +21,16 @@ public class LoginFormBean {
 	private User current = new User();
 
 	public String connectUser() {
-		return userRemote.connectUser(getCurrent().getUsrLogin(), getCurrent().getUsrPassword());
+		String ret = "Unconnected";
+		Integer usrId = userRemote.connectUser(getCurrent().getUsrLogin(), getCurrent().getUsrPassword());
+		
+		if(usrId > 0) {
+			current = userRemote.findUser(usrId);
+			
+			ret = "Connected";
+		}
+		
+		return ret;
 	}
 
 	public User getCurrent() {
