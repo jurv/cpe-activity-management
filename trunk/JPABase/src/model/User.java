@@ -3,6 +3,8 @@ package model;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import com.sun.istack.internal.NotNull;
+
 
 /**
  * The persistent class for the User database table.
