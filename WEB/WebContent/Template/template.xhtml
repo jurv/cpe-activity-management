@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets" 
+>
+ 
+ 	<ui:insert name="header" >
+		<ui:include src="/Template/header.xhtml" />
+	</ui:insert>
+	
+    <h:body>
+ 		<f:view>
+			<ui:insert name="topmenu" >
+				<ui:include src="/Template/topmenu.xhtml" />
+			</ui:insert>
+ 			<ui:insert name="menu" >
+				<ui:include src="/Template/menu.xhtml" />
+			</ui:insert>
+			<ui:insert name="content" >
+				<ui:include src="/Template/content.xhtml" />
+			</ui:insert>
+			<ui:insert name="footer" >
+				<ui:include src="/Template/footer.xhtml" />
+			</ui:insert>
+ 		</f:view>
+    </h:body>
+</html>
