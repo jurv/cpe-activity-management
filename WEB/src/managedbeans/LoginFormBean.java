@@ -26,12 +26,18 @@ public class LoginFormBean {
 		
 		if(usrId > 0) {
 			current = userRemote.findUser(usrId);
-			
 			ret = "Connected";
+			
+			// Stockage de l'identifiant utilisateur dans la session.
+			FacesContext fc = FacesContext.getCurrentInstance();
+			if(fc != null && fc.getExternalContext() != null) {
+				HttpSession sess = (HttpSession)fc.getExternalContext().getSession(false);
+				sess.setAttribute("usrId", usrId);
+			}
 		}
 		
 		return ret;
-	}
+	}		
 
 	public User getCurrent() {
 		return current;
