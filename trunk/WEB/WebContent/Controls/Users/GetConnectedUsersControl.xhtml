@@ -1,9 +1,23 @@
-
-<div id="aside-chat">
-	<h:form>
-   	   <h:commandButton value="Welcome Me">
-   		 <f:ajax execute="" render="output" />
-   	   </h:commandButton>
-	   <h:outputText id="output" value="#{ConnectedUsersBean.checkUsersConnected}" />	
-   	</h:form>
-</div>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets" 
+>
+    <body>
+	    <ui:composition>
+			<div id="aside-chat">
+				<h:form>
+			   	   <h:commandButton value="Actualiser Chat">
+			   		 <f:ajax execute="" render="output" />
+			   	   </h:commandButton>
+			   	   <br />
+			   	   <p>
+				   		<h:outputText id="output" value="#{ConnectedUsersBean.connectedUsersString}" escape="false" />	
+			   	   </p>
+			   	</h:form>
+			</div>
+		</ui:composition>
+	</body>
+</html>
