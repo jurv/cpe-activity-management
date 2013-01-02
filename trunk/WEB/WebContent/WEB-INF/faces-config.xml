@@ -41,6 +41,10 @@
 			<property-name>currentUser</property-name>
 			<value>#{LoginFormBean.current}</value>
 		</managed-property>
+		<managed-property>
+			<property-name>currentUser</property-name>
+			<value>#{LoginFormBean.current}</value>
+		</managed-property>
 	</managed-bean>
 	<application>
 		<message-bundle></message-bundle>
