@@ -3011,3 +3011,33 @@ background-image: url('images/icons/email.png');
 	position:absolute;
 	right:0px;
 	top:0px;}
+	
+.chat-element {
+	cursor : pointer;
+}
+
+#chat-panel {
+	width: auto;
+	height: 30px;
+	position: fixed;
+	bottom: 0;
+}
+
+.chat-window {
+	width: 150px;
+	height: 200px;
+	position: fixed;
+	bottom:0;
+}
+
+.chat-window-header {
+	font-stretch: ultra-condensed;
+	font-size: 1.2em;
+	color: white;
+	background-color: black;
+}
+
+.chat-window-content {
+	font-stretch: ultra-expanded;
+	font-size: 1em;
+}
