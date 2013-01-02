@@ -17,6 +17,22 @@
 				   		<h:outputText id="output" value="#{ConnectedUsersBean.connectedUsersString}" escape="false" />	
 			   	   </p>
 			   	</h:form>
+			   	<div id="chat-panel">
+			   		<div class="chat-window">
+			   			<div class="chat-window-header">
+			   				test Baptiste
+			   			</div>
+			   			<div class="chat-window-content">
+			   				Test content
+			   			</div>
+			   		</div>
+			   	</div>
+			   	<script>
+			   		// Abonnement au clic sur l'élément de chat
+			   		$('.chat-element').click(function() {
+			   			var id = $(this).attr('pid');
+			   		});
+			   	</script>
 			</div>
 		</ui:composition>
 	</body>
