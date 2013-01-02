@@ -20,16 +20,7 @@ public class ConnectedUsersBean {
 	public BeanUserRemote userRemote;
 	private User currentUser;
 	private List<User> connectedUsers;
-	
-	public String checkUsersConnected() {
-		setConnectedUsers(userRemote.getConnectedUsers());
-		String ret = "";
-		for( User cur : connectedUsers ) {
-			ret += cur.getUsrFirstname() + " " + cur.getUsrLastname() + "<br/>";
-		}
-		
-		return ret;
-	}
+	private String connectedUsersString = "";
 
 	public User getCurrentUser() {
 		return currentUser;
@@ -45,6 +36,21 @@ public class ConnectedUsersBean {
 
 	public void setConnectedUsers(List<User> connectedUsers) {
 		this.connectedUsers = connectedUsers;
+	}
+
+	public String getConnectedUsersString() {
+		
+		setConnectedUsers(userRemote.getConnectedUsers());
+		String connectedUsersString = "";
+		for( User cur : connectedUsers ) {
+			connectedUsersString += cur.getUsrFirstname() + " " + cur.getUsrLastname() + "<br/>";
+		}
+		
+		return connectedUsersString;
+	}
+
+	public void setConnectedUsersString(String connectedUsersString) {
+		this.connectedUsersString = connectedUsersString;
 	}
 
 }
