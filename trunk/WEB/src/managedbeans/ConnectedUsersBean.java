@@ -43,7 +43,7 @@ public class ConnectedUsersBean {
 		setConnectedUsers(userRemote.getConnectedUsers());
 		String connectedUsersString = "";
 		for( User cur : connectedUsers ) {
-			connectedUsersString += cur.getUsrFirstname() + " " + cur.getUsrLastname() + "<br/>";
+			connectedUsersString += "<div class='chat-element' pid='" + cur.getUsrId() + "'>" + cur.getUsrFirstname() + " " + cur.getUsrLastname() + "</div>" + "<br/>";
 		}
 		
 		return connectedUsersString;
