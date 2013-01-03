@@ -5,10 +5,12 @@
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:ui="http://java.sun.com/jsf/facelets" 
 >
+ <h:head>
+ </h:head>
     <body>
 	    <ui:composition>
 			<div id="aside-chat">
-				<h:form>
+				<h:form id='myForm'>
 			   	   <h:commandButton value="Actualiser Chat">
 			   		 <f:ajax execute="" render="output" />
 			   	   </h:commandButton>
@@ -18,19 +20,52 @@
 			   	   </p>
 			   	</h:form>
 			   	<div id="chat-panel">
-			   		<div class="chat-window">
-			   			<div class="chat-window-header">
-			   				test Baptiste
+			   		<ui:repeat var="cur" value="#{ConnectedUsersBean.connectedUsers}">
+			   			<div class='chat-window' pid='#{cur.usrId}'>
+			   				<div class='chat-window-header'> 
+			   					<h:outputText value='#{cur.usrFirstname} #{cur.usrLastname}'></h:outputText>
+			   				</div>
+			   				<div id='message-content-#{cur.usrId}' class='chat-window-content'>
+			   					<div class='chat-window-content-controls'>
+			   						<h:form id='form-#{cur.usrId}' name='form-#{cur.usrId}'>
+			   							<h:outputText id='messages-#{cur.usrId}'> </h:outputText>
+			   							<h:commandButton value='Go' actionListener='#{ConnectedUsersBean.sendMessage}'> </h:commandButton>
+			   							<h:inputText id='input-text-#{cur.usrId}'></h:inputText>
+			   						</h:form>
+			   					</div>
+			   				</div>
 			   			</div>
-			   			<div class="chat-window-content">
-			   				Test content
-			   			</div>
-			   		</div>
+			   		</ui:repeat>
 			   	</div>
 			   	<script>
+			   		$(document).ready(function() {
+			   			$('.chat-window').hide();
+			   		});
 			   		// Abonnement au clic sur l'élément de chat
 			   		$('.chat-element').click(function() {
 			   			var id = $(this).attr('pid');
+			   			var firstname = $(this).attr('pfname');
+			   			var lastname = $(this).attr('plname');
+			   			var chatWindow = $('.chat-window[pid="' + id + '"]');
+		   			    $(chatWindow).show();
+			   		});
+			   		// Abonnement au clic sur l'en-tête
+			   		$('.chat-window-header').click(function () {
+			   			if($(this).next().height() > 0) {
+			   				$(this).next().height(0);
+			   				$(this).next().hide();
+			   				$(this).width(200);
+			   				$(this).css('position', 'absolute');
+			   				$(this).css('bottom', '0px');
+			   			}
+			   			else {
+			   				$(this).parent().show();
+			   				$(this).next().height(200);
+			   				$(this).css('position', 'relative');
+			   				$(this).css('bottom', '');
+			   				$(this).next().show();
+			   			}
+			   				
 			   		});
 			   	</script>
 			</div>
