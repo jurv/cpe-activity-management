@@ -1,14 +1,19 @@
 package managedbeans;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.component.html.HtmlPanelGroup;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.servlet.http.HttpServletRequest;
 
+
+import model.Message;
 import model.User;
 
 
@@ -23,7 +28,9 @@ public class ConnectedUsersBean {
 	private User currentUser;
 	private List<User> connectedUsers;
 	private String connectedUsersString = "";
-	private String connectedUsersWindowsString = "";
+	private List<Message> listMessages = new ArrayList();
+	private String listMessagesString = "";
+	private String newMessage = "";
 
 	public User getCurrentUser() {
 		return currentUser;
@@ -57,34 +64,45 @@ public class ConnectedUsersBean {
 	}
 	
 	public void sendMessage (ActionEvent evt) {
-
-		String test = "";
+		Message mess = new Message();
+		mess.setMsgContent(newMessage);
+		mess.setMsgSubject("Chat");
+		mess.setUsrSenderId(this.currentUser.getUsrId());
+		this.listMessages.add(mess);
+		newMessage = "";
 	}
 
-	public String getConnectedUsersWindowsString() {
-		
-		String connectedUsersWindowsString = "";
-		for( User cur : connectedUsers ) {
-			
-			connectedUsersWindowsString += "<div class='chat-window' pid='" + cur.getUsrId() + "'>" +
-										   "	<div class='chat-window-header'> " + cur.getUsrFirstname() + " " + cur.getUsrLastname() + 
-										   "	</div>" +
-										   "	<div id='message-content-" + cur.getUsrId() + "' class='chat-window-content'>" +
-										   "    	<div class='chat-window-content-controls'> " +
-										   "			<h:form id='form-" + cur.getUsrId() + "' name='form-" + cur.getUsrId() + "'> " +	
-		   					   			   "	        	<h:outputText id='messages-" + cur.getUsrId() + "'> </h:outputText> " +
-		   					   			   "				<h:commandButton value='Go' actionListener='#{ConnectedUsersBean.sendMessage}'> </h:commandButton> " +
-		   					   			   "                <h:inputText id='input-text-" + cur.getUsrId() + "'></h:outputText> " +
-		   					   			   "            </h:form> " +
-										   "        </div>" +
-										   "    </div>" +
-										   "</div>";
+	public List<Message> getListMessages() {
+		return listMessages;
+	}
+
+	public void setListMessages(List<Message> listMessages) {
+		this.listMessages = listMessages;
+	}
+
+	public String getListMessagesString() {
+		listMessagesString = "";
+		newMessage = "";
+		for(Message mess : this.listMessages) {
+			User sender = userRemote.findUser(mess.getUsrSenderId());
+			this.listMessagesString += "<strong>" + sender.getUsrFirstname() + "</strong>" + " : " + mess.getMsgContent() + "<br/>";
 		}
-		return connectedUsersWindowsString;
+		return listMessagesString;
+	}
+	
+	public void refreshMessages() {
+		getListMessagesString();
 	}
 
-	public void setConnectedUsersWindowsString(String connectedUsersWindowsString) {
-		this.connectedUsersWindowsString = connectedUsersWindowsString;
+	public void setListMessagesString(String listMessagesString) {
+		this.listMessagesString = listMessagesString;
 	}
 
+	public String getNewMessage() {
+		return newMessage;
+	}
+
+	public void setNewMessage(String newMessage) {
+		this.newMessage = newMessage;
+	}
 }
