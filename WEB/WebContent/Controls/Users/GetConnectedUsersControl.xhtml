@@ -4,10 +4,11 @@
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:ui="http://java.sun.com/jsf/facelets" 
+    xmlns:p="http://primefaces.org/ui"
 >
  <h:head>
  </h:head>
-    <body>
+    <h:body>
 	    <ui:composition>
 			<div id="aside-chat">
 				<h:form id='myForm'>
@@ -19,6 +20,13 @@
 				   		<h:outputText id="output" value="#{ConnectedUsersBean.connectedUsersString}" escape="false" />	
 			   	   </p>
 			   	</h:form>
+			   	<script>
+			   	setInterval("clickSimulated()", 200);              
+		   		
+		   		function clickSimulated() {
+		   			$('#btrefresh').click();
+		   		};
+			   	</script>
 			   	<div id="chat-panel">
 			   		<ui:repeat var="cur" value="#{ConnectedUsersBean.connectedUsers}">
 			   			<div class='chat-window' pid='#{cur.usrId}'>
@@ -26,13 +34,18 @@
 			   					<h:outputText value='#{cur.usrFirstname} #{cur.usrLastname}'></h:outputText>
 			   				</div>
 			   				<div id='message-content-#{cur.usrId}' class='chat-window-content'>
-			   					<div class='chat-window-content-controls'>
-			   						<h:form id='form-#{cur.usrId}' name='form-#{cur.usrId}'>
-			   							<h:outputText id='messages-#{cur.usrId}'> </h:outputText>
-			   							<h:commandButton value='Go' actionListener='#{ConnectedUsersBean.sendMessage}'> </h:commandButton>
-			   							<h:inputText id='input-text-#{cur.usrId}'></h:inputText>
-			   						</h:form>
-			   					</div>
+		   						<h:form id='form-#{cur.usrId}' name='form-#{cur.usrId}' prependId="false">
+		   							<h:outputText style="top:30px; position:absolute; height:150px;" id='messages-#{cur.usrId}' escape="false" value="#{ConnectedUsersBean.listMessagesString}">  </h:outputText>
+		   							<div class='chat-window-content-controls'>
+		   								<h:commandButton value='Go' actionListener='#{ConnectedUsersBean.sendMessage}'> 
+		   									<f:ajax execute="@form" render="@form" />
+		   								</h:commandButton>
+		   								<h:inputText id='input-text-#{cur.usrId}' value='#{ConnectedUsersBean.newMessage}'></h:inputText>
+		   								<h:commandButton id='btrefresh' value='refresh' actionListener='#{ConnectedUsersBean.refreshMessages}'>
+		   									<f:ajax execute="@form" render="@form" />
+		   								</h:commandButton>
+		   							</div>
+		   						</h:form>
 			   				</div>
 			   			</div>
 			   		</ui:repeat>
@@ -41,6 +54,11 @@
 			   		$(document).ready(function() {
 			   			$('.chat-window').hide();
 			   		});
+			   		emptyInput = function () {
+			   			$("input-text-#{cur.usrId}").val('');
+			   		};
+			   		
+
 			   		// Abonnement au clic sur l'élément de chat
 			   		$('.chat-element').click(function() {
 			   			var id = $(this).attr('pid');
@@ -70,5 +88,5 @@
 			   	</script>
 			</div>
 		</ui:composition>
-	</body>
+	</h:body>
 </html>
