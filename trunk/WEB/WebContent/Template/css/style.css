@@ -3024,10 +3024,12 @@ background-image: url('images/icons/email.png');
 }
 
 .chat-window {
-	width: 150px;
+	width: 200px;
 	height: 200px;
 	position: fixed;
 	bottom:0;
+	border : thin;
+	border-color: black;
 }
 
 .chat-window-header {
@@ -3035,9 +3037,26 @@ background-image: url('images/icons/email.png');
 	font-size: 1.2em;
 	color: white;
 	background-color: black;
+	height : 20px;
 }
 
 .chat-window-content {
 	font-stretch: ultra-expanded;
 	font-size: 1em;
+	background-color: white;
+	height: 180px;
+}
+
+.chat-window-content-controls {
+	font-stretch: ultra-expanded;
+	font-size: 1em;
+	height: 40px;
+	width:200px;
+	bottom : 2px;
+	position: fixed;
+}
+
+.chat-window-content-controls input {
+	width : 150px;
+	height: 30px;
 }
