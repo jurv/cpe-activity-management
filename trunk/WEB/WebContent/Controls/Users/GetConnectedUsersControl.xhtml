@@ -13,7 +13,7 @@
 			<div id="aside-chat">
 				<h:form id='myForm'>
 			   	   <h:commandButton value="Actualiser Chat">
-			   		 <f:ajax execute="" render="output" />
+			   		 <f:ajax execute="@form" render="@form" />
 			   	   </h:commandButton>
 			   	   <br />
 			   	   <p>
@@ -34,31 +34,32 @@
 			   					<h:outputText value='#{cur.usrFirstname} #{cur.usrLastname}'></h:outputText>
 			   				</div>
 			   				<div id='message-content-#{cur.usrId}' class='chat-window-content'>
-		   						<h:form id='form-#{cur.usrId}' name='form-#{cur.usrId}' prependId="false">
+		   						<h:form id='form-#{cur.usrId}' prependId='false' onsubmit="emptyInput();">
 		   							<h:outputText style="top:30px; position:absolute; height:150px;" id='messages-#{cur.usrId}' escape="false" value="#{ConnectedUsersBean.listMessagesString}">  </h:outputText>
-		   							<div class='chat-window-content-controls'>
+		   							<h:panelGroup class='chat-window-content-controls'>
 		   								<h:commandButton value='Go' actionListener='#{ConnectedUsersBean.sendMessage}'> 
-		   									<f:ajax execute="@form" render="@form" />
+		   									<f:ajax execute="@form" render="@form"/>
 		   								</h:commandButton>
 		   								<h:inputText id='input-text-#{cur.usrId}' value='#{ConnectedUsersBean.newMessage}'></h:inputText>
 		   								<h:commandButton id='btrefresh' value='refresh' actionListener='#{ConnectedUsersBean.refreshMessages}'>
 		   									<f:ajax execute="@form" render="@form" />
 		   								</h:commandButton>
-		   							</div>
+		   							</h:panelGroup>
 		   						</h:form>
 			   				</div>
 			   			</div>
 			   		</ui:repeat>
-			   	</div>
-			   	
+			   	</div>			   	
 			   	<script>
+			   		// Fonction appellée au chargement de la page
 			   		$(document).ready(function() {
 			   			$('.chat-window').hide();
 			   		});
+			   		
+			   		// Vidage du champ texte de saisie
 			   		emptyInput = function () {
 			   			$("input-text-#{cur.usrId}").val('');
 			   		};
-			   		
 
 			   		// Abonnement au clic sur l'élément de chat
 			   		$('.chat-element').click(function() {
@@ -68,7 +69,8 @@
 			   			var chatWindow = $('.chat-window[pid="' + id + '"]');
 		   			    $(chatWindow).show();
 			   		});
-			   		// Abonnement au clic sur l'en-tête
+			   		
+			   		// Abonnement au clic sur l'en-tête d'une fenêtre de chat
 			   		$('.chat-window-header').click(function () {
 			   			if($(this).next().height() > 0) {
 			   				$(this).next().height(0);
