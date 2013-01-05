@@ -15,7 +15,7 @@ import model.User;
  * Session Bean implementation class BeanUser
  */
 @Stateful(mappedName = "User")
-@TransactionManagement(TransactionManagementType.BEAN)
+@TransactionManagement(TransactionManagementType.CONTAINER)
 public class BeanUser implements BeanUserRemote {
 
 	@PersistenceContext(type = PersistenceContextType.EXTENDED)

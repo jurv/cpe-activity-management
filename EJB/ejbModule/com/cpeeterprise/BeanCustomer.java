@@ -14,7 +14,7 @@ import model.Customer;
  * Session Bean implementation class BeanCustomer
  */
 @Stateful(mappedName = "Customer")
-@TransactionManagement(TransactionManagementType.BEAN)
+@TransactionManagement(TransactionManagementType.CONTAINER)
 public class BeanCustomer implements BeanCustomerRemote {
 	
 	 @PersistenceContext
