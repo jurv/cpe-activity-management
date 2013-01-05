@@ -29,16 +29,21 @@ public class BeanCustomer implements BeanCustomerRemote {
     
     public void persist (Customer customer) {
         em.persist (customer);
+        em.flush();
+        em.refresh(customer);
       }
 
       public void delete (Customer customer) {
         Customer t = em.merge (customer);
         em.remove( t );
+        em.flush();
 
       }
 
       public void update (Customer customer) {
         em.merge (customer);
+        em.flush();
+        em.refresh(customer);
       }
 
       public List <Customer> findCustomers () {

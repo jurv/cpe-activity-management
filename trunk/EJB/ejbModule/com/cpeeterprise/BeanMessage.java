@@ -41,6 +41,8 @@ public class BeanMessage implements BeanMessageRemote {
 
       public void update (Message message) {
         em.merge (message);
+        em.flush();
+        em.refresh(message);
       }
 
       public List <Message> findMessages () {
