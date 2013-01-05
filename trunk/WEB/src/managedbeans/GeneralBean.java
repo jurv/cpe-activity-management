@@ -29,8 +29,9 @@ public class GeneralBean {
 	}
 	
 	public String disconnectUser() {
-		if(userRemote.disconnectUser(currentUser))
+		if(userRemote.disconnectUser(currentUser)) {
 			return "Disconnected";
+		}
 		return "Connected";
 	}
 }
