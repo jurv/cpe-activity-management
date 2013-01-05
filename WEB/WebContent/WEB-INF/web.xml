@@ -30,14 +30,4 @@
   <listener>
         <listener-class>com.sun.faces.config.ConfigureListener</listener-class> 
     </listener>
-    <security-constraint>
-		<display-name>Constraint1</display-name>
-		<web-resource-collection>
-			<web-resource-name>No-JSP-JSF-Page</web-resource-name>
-			<url-pattern>/index.jsp</url-pattern>
-		</web-resource-collection>
-		<auth-constraint>
-			<description>Pas de rôles, donc pas d’accès direct</description>
-		</auth-constraint>
-	</security-constraint>
 </web-app>
