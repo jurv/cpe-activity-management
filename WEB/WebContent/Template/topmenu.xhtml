@@ -11,7 +11,12 @@
 	    <ui:composition>
 		<div id="pageoptions">
         	<ul>
-        		<li> <h:outputText value="#{GeneralBean.currentUser.usrFirstname}" /> <h:commandButton value="Se déconnecter" action="#{GeneralBean.disconnectUser}"/></li>
+        		<li> 
+        			<h:outputText value="#{GeneralBean.currentUser.usrFirstname}"> </h:outputText> 
+        			<h:form id="disconnectForm" prependId="false">
+        				<h:commandButton value="Se déconnecter" action="#{GeneralBean.disconnectUser}"> </h:commandButton>
+        			</h:form>
+        		</li>
         	</ul>
 		</div>
 		<header>
