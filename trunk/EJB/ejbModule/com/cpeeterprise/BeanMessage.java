@@ -14,7 +14,7 @@ import model.Message;
  * Session Bean implementation class BeanMessage
  */
 @Stateful(mappedName = "Message")
-@TransactionManagement(TransactionManagementType.BEAN)
+@TransactionManagement(TransactionManagementType.CONTAINER)
 public class BeanMessage implements BeanMessageRemote {
 	
 	 @PersistenceContext
@@ -29,6 +29,8 @@ public class BeanMessage implements BeanMessageRemote {
     
     public void persist (Message message) {
         em.persist (message);
+        em.flush();
+        em.refresh(message);
       }
 
       public void delete (Message message) {
