@@ -17,6 +17,7 @@ import model.Message;
 import model.User;
 
 
+import com.cpeeterprise.BeanMessageRemote;
 import com.cpeeterprise.BeanUserRemote;
 
 @ManagedBean
@@ -25,6 +26,8 @@ public class ConnectedUsersBean {
 	
 	@EJB
 	public BeanUserRemote userRemote;
+	@EJB
+	public BeanMessageRemote messageRemote;
 	private User currentUser;
 	private List<User> connectedUsers;
 	private String connectedUsersString = "";
@@ -53,7 +56,8 @@ public class ConnectedUsersBean {
 		setConnectedUsers(userRemote.getConnectedUsers());
 		String connectedUsersString = "";
 		for( User cur : connectedUsers ) {
-			connectedUsersString += "<div class='chat-element' pid='" + cur.getUsrId() + "' pfname='" + cur.getUsrFirstname() + "' plname='" + cur.getUsrLastname() + "' >" + cur.getUsrFirstname() + " " + cur.getUsrLastname() + "</div>" + "<br/>";
+			if(cur.getUsrId() != currentUser.getUsrId())
+				connectedUsersString += "<div class='chat-element' pid='" + cur.getUsrId() + "' pfname='" + cur.getUsrFirstname() + "' plname='" + cur.getUsrLastname() + "' >" + cur.getUsrFirstname() + " " + cur.getUsrLastname() + "</div>" + "<br/>";
 		}
 		
 		return connectedUsersString;
@@ -69,6 +73,7 @@ public class ConnectedUsersBean {
 		mess.setMsgSubject("Chat");
 		mess.setUsrSenderId(this.currentUser.getUsrId());
 		this.listMessages.add(mess);
+		messageRemote.persist(mess);
 		newMessage = "";
 	}
 
