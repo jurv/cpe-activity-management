@@ -102,6 +102,7 @@ public class ConnectedUsersBean {
 		return newMessage;
 	}
 
+	
 	public void setNewMessage(String newMessage) {
 		this.newMessage = newMessage;
 	}
