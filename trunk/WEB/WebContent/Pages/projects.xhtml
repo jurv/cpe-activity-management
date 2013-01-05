@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets" 
+>
+    <h:body>
+ 
+    	<ui:composition template="../Template/template.xhtml">
+    		<ui:define name="content">
+    			<section id="content">
+	    			<h2>List of existing projects</h2>
+	    			<f:view>
+						<h:dataTable value="#{project.projectList}" var="p" border="1">
+							<h:column>
+								<f:facet name="header">Project Name</f:facet>
+								<h:outputText value="#{p.prjLabel}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Project Description</f:facet>
+								<h:outputText value="#{p.prjComment}" />
+							</h:column>
+						</h:dataTable>
+					</f:view>
+				</section>
+    		</ui:define>
+    	</ui:composition>    	
+    </h:body>
+ 
+</html>
