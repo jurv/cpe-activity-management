@@ -1,5 +1,6 @@
 package com.cpeeterprise;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateful;
@@ -30,6 +31,8 @@ public class BeanUser implements BeanUserRemote {
 
 	public void persist(User user) {
 		em.persist(user);
+		em.flush();
+		em.refresh(user);
 	}
 
 	public void delete(User user) {
@@ -40,6 +43,8 @@ public class BeanUser implements BeanUserRemote {
 
 	public void update(User user) {
 		em.merge(user);
+		em.flush();
+		em.refresh(user);
 	}
 
 	public List<User> findUsers() {
@@ -56,14 +61,12 @@ public class BeanUser implements BeanUserRemote {
 	@Override
 	public int connectUser(String login, String password) {
 
-		List<User> usrs = (List<User>) em.createQuery(
-				"select t from User t where usr_login = '" + login
-						+ "' and usr_password = '" + password + "'")
-				.getResultList();
+		List<User> usrs = new ArrayList(em.createQuery("select t from User t where usr_login = '" + login + "' and usr_password = '" + password + "'")
+				.getResultList());
 		if (!usrs.isEmpty()) {
 			// On connecte l'utilisateur
-			//usrs.get(0).setUstId(2);
-			//update(usrs.get(0));
+			usrs.get(0).setUstId(2);
+			update(usrs.get(0));
 			return usrs.get(0).getUsrId();
 		}
 		return -1;
@@ -73,8 +76,8 @@ public class BeanUser implements BeanUserRemote {
 	public boolean disconnectUser(User user) {
 
 		// On déconnecte l'utilisateur
-		//user.setUstId(1);
-		//update(user);
+		user.setUstId(1);
+		update(user);
 
 		return true;
 	}
