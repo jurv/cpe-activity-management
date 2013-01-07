@@ -1,3 +1,0 @@
-eclipse.preferences.version=1
-module-start-timeout=300000
-runtimes=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<runtimes>\r\n  <runtime id\="JOnAS Runtime 5.x" location\="C\:/WORK/jonas-full-5.2.3" name\="JOnAS Runtime 5.x" runtime-type-id\="org.ow2.jonas.wtp.adapter.core.eid.runtime.jonas.5" timestamp\="2" vm-install-id\="1355906870523" vm-install-type-id\="org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType">\r\n    <map jonasRoot\="C\:/WORK/jonas-full-5.2.3" key\="jonas_wtp_adapter_properties"/>\r\n  </runtime>\r\n</runtimes>\r\n
