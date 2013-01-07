@@ -33,14 +33,15 @@
 			   				<div class='chat-window-header'> 
 			   					<h:outputText value='#{cur.usrFirstname} #{cur.usrLastname}'></h:outputText>
 			   				</div>
-			   				<div id='message-content-#{cur.usrId}' class='chat-window-content'>
-		   						<h:form id='form-#{cur.usrId}' prependId='false' onsubmit="emptyInput();">
+			   				<div id='message-content' class='chat-window-content'>
+		   						<h:form id='form-#{cur.usrId}' prependId='false'>
 		   							<h:outputText style="top:30px; position:absolute; height:150px;" id='messages-#{cur.usrId}' escape="false" value="#{ConnectedUsersBean.listMessagesString}">  </h:outputText>
 		   							<h:panelGroup class='chat-window-content-controls'>
 		   								<h:commandButton value='Go' actionListener='#{ConnectedUsersBean.sendMessage}'> 
 		   									<f:ajax execute="@form" render="@form"/>
 		   								</h:commandButton>
 		   								<h:inputText id='input-text-#{cur.usrId}' value='#{ConnectedUsersBean.newMessage}'></h:inputText>
+		   								<h:inputHidden id='receiverid' value="#{cur.usrId}"></h:inputHidden>
 		   								<h:commandButton id='btrefresh' value='refresh' actionListener='#{ConnectedUsersBean.refreshMessages}'>
 		   									<f:ajax execute="@form" render="@form" />
 		   								</h:commandButton>
