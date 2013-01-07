@@ -68,10 +68,15 @@ public class ConnectedUsersBean {
 	}
 	
 	public void sendMessage (ActionEvent evt) {
+		
+		//System.out.println((String)FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("receiverid"));
+		// Get the receiver Id
+		//int receiverId = Integer.parseInt((String)FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("receiverid"));
 		Message mess = new Message();
 		mess.setMsgContent(newMessage);
 		mess.setMsgSubject("Chat");
 		mess.setUsrSenderId(this.currentUser.getUsrId());
+		//mess.setUsrReceiverId(receiverId);
 		this.listMessages.add(mess);
 		messageRemote.persist(mess);
 		newMessage = "";
