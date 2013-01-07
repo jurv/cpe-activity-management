@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<servers>
-  <server auto-publish-setting="2" auto-publish-time="1" hostname="localhost" id="JOnAS 5.x" name="JOnAS 5.x" runtime-id="JOnAS Runtime 5.x" server-type="org.ow2.jonas.wtp.adapter.core.eid.server.jonas.5" server-type-id="org.ow2.jonas.wtp.adapter.core.eid.server.jonas.5" start-timeout="120" stop-timeout="30" testEnvironment="true" timestamp="3">
-    <map clean="false" domainName="jonas" gui="false" jonasBase="C:/Users/bgaujal/workspace/jonas_base" jonasName="jonas" key="jonas_wtp_adapter_properties" port="9000" protocols="jrmp" serverAddress="localhost" tui="false"/>
-    <list key="modules"/>
-  </server>
-</servers>
