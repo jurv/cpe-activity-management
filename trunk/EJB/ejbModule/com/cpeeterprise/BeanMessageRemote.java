@@ -9,9 +9,10 @@ import model.Message;
 @Remote
 public interface BeanMessageRemote {
 
-	public void persist (Message message);
+	public Message persist (Message message);
 	public void delete (Message message);
 	public void update (Message message);
 	public List <Message> findMessages ();
 	public Message findMessage (String id);
+	public List <Message> findOlderMessages (int senderId, int receiverId, int messageId);
 }

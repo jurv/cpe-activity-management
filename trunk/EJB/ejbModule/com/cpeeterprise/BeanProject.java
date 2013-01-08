@@ -36,7 +36,6 @@ public class BeanProject implements BeanProjectRemote {
       public void update (Project project) {
         em.merge (project);
         em.flush();
-        em.refresh(project);
       }
 
       public List <Project> findProjects () {

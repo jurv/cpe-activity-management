@@ -2,6 +2,9 @@ package managedbeans;
 
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -32,6 +35,7 @@ public class ConnectedUsersBean {
 	private List<User> connectedUsers;
 	private String connectedUsersString = "";
 	private List<Message> listMessages = new ArrayList();
+	private Message last;
 	private String listMessagesString = "";
 	private String newMessage = "";
 
@@ -69,16 +73,16 @@ public class ConnectedUsersBean {
 	
 	public void sendMessage (ActionEvent evt) {
 		
-		//System.out.println((String)FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("receiverid"));
 		// Get the receiver Id
-		//int receiverId = Integer.parseInt((String)FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("receiverid"));
+		int receiverId = Integer.parseInt((String)FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("receiverid"));
 		Message mess = new Message();
 		mess.setMsgContent(newMessage);
 		mess.setMsgSubject("Chat");
 		mess.setUsrSenderId(this.currentUser.getUsrId());
-		//mess.setUsrReceiverId(receiverId);
+		mess.setUsrReceiverId(receiverId);
+		mess = messageRemote.persist(mess);
 		this.listMessages.add(mess);
-		messageRemote.persist(mess);
+		last = mess;
 		newMessage = "";
 	}
 
@@ -91,11 +95,29 @@ public class ConnectedUsersBean {
 	}
 
 	public String getListMessagesString() {
+		
 		listMessagesString = "";
 		newMessage = "";
+		
+		// On récupère les messages pour cet utilisateur
+		// Les messages qui ont un identifiant > au dernier qu'il a écrit
+		if(last != null) {
+			for(Message mess : messageRemote.findOlderMessages(last.getUsrReceiverId(), last.getUsrSenderId(), last.getMsgId()))
+				if(!this.listMessages.contains(mess))
+					this.listMessages.add(mess);
+		}
+		Collections.sort(this.listMessages);
 		for(Message mess : this.listMessages) {
+			
 			User sender = userRemote.findUser(mess.getUsrSenderId());
 			this.listMessagesString += "<strong>" + sender.getUsrFirstname() + "</strong>" + " : " + mess.getMsgContent() + "<br/>";
+				
+			if(mess.getMsgIsread() == 0) {
+				if(mess.getUsrSenderId() != currentUser.getUsrId()) {
+					mess.setMsgIsread((byte)1);
+					messageRemote.update(mess);
+				}
+			}
 		}
 		return listMessagesString;
 	}
