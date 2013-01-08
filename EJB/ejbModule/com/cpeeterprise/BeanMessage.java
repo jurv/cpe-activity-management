@@ -27,10 +27,11 @@ public class BeanMessage implements BeanMessageRemote {
         // TODO Auto-generated constructor stub
     }
     
-    public void persist (Message message) {
+    public Message persist (Message message) {
         em.persist (message);
         em.flush();
         em.refresh(message);
+        return message;
       }
 
       public void delete (Message message) {
@@ -42,7 +43,6 @@ public class BeanMessage implements BeanMessageRemote {
       public void update (Message message) {
         em.merge (message);
         em.flush();
-        em.refresh(message);
       }
 
       public List <Message> findMessages () {
@@ -53,6 +53,11 @@ public class BeanMessage implements BeanMessageRemote {
       public Message findMessage (String id) {
 
         return (Message) em.find(Message.class, Long.parseLong(id));
+      }
+      
+      public List <Message> findOlderMessages (int senderId, int receiverId, int messageId) {
+
+        return (List <Message>) em.createQuery("select t from Message t where msg_id > (" + messageId + "- 10) and usr_sender_id = " + senderId + " and usr_receiver_id = " + receiverId).getResultList();
       }
 
 

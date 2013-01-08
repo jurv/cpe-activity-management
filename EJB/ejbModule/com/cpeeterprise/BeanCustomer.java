@@ -43,7 +43,6 @@ public class BeanCustomer implements BeanCustomerRemote {
       public void update (Customer customer) {
         em.merge (customer);
         em.flush();
-        em.refresh(customer);
       }
 
       public List <Customer> findCustomers () {

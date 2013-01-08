@@ -44,7 +44,6 @@ public class BeanUser implements BeanUserRemote {
 	public void update(User user) {
 		em.merge(user);
 		em.flush();
-		em.refresh(user);
 	}
 
 	public List<User> findUsers() {
