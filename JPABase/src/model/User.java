@@ -11,7 +11,7 @@ import com.sun.istack.internal.NotNull;
  * 
  */
 @Entity
-public class User implements Serializable {
+public class User implements Serializable, Comparable<User> {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -118,4 +118,13 @@ public class User implements Serializable {
 		this.ustId = ustId;
 	}
 
+	@Override
+	public int compareTo(User o) {
+		return Integer.compare(getUsrId(), o.getUsrId());
+	}
+	
+	@Override
+	public boolean equals (Object o) {
+		return (this.usrId == ((User)o).getUsrId());
+	}
 }

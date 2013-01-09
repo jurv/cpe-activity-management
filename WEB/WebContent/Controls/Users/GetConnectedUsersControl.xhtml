@@ -36,12 +36,12 @@
 		   							</h:commandButton>
 		   						</h:form>
 		   						<h:form class='original-form'>
-		   							<h:panelGroup class='chat-window-content-controls'>
+		   							<h:panelGroup id='form-panel' class='chat-window-content-controls'>
 		   								<h:commandButton value='Go' actionListener='#{ConnectedUsersBean.sendMessage}' class="chat-sent-btn"> 
 		   									<f:param name='receiverid' value="#{cur.usrId}"></f:param>
-		   									<f:ajax execute="@form" render="@form" immediate="true" />
+		   									<f:ajax render="form-panel" execute="@form" />
 		   								</h:commandButton>
-		   								<h:inputText id='input-text-message' value='#{ConnectedUsersBean.newMessage}' immediate="true"></h:inputText>
+		   								<h:inputText id='input-text-message' value="#{ConnectedUsersBean.newMessage}" binding="#{ConnectedUsersBean.newMessageInput}"></h:inputText>
 		   							</h:panelGroup>
 		   						</h:form>
 			   				</div>
@@ -63,7 +63,7 @@
 			   							$(this).focus();
 			   					}
 			   				});
-			   			},500);
+			   			},2000);
 			   			
 			   		});
 			   		

@@ -4,13 +4,17 @@ package managedbeans;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Dictionary;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.component.UIInput;
 import javax.faces.component.html.HtmlPanelGroup;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
@@ -25,7 +29,7 @@ import com.cpeeterprise.BeanMessageRemote;
 import com.cpeeterprise.BeanUserRemote;
 
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class ConnectedUsersBean {
 	
 	@EJB
@@ -36,9 +40,12 @@ public class ConnectedUsersBean {
 	private List<User> connectedUsers;
 	private String connectedUsersString = "";
 	private List<Message> listMessages = new ArrayList();
-	private Message last;
+	private Message lastMessage;
+	private Map<Integer, User> knownUsers = new HashMap<Integer, User>();
+	
 	private String listMessagesString = "";
 	private String newMessage = "";
+	private UIInput newMessageInput = null;
 
 	public User getCurrentUser() {
 		return currentUser;
@@ -83,8 +90,9 @@ public class ConnectedUsersBean {
 		mess.setUsrReceiverId(receiverId);
 		mess = messageRemote.persist(mess);
 		this.listMessages.add(mess);
-		this.last = mess;
+		this.lastMessage = mess;
 		this.newMessage = "";
+		this.newMessageInput.setValue(null);
 	}
 
 	public List<Message> getListMessages() {
@@ -102,16 +110,17 @@ public class ConnectedUsersBean {
 		
 		// On récupère les messages pour cet utilisateur
 		// Les messages qui ont un identifiant > au dernier qu'il a écrit
-		if(last != null) {
-			for(Message mess : messageRemote.findOlderMessages(last.getUsrReceiverId(), last.getUsrSenderId(), last.getMsgId()))
+		if(lastMessage != null) {
+			for(Message mess : messageRemote.findOlderMessages(lastMessage.getUsrReceiverId(), lastMessage.getUsrSenderId(), lastMessage.getMsgId()))
 				if(!this.listMessages.contains(mess))
 					this.listMessages.add(mess);
 		}
 		Collections.sort(this.listMessages);
 		for(Message mess : this.listMessages) {
 			
-			User sender = userRemote.findUser(mess.getUsrSenderId());
-			this.listMessagesString += "<strong>" + sender.getUsrFirstname() + "</strong>" + " : " + mess.getMsgContent() + "<br/>";
+			if(!this.knownUsers.containsKey(mess.getUsrSenderId()))
+				this.knownUsers.put(mess.getUsrSenderId(),userRemote.findUser(mess.getUsrSenderId()));
+			this.listMessagesString += "<strong>" + knownUsers.get(mess.getUsrSenderId()).getUsrFirstname() + "</strong>" + " : " + mess.getMsgContent() + "<br/>";
 				
 			if(mess.getMsgIsread() == 0) {
 				if(mess.getUsrSenderId() != currentUser.getUsrId()) {
@@ -120,7 +129,6 @@ public class ConnectedUsersBean {
 				}
 			}
 		}
-		this.newMessage = "";
 		
 		return listMessagesString;
 	}
@@ -140,5 +148,13 @@ public class ConnectedUsersBean {
 	
 	public void setNewMessage(String newMessage) {
 		this.newMessage = newMessage;
+	}
+
+	public UIInput getNewMessageInput() {
+		return newMessageInput;
+	}
+
+	public void setNewMessageInput(UIInput newMessageInput) {
+		this.newMessageInput = newMessageInput;
 	}
 }
