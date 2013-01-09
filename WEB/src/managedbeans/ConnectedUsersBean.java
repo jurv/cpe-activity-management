@@ -10,6 +10,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.component.html.HtmlPanelGroup;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
@@ -82,8 +83,8 @@ public class ConnectedUsersBean {
 		mess.setUsrReceiverId(receiverId);
 		mess = messageRemote.persist(mess);
 		this.listMessages.add(mess);
-		last = mess;
-		newMessage = "";
+		this.last = mess;
+		this.newMessage = "";
 	}
 
 	public List<Message> getListMessages() {
@@ -119,6 +120,8 @@ public class ConnectedUsersBean {
 				}
 			}
 		}
+		this.newMessage = "";
+		
 		return listMessagesString;
 	}
 	

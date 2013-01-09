@@ -4,10 +4,12 @@
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:ui="http://java.sun.com/jsf/facelets" 
-    xmlns:p="http://primefaces.org/ui"
+    xmlns:p="http://primefaces.org/ui" 
+    xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
 >
  <h:head>
  </h:head>
+ 	<f:view>
     <h:body>
 	    <ui:composition>
 			<div id="aside-chat">
@@ -20,13 +22,6 @@
 				   		<h:outputText id="output" value="#{ConnectedUsersBean.connectedUsersString}" escape="false" />	
 			   	   </p>
 			   	</h:form>
-			   	<script>
-			   	setInterval("clickSimulated()", 200);              
-		   		
-		   		function clickSimulated() {
-		   			$('#btrefresh').click();
-		   		};
-			   	</script>
 			   	<div id="chat-panel">
 			   		<ui:repeat var="cur" value="#{ConnectedUsersBean.connectedUsers}">
 			   			<div class='chat-window' pid='#{cur.usrId}'>
@@ -34,17 +29,19 @@
 			   					<h:outputText value='#{cur.usrFirstname} #{cur.usrLastname}'></h:outputText>
 			   				</div>
 			   				<div id='message-content' class='chat-window-content'>
-		   						<h:form id='form-#{cur.usrId}' prependId='false'>
-		   							<h:outputText style="top:30px; position:absolute; height:150px;" id='messages-#{cur.usrId}' escape="false" value="#{ConnectedUsersBean.listMessagesString}">  </h:outputText>
+			   					<h:form class='duplicate-form'>
+		   							<h:outputText style="top:30px; position:absolute; height:150px;" id='messages' escape="false" value="#{ConnectedUsersBean.listMessagesString}">  </h:outputText>
+		   							<h:commandButton rendered="true" actionListener='#{ConnectedUsersBean.refreshMessages}' class='refresh-command'> 
+		   								<f:ajax execute="@form" render="messages" />
+		   							</h:commandButton>
+		   						</h:form>
+		   						<h:form class='original-form'>
 		   							<h:panelGroup class='chat-window-content-controls'>
-		   								<h:commandButton value='Go' actionListener='#{ConnectedUsersBean.sendMessage}'> 
+		   								<h:commandButton value='Go' actionListener='#{ConnectedUsersBean.sendMessage}' class="chat-sent-btn"> 
 		   									<f:param name='receiverid' value="#{cur.usrId}"></f:param>
-		   									<f:ajax execute="@form" render="@form" />
+		   									<f:ajax execute="@form" render="@form" immediate="true" />
 		   								</h:commandButton>
-		   								<h:inputText id='input-text-#{cur.usrId}' value='#{ConnectedUsersBean.newMessage}'></h:inputText>
-		   								<h:commandButton id='btrefresh' value='refresh' actionListener='#{ConnectedUsersBean.refreshMessages}'>
-		   									<f:ajax execute="@form" render="@form" />
-		   								</h:commandButton>
+		   								<h:inputText id='input-text-message' value='#{ConnectedUsersBean.newMessage}' immediate="true"></h:inputText>
 		   							</h:panelGroup>
 		   						</h:form>
 			   				</div>
@@ -55,6 +52,19 @@
 			   		// Fonction appellée au chargement de la page
 			   		$(document).ready(function() {
 			   			$('.chat-window').hide();
+			   			$('.refresh-command').hide();
+			   			
+			   			setInterval(function(){
+			   				$('.refresh-command').each(function () {
+			   					if($(this).hasClass("chat-active")) {
+			   						var haveFocus = $(this).is(":focus");
+			   						$(this).click();
+			   						if(haveFocus == true)
+			   							$(this).focus();
+			   					}
+			   				});
+			   			},500);
+			   			
 			   		});
 			   		
 			   		// Vidage du champ texte de saisie
@@ -68,6 +78,10 @@
 			   			var firstname = $(this).attr('pfname');
 			   			var lastname = $(this).attr('plname');
 			   			var chatWindow = $('.chat-window[pid="' + id + '"]');
+			   			$(chatWindow).find('.refresh-command').each(function() {
+		   					$(this).addClass('chat-active');
+		   					
+		   				});
 		   			    $(chatWindow).show();
 			   		});
 			   		
@@ -85,7 +99,6 @@
 			   				$(this).next().height(200);
 			   				$(this).css('position', 'relative');
 			   				$(this).css('bottom', '');
-			   				$(this).next().show();
 			   			}
 			   				
 			   		});
@@ -93,4 +106,5 @@
 			</div>
 		</ui:composition>
 	</h:body>
+	</f:view>
 </html>

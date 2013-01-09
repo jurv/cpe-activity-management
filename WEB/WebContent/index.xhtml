@@ -43,13 +43,15 @@
 					<section>
 						<label for="loginname"> Identifiant </label>
 						<div>
-							<h:inputText id="loginname" value="#{LoginFormBean.current.usrLogin}" />
+							<h:inputText id="loginname" value="#{LoginFormBean.current.usrLogin}" required="true" requiredMessage="Spécifier un nom d'utilisateur"/>
+							<h:message for="loginname" class='error-message'></h:message>
 						</div>
 					</section>
 					<section>
 						<label for="password"> Mot de passe </label>
 						<div>
-							<h:inputSecret id="password" value="#{LoginFormBean.current.usrPassword}" />
+							<h:inputSecret id="password" value="#{LoginFormBean.current.usrPassword}" required="true" requiredMessage="Spécifier un mot de passe"/>
+							<h:message for="password" class='error-message'></h:message>
 						</div>
 					</section>
 					<section>
