@@ -1,5 +1,9 @@
 package com.cpeeterprise;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.ejb.Stateful;
@@ -57,7 +61,10 @@ public class BeanMessage implements BeanMessageRemote {
       
       public List <Message> findOlderMessages (int senderId, int receiverId, int messageId) {
 
-        return (List <Message>) em.createQuery("select t from Message t where msg_id > (" + messageId + "- 10) and usr_sender_id = " + senderId + " and usr_receiver_id = " + receiverId).getResultList();
+    	  SimpleDateFormat date_format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    	  Calendar now = GregorianCalendar.getInstance();
+    	  now.add(Calendar.MINUTE, -10);
+    	  return (List <Message>) em.createQuery("select t from Message t where msg_date >= '" + date_format.format(now.getTime()) + "' and usr_sender_id = " + senderId + " and usr_receiver_id = " + receiverId).getResultList();
       }
 
 

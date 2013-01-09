@@ -84,8 +84,8 @@ public class BeanUser implements BeanUserRemote {
 	@Override
 	public List<User> getConnectedUsers() {
 
-		return (List<User>) em.createQuery(
-				"select t from User t where ust_id <> 1").getResultList();
+		return (List<User>) em.createQuery("select t from User t where ust_id <> 1")
+				.getResultList();
 	}
 
 }

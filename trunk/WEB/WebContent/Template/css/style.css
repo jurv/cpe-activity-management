@@ -3060,3 +3060,15 @@ background-image: url('images/icons/email.png');
 	width : 150px;
 	height: 30px;
 }
+
+.duplicate-form {
+	border : none;
+}
+
+.original-form {
+	border : none;
+}
+
+.error-message {
+	color : red;
+}

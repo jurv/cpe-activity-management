@@ -3,13 +3,15 @@ package model;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import java.sql.Timestamp;
+
 
 /**
  * The persistent class for the Message database table.
  * 
  */
 @Entity
-public class Message implements Serializable, Comparable<Message>{
+public class Message implements Serializable, Comparable<Message> {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -20,6 +22,9 @@ public class Message implements Serializable, Comparable<Message>{
 	@Lob
 	@Column(name="msg_content")
 	private String msgContent;
+
+	@Column(name="msg_date")
+	private Timestamp msgDate;
 
 	@Column(name="msg_isdeleted")
 	private byte msgIsdeleted;
@@ -56,6 +61,14 @@ public class Message implements Serializable, Comparable<Message>{
 
 	public void setMsgContent(String msgContent) {
 		this.msgContent = msgContent;
+	}
+
+	public Timestamp getMsgDate() {
+		return this.msgDate;
+	}
+
+	public void setMsgDate(Timestamp msgDate) {
+		this.msgDate = msgDate;
 	}
 
 	public byte getMsgIsdeleted() {
