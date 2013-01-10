@@ -3014,6 +3014,7 @@ background-image: url('images/icons/email.png');
 	
 .chat-element {
 	cursor : pointer;
+	margin-left : 10px;
 }
 
 #chat-panel {

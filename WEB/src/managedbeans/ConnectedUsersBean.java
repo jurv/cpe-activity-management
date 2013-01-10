@@ -65,11 +65,11 @@ public class ConnectedUsersBean {
 
 	public String getConnectedUsersString() {
 		
-		setConnectedUsers(userRemote.getConnectedUsers());
+		this.connectedUsers = userRemote.getConnectedUsers();
 		String connectedUsersString = "";
-		for( User cur : connectedUsers ) {
+		for( User cur : this.connectedUsers ) {
 			if(cur.getUsrId() != currentUser.getUsrId())
-				connectedUsersString += "<div class='chat-element' pid='" + cur.getUsrId() + "' pfname='" + cur.getUsrFirstname() + "' plname='" + cur.getUsrLastname() + "' >" + cur.getUsrFirstname() + " " + cur.getUsrLastname() + "</div>" + "<br/>";
+				connectedUsersString += "<div class='chat-element' pid='" + cur.getUsrId() + "' pfname='" + cur.getUsrFirstname() + "' plname='" + cur.getUsrLastname() + "'>" + cur.getUsrFirstname() + " " + cur.getUsrLastname() + "</div>" + "<br/>";
 		}
 		
 		return connectedUsersString;
