@@ -2,8 +2,9 @@
 <html lang="en"
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets" 
+    xmlns:ui="http://java.sun.com/jsf/facelets"
 >
+
     <h:body>
  
     	<ui:composition template="../Template/template.xhtml">
@@ -16,6 +17,22 @@
 								<label for="name"> Project name </label>
 								<div>
 									<h:inputText id="name" value="#{CreateProjectBean.projectName}" />
+								</div>
+							</section>
+							<section>
+								<label for="name"> Project begin date </label>
+								<div>
+									<h:inputText value="#{CreateProjectBean.projectDateCreated}">
+										<f:convertDateTime type="date" dateStyle="long" pattern="dd/mm/YYYY"/>
+									</h:inputText>
+								</div>
+							</section>
+							<section>
+								<label for="name"> Project finish date </label>
+								<div>
+									<h:inputText value="#{CreateProjectBean.projectDateFinished}">
+										<f:convertDateTime type="date" dateStyle="long" pattern="dd/mm/YYYY"/>
+									</h:inputText>
 								</div>
 							</section>
 							<section>
