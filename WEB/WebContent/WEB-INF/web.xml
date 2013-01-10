@@ -9,6 +9,25 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>  
+
+<filter> 
+	<filter-name>extensionsFilter</filter-name> 
+	<filter-class>org.apache.myfaces.webapp.filter.ExtensionsFilter</filter-class> 
+</filter> 
+
+<!-- extension mapping for adding <script/>, <link/>, and other resource tags to JSF-pages --> 
+<filter-mapping> 
+	<filter-name>extensionsFilter</filter-name>
+	<servlet-name>Faces Servlet</servlet-name>
+</filter-mapping> 
+
+<!-- extension mapping for serving page-independent resources (javascript, stylesheets, images, etc.) --> 
+<filter-mapping> 
+	<filter-name>extensionsFilter</filter-name>
+	<url-pattern>/faces/myFacesExtensionResource/*</url-pattern>
+</filter-mapping> 
+ 
+
   <servlet>
     <servlet-name>Faces Servlet</servlet-name>
     <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>

@@ -3,6 +3,7 @@
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:t="http://myfaces.apache.org/tomahawk"
 >
 
     <h:body>
@@ -22,17 +23,43 @@
 							<section>
 								<label for="name"> Project begin date </label>
 								<div>
-									<h:inputText value="#{CreateProjectBean.projectDateCreated}">
-										<f:convertDateTime type="date" dateStyle="long" pattern="dd/mm/YYYY"/>
-									</h:inputText>
+									<t:panelGroup styleClass="date_input">
+										<t:inputCalendar id="dob" 
+										    type="date"
+										    maxlength="10" 
+										    value="#{CreateProjectBean.projectDateCreated}"
+										    monthYearRowClass="monthYearRowClass" 
+										    weekRowClass="weekRowClass" 
+										    dayCellClass="dayCellClass" 
+										    currentDayCellClass="currentDayCellClass"
+										    popupTodayString="Today is :" 
+										    popupWeekString="Wk" renderAsPopup="true"
+										    renderPopupButtonAsImage="true" 
+										    popupDateFormat="MM/dd/yyyy"
+										    alt="Calendar" title="Calendar">
+								    	</t:inputCalendar>
+									</t:panelGroup>
 								</div>
 							</section>
 							<section>
 								<label for="name"> Project finish date </label>
 								<div>
-									<h:inputText value="#{CreateProjectBean.projectDateFinished}">
-										<f:convertDateTime type="date" dateStyle="long" pattern="dd/mm/YYYY"/>
-									</h:inputText>
+									<t:panelGroup styleClass="date_input">
+										<t:inputCalendar id="doe" 
+										    type="date"
+										    maxlength="10" 
+										    value="#{CreateProjectBean.projectDateFinished}"
+										    monthYearRowClass="monthYearRowClass" 
+										    weekRowClass="weekRowClass" 
+										    dayCellClass="dayCellClass" 
+										    currentDayCellClass="currentDayCellClass"
+										    popupTodayString="Today is :" 
+										    popupWeekString="Wk" renderAsPopup="true"
+										    renderPopupButtonAsImage="true" 
+										    popupDateFormat="MM/dd/yyyy"
+										    alt="Calendar" title="Calendar">
+								    	</t:inputCalendar>
+									</t:panelGroup>
 								</div>
 							</section>
 							<section>
