@@ -32,6 +32,7 @@
 			   					<h:form class='duplicate-form'>
 		   							<h:outputText style="top:30px; position:absolute; height:150px;" id='messages' escape="false" value="#{ConnectedUsersBean.listMessagesString}">  </h:outputText>
 		   							<h:commandButton rendered="true" actionListener='#{ConnectedUsersBean.refreshMessages}' class='refresh-command'> 
+		   								<f:param name='receiverid' value="#{cur.usrId}"></f:param>
 		   								<f:ajax execute="@form" render="messages" />
 		   							</h:commandButton>
 		   						</h:form>
@@ -49,6 +50,44 @@
 			   		</ui:repeat>
 			   	</div>			   	
 			   	<script>
+			   	
+				 	// Vidage du champ texte de saisie
+			   		emptyInput = function () {
+			   			$("input-text-#{cur.usrId}").val('');
+			   		};
+			   		
+			   		// Fonction permettant de masquer une fenêtre de chat
+			   		hideChatWindow = function (window) {
+			   			// Si c'est la fenêtre parente
+			   			// On récupère le header
+			   			if($(window).hasClass('chat-window'))
+			   				window = $(window).children('.chat-window-header');
+			   			$(window).next().height(0);
+		   				$(window).next().hide();
+		   				$(window).width(200);
+		   				$(window).css('position', 'absolute');
+		   				$(window).css('bottom', '0px');
+		   				$(chatWindow).find('.refresh-command').each(function() {
+		   					$(this).removeClass('chat-active');
+		   				});
+			   		};
+			   		
+			   		// Fonction permettant d'fficher une fenêtre de chat
+			   		showChatWindow = function (window) {
+			   			// Si c'est la fenêtre parente
+			   			// On récupère le header
+			   			if($(window).hasClass('chat-window'))
+			   				window = $(window).children('.chat-window-header');
+			   			$(window).parent().show();
+		   				$(window).next().height(200);
+		   				$(window).next().show();
+		   				$(window).css('position', 'relative');
+		   				$(window).css('bottom', '');
+		   				$(chatWindow).find('.refresh-command').each(function() {
+		   					$(this).addClass('chat-active');
+		   				});
+			   		};
+			   		
 			   		// Fonction appellée au chargement de la page
 			   		$(document).ready(function() {
 			   			$('.chat-window').hide();
@@ -66,11 +105,6 @@
 			   			},2000);
 			   			
 			   		});
-			   		
-			   		// Vidage du champ texte de saisie
-			   		emptyInput = function () {
-			   			$("input-text-#{cur.usrId}").val('');
-			   		};
 
 			   		// Abonnement au clic sur l'élément de chat
 			   		$('.chat-element').click(function() {
@@ -78,29 +112,37 @@
 			   			var firstname = $(this).attr('pfname');
 			   			var lastname = $(this).attr('plname');
 			   			var chatWindow = $('.chat-window[pid="' + id + '"]');
-			   			$(chatWindow).find('.refresh-command').each(function() {
-		   					$(this).addClass('chat-active');
-		   					
-		   				});
-		   			    $(chatWindow).show();
+			   			
+			   			// Si la fenêtre de chat n'est pas visible, on l'affiche
+			   			if(!chatWindow.children('.chat-window-content').is(":visible")){
+				   			$(chatWindow).find('.refresh-command').each(function() {
+			   					$(this).addClass('chat-active');
+			   					
+			   				});
+				   			// Traitement du placement de la fenêtre
+				   			chatWindowsCount = 0;
+				   			$('.chat-window').each(function() {
+				   				if($(this).children('.chat-window-content').is(":visible"))
+				   					chatWindowsCount++;
+				   			});
+				   			if(chatWindowsCount > 0)
+				   				$(chatWindow).css('margin-left', (chatWindowsCount * 210).toString() + 'px');
+				   			showChatWindow(chatWindow);
+			   			}
+			   			else {
+			   				// Si elle est visible, on la masque
+			   				hideChatWindow(chatWindow);
+			   			}
 			   		});
 			   		
 			   		// Abonnement au clic sur l'en-tête d'une fenêtre de chat
 			   		$('.chat-window-header').click(function () {
 			   			if($(this).next().height() > 0) {
-			   				$(this).next().height(0);
-			   				$(this).next().hide();
-			   				$(this).width(200);
-			   				$(this).css('position', 'absolute');
-			   				$(this).css('bottom', '0px');
+			   				hideChatWindow($(this));
 			   			}
 			   			else {
-			   				$(this).parent().show();
-			   				$(this).next().height(200);
-			   				$(this).css('position', 'relative');
-			   				$(this).css('bottom', '');
-			   			}
-			   				
+			   				showChatWindow($(this));
+			   			}	
 			   		});
 			   	</script>
 			</div>
