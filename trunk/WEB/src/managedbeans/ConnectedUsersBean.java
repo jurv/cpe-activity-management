@@ -107,11 +107,10 @@ public class ConnectedUsersBean {
 		
 		listMessagesString = "";
 		newMessage = "";
-		
+				
 		// On récupère les messages pour cet utilisateur
-		// Les messages qui ont un identifiant > au dernier qu'il a écrit
 		if(lastMessage != null) {
-			for(Message mess : messageRemote.findOlderMessages(lastMessage.getUsrReceiverId(), lastMessage.getUsrSenderId(), lastMessage.getMsgId()))
+			for(Message mess : messageRemote.findOlderMessages(lastMessage.getUsrReceiverId(), lastMessage.getUsrSenderId()))
 				if(!this.listMessages.contains(mess))
 					this.listMessages.add(mess);
 		}
@@ -133,7 +132,12 @@ public class ConnectedUsersBean {
 		return listMessagesString;
 	}
 	
-	public void refreshMessages() {
+	public void refreshMessages(ActionEvent evt) {
+		if(lastMessage == null) {
+			lastMessage = new Message();
+			lastMessage.setUsrReceiverId(Integer.parseInt((String)FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("receiverid")));
+			lastMessage.setUsrSenderId(currentUser.getUsrId());
+		}
 		getListMessagesString();
 	}
 

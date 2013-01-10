@@ -59,7 +59,7 @@ public class BeanMessage implements BeanMessageRemote {
         return (Message) em.find(Message.class, Long.parseLong(id));
       }
       
-      public List <Message> findOlderMessages (int senderId, int receiverId, int messageId) {
+      public List <Message> findOlderMessages (int senderId, int receiverId) {
 
     	  SimpleDateFormat date_format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     	  Calendar now = GregorianCalendar.getInstance();
