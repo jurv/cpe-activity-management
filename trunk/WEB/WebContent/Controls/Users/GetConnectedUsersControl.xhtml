@@ -14,13 +14,15 @@
 	    <ui:composition>
 			<div id="aside-chat">
 				<h:form id='myForm'>
-			   	   <h:commandButton value="Actualiser Chat">
-			   		 <f:ajax execute="@form" render="@form" />
+			   	   <h:commandButton value="Actualiser Chat" class='connected-users-refresh-command'>
+			   		 <f:ajax execute="@form" render="panel-output" />
 			   	   </h:commandButton>
-			   	   <br />
-			   	   <p>
-				   		<h:outputText id="output" value="#{ConnectedUsersBean.connectedUsersString}" escape="false" />	
-			   	   </p>
+			   	   <h:panelGroup id='panel-output'>
+			   	   		<h4>Utilisateurs connectés</h4>
+			   	   		<p>
+			   	   			<h:outputText id="output" value="#{ConnectedUsersBean.connectedUsersString}" escape="false" />	
+			   			</p>
+			   		</h:panelGroup>
 			   	</h:form>
 			   	<div id="chat-panel">
 			   		<ui:repeat var="cur" value="#{ConnectedUsersBean.connectedUsers}">
@@ -67,7 +69,7 @@
 		   				$(window).width(200);
 		   				$(window).css('position', 'absolute');
 		   				$(window).css('bottom', '0px');
-		   				$(chatWindow).find('.refresh-command').each(function() {
+		   				$(window).find('.refresh-command').each(function() {
 		   					$(this).removeClass('chat-active');
 		   				});
 			   		};
@@ -83,7 +85,7 @@
 		   				$(window).next().show();
 		   				$(window).css('position', 'relative');
 		   				$(window).css('bottom', '');
-		   				$(chatWindow).find('.refresh-command').each(function() {
+		   				$(window).find('.refresh-command').each(function() {
 		   					$(this).addClass('chat-active');
 		   				});
 			   		};
@@ -92,6 +94,7 @@
 			   		$(document).ready(function() {
 			   			$('.chat-window').hide();
 			   			$('.refresh-command').hide();
+			   			$('.connected-users-refresh-command').hide();
 			   			
 			   			setInterval(function(){
 			   				$('.refresh-command').each(function () {
@@ -103,11 +106,20 @@
 			   					}
 			   				});
 			   			},2000);
+			   			setInterval(function(){
+			   				$('.connected-users-refresh-command').each(function () {
+			   					$(this).click();
+			   					setTimeout(chatElementClickRegister, 500);
+			   				});
+			   			},5000);
 			   			
 			   		});
 
 			   		// Abonnement au clic sur l'élément de chat
-			   		$('.chat-element').click(function() {
+			   		chatElementClickRegister = function () {
+				   		$('.chat-element').click(chatElementClickAction);
+			   		};
+			   		chatElementClickAction = function() {
 			   			var id = $(this).attr('pid');
 			   			var firstname = $(this).attr('pfname');
 			   			var lastname = $(this).attr('plname');
@@ -133,7 +145,8 @@
 			   				// Si elle est visible, on la masque
 			   				hideChatWindow(chatWindow);
 			   			}
-			   		});
+			   		};
+			   		chatElementClickRegister();
 			   		
 			   		// Abonnement au clic sur l'en-tête d'une fenêtre de chat
 			   		$('.chat-window-header').click(function () {
