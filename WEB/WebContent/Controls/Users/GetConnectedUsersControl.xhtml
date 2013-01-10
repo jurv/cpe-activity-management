@@ -32,7 +32,7 @@
 			   				</div>
 			   				<div id='message-content' class='chat-window-content'>
 			   					<h:form class='duplicate-form'>
-		   							<h:outputText style="top:30px; position:absolute; height:150px;" id='messages' escape="false" value="#{ConnectedUsersBean.listMessagesString}">  </h:outputText>
+		   							<h:outputText style="top:30px; position:absolute; height:110px; overflow-y:auto; overflow-x:hidden; bottom: 30px; width:200px; word-wrap: break-word;" id='messages' escape="false" value="#{ConnectedUsersBean.listMessagesString}">  </h:outputText>
 		   							<h:commandButton rendered="true" actionListener='#{ConnectedUsersBean.refreshMessages}' class='refresh-command'> 
 		   								<f:param name='receiverid' value="#{cur.usrId}"></f:param>
 		   								<f:ajax execute="@form" render="messages" />
@@ -44,7 +44,7 @@
 		   									<f:param name='receiverid' value="#{cur.usrId}"></f:param>
 		   									<f:ajax render="form-panel" execute="@form" />
 		   								</h:commandButton>
-		   								<h:inputText id='input-text-message' value="#{ConnectedUsersBean.newMessage}" binding="#{ConnectedUsersBean.newMessageInput}"></h:inputText>
+		   								<h:inputText id='input-text-message' value="#{ConnectedUsersBean.newMessage}" binding="#{ConnectedUsersBean.newMessageInput}" autocomplete="off"></h:inputText>
 		   							</h:panelGroup>
 		   						</h:form>
 			   				</div>
