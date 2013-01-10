@@ -114,7 +114,10 @@ public class ConnectedUsersBean {
 				if(!this.listMessages.contains(mess))
 					this.listMessages.add(mess);
 		}
+		
 		Collections.sort(this.listMessages);
+		Collections.reverse(this.listMessages);
+		
 		for(Message mess : this.listMessages) {
 			
 			if(!this.knownUsers.containsKey(mess.getUsrSenderId()))
