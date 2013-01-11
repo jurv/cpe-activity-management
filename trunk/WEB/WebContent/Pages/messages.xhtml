@@ -9,7 +9,55 @@
     	<ui:composition template="../Template/template.xhtml">
     		<ui:define name="content">
     			<section id="content">
+    				<script type="text/javascript">
+    					$(document).ready(function() {
+    						var content = $('#content');
+    					    content.find('div.tab').tabs({
+    					        fx: {
+    					            opacity: 'toggle',
+    					            duration: 'fast',
+    					            height:'auto'
+    					        }
+    					    });
+    					    content.find("table.datatable").dataTable({'bRetrieve' : true});
+    					    $("select, textarea, input").not('input[type=submit], textarea.html').uniform();
+    					});
+    				</script>
 	    			<h2> Mes messages </h2>
+	    			<p> Consultez vos messages </p>
+	    			<div class="tab">
+        				<ul>
+            				<li>
+            					<a href="#tabs-1">Boite de réception</a>
+            				</li>
+            				<li>
+            					<a href="#tabs-2">Messages envoyés</a>
+            				</li>
+            				<li>
+            					<a href="#tabs-2">Messages supprimés</a>
+            				</li>
+        				</ul>
+        				<div id="tabs-1" style="margin:10px;">
+        					<table class="datatable">
+                				<thead>
+                    				<tr>
+                        				<th>Date</th>
+                        				<th>Utilisateur</th>
+                        				<th>Sujet</th>
+                        				<th>Projet</th>
+                        				<th>Actions</th>
+                    				</tr>
+                				</thead>
+                				<tbody>
+
+				                </tbody>
+				            </table>
+        				</div>
+        				<div id="tabs-2" style="margin:10px;">
+        				</div>
+        				<div id="tabs-3" style="margin:10px;">
+        				</div>
+        			</div>
 				</section>
     		</ui:define>
     	</ui:composition>    	
