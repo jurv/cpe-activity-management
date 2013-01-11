@@ -715,8 +715,10 @@
 		 */
 		function ( sData )
 		{
+			if(sData == null || sData == "")
+				return null;
 			/* Allow zero length strings as a number */
-			if ( sData.length === 0 )
+			if ( sData != null && sData.length != null && sData.length === 0 )
 			{
 				return 'numeric';
 			}
@@ -764,6 +766,9 @@
 		 */
 		function ( sData )
 		{
+			if(sData == null || sData == "")
+				return null;
+			
 			var iParse = Date.parse(sData);
 			if ( (iParse !== null && !isNaN(iParse)) || sData.length === 0 )
 			{
@@ -780,6 +785,9 @@
 		 */
 		function ( sData )
 		{
+			if(sData == null || sData == "")
+				return null;
+			
 			if ( sData.indexOf('<') != -1 && sData.indexOf('>') != -1 )
 			{
 				return 'html';
@@ -955,21 +963,21 @@
 			 *   by javascript
 			 */
 			this.oLanguage = {
-				"sProcessing": "Processing...",
+				"sProcessing": "Chargement...",
                "sLengthMenu": "_MENU_",
-               "sZeroRecords": "No records found",
-               "sEmptyTable": "Nothing here for now ! ",
-               "sInfo": "Showing _START_ to _END_ of _TOTAL_ entries",
-               "sInfoEmpty": "Nothing to display",
-               "sInfoFiltered": "(filtered from _MAX_ total entries)",
+               "sZeroRecords": "Aucun enregistrements ...",
+               "sEmptyTable": "Rien pour le moment ",
+               "sInfo": "Visualisation _START_ à _END_ de _TOTAL_ éléments",
+               "sInfoEmpty": "Rien à afficher",
+               "sInfoFiltered": "(parmis _MAX_ éléments)",
                "sInfoPostFix": "",
-               "sSearch": "Search:",
+               "sSearch": "Rechercher:",
                "sUrl": "",
                "oPaginate": {
-                   "sFirst":    "First",
-                   "sPrevious": "Previous",
-                   "sNext":     "Next",
-                   "sLast":     "Last"
+                   "sFirst":    "Première",
+                   "sPrevious": "Précédente",
+                   "sNext":     "Suivante",
+                   "sLast":     "Dernière"
                },
                "fnInfoCallback": null
 			};

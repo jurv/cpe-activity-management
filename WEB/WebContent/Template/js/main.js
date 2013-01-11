@@ -1,10 +1,10 @@
 $(document).ready(function() {
-	var $content = $('#content');
+	var content = $('#content');
 		
 	//Main Navigation		
-	var $nav = $('#nav');
+	var nav = $('#nav');
 			
-	$nav.delegate('li','click.wl', function(event){
+	nav.delegate('li','click.wl', function(event){
 		var 	_this = $(this),
 				_parent = _this.parent(),
 				a = _parent.find('a');
@@ -14,6 +14,16 @@ $(document).ready(function() {
 				_this.find('a').eq(0).addClass('active');
 				event.stopPropagation();
 	});
+	
+    content.find('div.tab').tabs({
+        fx: {
+            opacity: 'toggle',
+            duration: 'fast',
+            height:'auto'
+        }
+    });
+    content.find("table.datatable").dataTable({'bRetrieve' : true});
+    $("select, textarea, input").not('input[type=submit], textarea.html').uniform();
 });
 
 function loadPage(thepage, element) {

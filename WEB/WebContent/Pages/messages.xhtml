@@ -9,20 +9,6 @@
     	<ui:composition template="../Template/template.xhtml">
     		<ui:define name="content">
     			<section id="content">
-    				<script type="text/javascript">
-    					$(document).ready(function() {
-    						var content = $('#content');
-    					    content.find('div.tab').tabs({
-    					        fx: {
-    					            opacity: 'toggle',
-    					            duration: 'fast',
-    					            height:'auto'
-    					        }
-    					    });
-    					    content.find("table.datatable").dataTable({'bRetrieve' : true});
-    					    $("select, textarea, input").not('input[type=submit], textarea.html').uniform();
-    					});
-    				</script>
 	    			<h2> Mes messages </h2>
 	    			<p> Consultez vos messages </p>
 	    			<div class="tab">
@@ -34,28 +20,95 @@
             					<a href="#tabs-2">Messages envoyés</a>
             				</li>
             				<li>
-            					<a href="#tabs-2">Messages supprimés</a>
+            					<a href="#tabs-3">Messages supprimés</a>
             				</li>
         				</ul>
         				<div id="tabs-1" style="margin:10px;">
-        					<table class="datatable">
-                				<thead>
-                    				<tr>
-                        				<th>Date</th>
-                        				<th>Utilisateur</th>
-                        				<th>Sujet</th>
-                        				<th>Projet</th>
-                        				<th>Actions</th>
-                    				</tr>
-                				</thead>
-                				<tbody>
-
-				                </tbody>
-				            </table>
+        					<h:dataTable rendered="#{!empty MessagesBean.messagesList}" value="#{MessagesBean.messagesList}" var="p" class="datatable">
+								<h:column>
+									<f:facet name="header">Date</f:facet>
+									<h:outputText value="#{p.msgDate}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Utilisateur</f:facet>
+									<h:outputText value="#{p.usrSenderId}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Sujet</f:facet>
+									<h:outputText value="#{p.msgSubject}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Projet</f:facet>
+									<h:outputText value="#{p.prjId}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Actions</f:facet>
+									<h:outputText value="Test"></h:outputText>
+								</h:column>
+							</h:dataTable>
+							<h:panelGroup rendered="#{empty MessagesBean.messagesList}">
+								<p>
+									<h5 style='text-align:center;'> Aucun éléments dans la boite de réception </h5>
+								</p>
+							</h:panelGroup>
         				</div>
         				<div id="tabs-2" style="margin:10px;">
+        					<h:dataTable rendered="#{!empty MessagesBean.messagesList}" value="#{MessagesBean.messagesList}" var="p" class="datatable">
+								<h:column>
+									<f:facet name="header">Date</f:facet>
+									<h:outputText value="#{p.msgDate}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Utilisateur</f:facet>
+									<h:outputText value="#{p.usrSenderId}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Sujet</f:facet>
+									<h:outputText value="#{p.msgSubject}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Projet</f:facet>
+									<h:outputText value="#{p.prjId}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Actions</f:facet>
+									<h:outputText value="Test"></h:outputText>
+								</h:column>
+							</h:dataTable>
+							<h:panelGroup rendered="#{empty MessagesBean.messagesList}">
+								<p>
+									<h5 style='text-align:center;'> Aucun éléments dans les messages envoyés </h5>
+								</p>
+							</h:panelGroup>
         				</div>
         				<div id="tabs-3" style="margin:10px;">
+        					<h:dataTable rendered="#{!empty MessagesBean.messagesList}" value="#{MessagesBean.messagesList}" var="p" class="datatable">
+								<h:column>
+									<f:facet name="header">Date</f:facet>
+									<h:outputText value="#{p.msgDate}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Utilisateur</f:facet>
+									<h:outputText value="#{p.usrSenderId}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Sujet</f:facet>
+									<h:outputText value="#{p.msgSubject}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Projet</f:facet>
+									<h:outputText value="#{p.prjId}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Actions</f:facet>
+									<h:outputText value="Test"></h:outputText>
+								</h:column>
+							</h:dataTable>
+							<h:panelGroup rendered="#{empty MessagesBean.messagesList}">
+								<p>
+									<h5 style='text-align:center;'> Aucun éléments dans les messages supprimés </h5>
+								</p>
+							</h:panelGroup>
         				</div>
         			</div>
 				</section>
