@@ -24,8 +24,8 @@
             				</li>
         				</ul>
         				<div id="tabs-1" style="margin:10px;">
-        					<h:dataTable rendered="#{!empty MessagesBean.messagesList}" value="#{MessagesBean.messagesList}" var="p" class="datatable">
-								<h:column>
+        					<h:dataTable rendered="#{!empty MessagesBean.receivedMessagesList}" value="#{MessagesBean.receivedMessagesList}" var="p" class="datatable">
+								<h:column style="width:30px;">
 									<f:facet name="header">Date</f:facet>
 									<h:outputText value="#{p.msgDate}" />
 								</h:column>
@@ -43,17 +43,22 @@
 								</h:column>
 								<h:column>
 									<f:facet name="header">Actions</f:facet>
-									<h:outputText value="Test"></h:outputText>
+									<h:form>
+										<h:commandButton label="Supprimer" type="button">
+											<f:param name='msgid' value="#{p.msgId}"></f:param>
+		   									<f:ajax execute="@form" render="@form" />
+										</h:commandButton>
+									</h:form>
 								</h:column>
 							</h:dataTable>
-							<h:panelGroup rendered="#{empty MessagesBean.messagesList}">
+							<h:panelGroup rendered="#{empty MessagesBean.receivedMessagesList}">
 								<p>
 									<h5 style='text-align:center;'> Aucun éléments dans la boite de réception </h5>
 								</p>
 							</h:panelGroup>
         				</div>
         				<div id="tabs-2" style="margin:10px;">
-        					<h:dataTable rendered="#{!empty MessagesBean.messagesList}" value="#{MessagesBean.messagesList}" var="p" class="datatable">
+        					<h:dataTable rendered="#{!empty MessagesBean.sentMessagesList}" value="#{MessagesBean.sentMessagesList}" var="p" class="datatable">
 								<h:column>
 									<f:facet name="header">Date</f:facet>
 									<h:outputText value="#{p.msgDate}" />
@@ -72,17 +77,22 @@
 								</h:column>
 								<h:column>
 									<f:facet name="header">Actions</f:facet>
-									<h:outputText value="Test"></h:outputText>
+									<h:form>
+										<h:commandButton label="Supprimer" type="button">
+											<f:param name='msgid' value="#{p.msgId}"></f:param>
+		   									<f:ajax execute="@form" render="@form" />
+										</h:commandButton>
+									</h:form>
 								</h:column>
 							</h:dataTable>
-							<h:panelGroup rendered="#{empty MessagesBean.messagesList}">
+							<h:panelGroup rendered="#{empty MessagesBean.sentMessagesList}">
 								<p>
 									<h5 style='text-align:center;'> Aucun éléments dans les messages envoyés </h5>
 								</p>
 							</h:panelGroup>
         				</div>
         				<div id="tabs-3" style="margin:10px;">
-        					<h:dataTable rendered="#{!empty MessagesBean.messagesList}" value="#{MessagesBean.messagesList}" var="p" class="datatable">
+        					<h:dataTable rendered="#{!empty MessagesBean.deletedMessagesList}" value="#{MessagesBean.deletedMessagesList}" var="p" class="datatable">
 								<h:column>
 									<f:facet name="header">Date</f:facet>
 									<h:outputText value="#{p.msgDate}" />
@@ -101,10 +111,15 @@
 								</h:column>
 								<h:column>
 									<f:facet name="header">Actions</f:facet>
-									<h:outputText value="Test"></h:outputText>
+									<h:form>
+										<h:commandButton  title="Supprimer" type="button" styleClass="btn small">
+											<f:param name='msgid' value="#{p.msgId}"></f:param>
+		   									<f:ajax execute="@form" render="@form" />
+										</h:commandButton>
+									</h:form>
 								</h:column>
 							</h:dataTable>
-							<h:panelGroup rendered="#{empty MessagesBean.messagesList}">
+							<h:panelGroup rendered="#{empty MessagesBean.deletedMessagesList}">
 								<p>
 									<h5 style='text-align:center;'> Aucun éléments dans les messages supprimés </h5>
 								</p>

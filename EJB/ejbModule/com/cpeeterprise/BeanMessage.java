@@ -67,5 +67,15 @@ public class BeanMessage implements BeanMessageRemote {
     	  return (List <Message>) em.createQuery("select t from Message t where msg_date >= '" + date_format.format(now.getTime()) + "' and usr_sender_id = " + senderId + " and usr_receiver_id = " + receiverId).getResultList();
       }
 
-
+      public List<Message> findDeletedMessagesFor(int receiverId) {
+    	  return (List <Message>) em.createQuery("select t from Message t where usr_receiver_id = " + receiverId + " and msg_isdeleted = '1' and msg_subject <> 'Chat'").getResultList();
+      }
+      
+      public List<Message> findReceivedMessagesFor(int receiverId) {
+    	  return (List <Message>) em.createQuery("select t from Message t where usr_receiver_id = " + receiverId + " and msg_isdeleted = '0' and msg_subject <> 'Chat'").getResultList();
+      }
+      
+      public List<Message> findSentMessagesFor(int senderId) {
+    	  return (List <Message>) em.createQuery("select t from Message t where usr_sender_id = " + senderId + " and msg_subject <> 'Chat' ").getResultList();
+      }
 }
