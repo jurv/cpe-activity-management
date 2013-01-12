@@ -11,7 +11,7 @@
     			<section id="content">
 	    			<h2>List of existing projects</h2>
 	    			<f:view>
-						<h:dataTable value="#{project.projectList}" var="p" border="1" class="datatable">
+						<h:dataTable value="#{output.projectList}" var="p" border="1" class="datatable">
 							<h:column>
 								<f:facet name="header">Project Name</f:facet>
 								<h:outputText value="#{p.prjLabel}" />

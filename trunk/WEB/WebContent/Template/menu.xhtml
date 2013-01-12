@@ -9,7 +9,11 @@
 	<ui:composition>
 		<nav>
 			<ul id="nav">
-				<li class="i_folder"><a class="active"> <span>Customers Manager</span></a>
+				<li class="i_folder"><a><span>Customers Manager</span></a>
+					<ul>
+                        <li><h:link class="leftmenu processing" value="Create a customer" outcome="NewCustomers" /></li>
+                        <li><h:link class="leftmenu processing" value="View existing customer" outcome="Customers" /></li>
+                    </ul>
 				</li>
 				
 				<li class="i_folder"><a><span>Projects Manager</span></a>
