@@ -15,6 +15,14 @@
 	    			<h:form id="newprojectform">
 						<fieldset>
 							<section>
+								<label for="name">Client</label>
+								<div>
+									<h:selectOneMenu value="#{input.customerValue}">
+										<f:selectItems value="#{input.customersItems}"/>
+									</h:selectOneMenu>
+								</div>
+							</section>
+							<section>
 								<label for="name"> Project name </label>
 								<div>
 									<h:inputText id="name" value="#{CreateProjectBean.projectName}" />
