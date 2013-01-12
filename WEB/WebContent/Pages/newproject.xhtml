@@ -23,13 +23,13 @@
 								</div>
 							</section>
 							<section>
-								<label for="name"> Project name </label>
+								<label for="name"> Nom du projet </label>
 								<div>
 									<h:inputText id="name" value="#{CreateProjectBean.projectName}" />
 								</div>
 							</section>
 							<section>
-								<label for="name"> Project begin date </label>
+								<label for="name"> Date de début </label>
 								<div>
 									<t:panelGroup styleClass="date_input">
 										<t:inputCalendar id="dob" 
@@ -47,7 +47,7 @@
 								</div>
 							</section>
 							<section>
-								<label for="name"> Project finish date </label>
+								<label for="name"> Date de fin </label>
 								<div>
 									<t:panelGroup styleClass="date_input">
 										<t:inputCalendar id="doe" 
@@ -68,14 +68,14 @@
 								</div>
 							</section>
 							<section>
-								<label for="time"> Total time </label>
+								<label for="time"> Nombre de jours </label>
 								<div>
 									<h:inputText id="time" value="#{CreateProjectBean.projectTotalTime}" />
 								</div>
 							</section>
 							<section>
 								<div>
-									<h:commandButton value="Create this project" action="#{CreateProjectBean.updateProject}"/>
+									<h:commandButton value="Créer le projet" action="#{CreateProjectBean.updateProject}"/>
 								</div>
 							</section>
 						</fieldset>
