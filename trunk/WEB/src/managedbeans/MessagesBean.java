@@ -48,7 +48,7 @@ public class MessagesBean {
 	}
 
 	public ArrayList<Message> getReceivedMessagesList() {
-		if(receivedMessagesList.size() == 0 || receivedMessagesList.get(0).getUsrSenderId() != currentUser.getUsrId())
+		if(receivedMessagesList.size() == 0 || receivedMessagesList.get(0).getUsrReceiverId() != currentUser.getUsrId())
 			receivedMessagesList.addAll(messageRemote.findReceivedMessagesFor(currentUser.getUsrId()));
 		return receivedMessagesList;
 	}
@@ -65,5 +65,25 @@ public class MessagesBean {
 
 	public void setSentMessagesList(ArrayList<Message> sentMessagesList) {
 		this.sentMessagesList = sentMessagesList;
+	}
+	
+	public String deleteMessage() {
+		int tabN = Integer.parseInt((String)FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("tabN"));
+		int msgId = Integer.parseInt((String)FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("msgId"));
+		Message msg = messageRemote.findMessage(msgId);
+		
+		messageRemote.logicalDelete(msg);
+		
+		if(tabN == 1) {
+			receivedMessagesList.remove(msg);
+		}
+		else if(tabN == 2) {
+			sentMessagesList.remove(msg);
+		}
+		else if(tabN == 3) {
+			deletedMessagesList.remove(msg);
+		}
+		
+		return null;
 	}
 }

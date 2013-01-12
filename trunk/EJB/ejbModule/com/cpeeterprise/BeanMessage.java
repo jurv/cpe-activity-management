@@ -43,6 +43,13 @@ public class BeanMessage implements BeanMessageRemote {
         em.remove( t );
 
       }
+      
+      public void logicalDelete (Message message) {
+          Message t = em.merge (message);
+          t.setMsgIsdeleted((byte)1);
+          update(t);
+
+        }
 
       public void update (Message message) {
         em.merge (message);
@@ -54,9 +61,9 @@ public class BeanMessage implements BeanMessageRemote {
         return (List <Message>) em.createQuery("select t from Message t").getResultList();
       }
 
-      public Message findMessage (String id) {
+      public Message findMessage (int id) {
 
-        return (Message) em.find(Message.class, Long.parseLong(id));
+        return (Message) em.find(Message.class, id);
       }
       
       public List <Message> findOlderMessages (int senderId, int receiverId) {

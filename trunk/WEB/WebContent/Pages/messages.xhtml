@@ -44,10 +44,10 @@
 								<h:column>
 									<f:facet name="header">Actions</f:facet>
 									<h:form>
-										<h:commandButton label="Supprimer" type="button">
-											<f:param name='msgid' value="#{p.msgId}"></f:param>
-		   									<f:ajax execute="@form" render="@form" />
-										</h:commandButton>
+										<h:commandLink value="Supprimer" action="#{MessagesBean.deleteMessage}">
+											<f:param name="msgId" id="msg" value="#{p.msgId}"></f:param>
+											<f:param name="tabN" id="tabN" value="1"></f:param>
+										</h:commandLink>
 									</h:form>
 								</h:column>
 							</h:dataTable>
@@ -78,10 +78,10 @@
 								<h:column>
 									<f:facet name="header">Actions</f:facet>
 									<h:form>
-										<h:commandButton label="Supprimer" type="button">
-											<f:param name='msgid' value="#{p.msgId}"></f:param>
-		   									<f:ajax execute="@form" render="@form" />
-										</h:commandButton>
+										<h:commandLink value="Supprimer" action="#{MessagesBean.deleteMessage}">
+											<f:param name="msgId" id="msg" value="#{p.msgId}"></f:param>
+											<f:param name="tabN" id="tabN" value="2"></f:param>
+										</h:commandLink>
 									</h:form>
 								</h:column>
 							</h:dataTable>
@@ -112,10 +112,10 @@
 								<h:column>
 									<f:facet name="header">Actions</f:facet>
 									<h:form>
-										<h:commandButton  title="Supprimer" type="button" styleClass="btn small">
-											<f:param name='msgid' value="#{p.msgId}"></f:param>
-		   									<f:ajax execute="@form" render="@form" />
-										</h:commandButton>
+										<h:commandLink value="Supprimer" action="#{MessagesBean.deleteMessage}">
+											<f:param name="msgId" id="msg" value="#{p.msgId}"></f:param>
+											<f:param name="tabN" id="tabN" value="3"></f:param>
+										</h:commandLink>
 									</h:form>
 								</h:column>
 							</h:dataTable>
