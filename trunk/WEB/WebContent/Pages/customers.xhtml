@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets" 
+>
+    <h:body>
+ 
+    	<ui:composition template="../Template/template.xhtml">
+    		<ui:define name="content">
+    			<section id="content">
+	    			<h2>List of existing projects</h2>
+	    			<f:view>
+						<h:dataTable value="#{output.customerList}" var="c" border="1" class="datatable">
+							<h:column>
+								<f:facet name="header">Customer Name</f:facet>
+								<h:outputText value="#{c.cusName}" />
+							</h:column>
+						</h:dataTable>
+					</f:view>
+				</section>
+    		</ui:define>
+    	</ui:composition>    	
+    </h:body>
+ 
+</html>
