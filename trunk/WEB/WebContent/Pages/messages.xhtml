@@ -5,9 +5,11 @@
     xmlns:ui="http://java.sun.com/jsf/facelets" 
 >
     <h:body>
- 
     	<ui:composition template="../Template/template.xhtml">
     		<ui:define name="content">
+    			<f:metadata>
+    				<f:event type="preRenderView" listener="#{MessagesBean.fillMessagesLists}"/>
+				</f:metadata>
     			<section id="content">
 	    			<h2> Mes messages </h2>
 	    			<p> Consultez vos messages </p>
