@@ -15,14 +15,11 @@
   <tr>
     <td>Nom:</td>
     <td>
-<!-- <h:commandButton type="submit" id="update" value="ActionUpdate"
-                 action="#{CreateCustomerBean.updateCustomer}"/> -->
+	<!-- <h:commandButton type="submit" id="update" value="ActionUpdate" action="#{CreateCustomerBean.updateCustomer}"/> -->
     </td>
   </tr>
 </table>
-<h:commandButton type="submit" id="create" value="Create"
-
-                 action="#{CreateCustomerBean.persist}"/>
+<h:commandButton type="submit" id="create" value="Create" action="#{CreateCustomerBean.persist}"/>
 </h:form>
 
 </f:view>
