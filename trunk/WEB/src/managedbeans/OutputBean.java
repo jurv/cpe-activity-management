@@ -25,7 +25,7 @@ public class OutputBean {
 	public BeanCustomerRemote customerRemote;
 	
 	
-	public Project test;
+	public Project test;//a QUOI CA SERT??? => certainement rien du tout...
 	
 	private List<Project> refProjects;
 	private List<Customer> refCustomers;
