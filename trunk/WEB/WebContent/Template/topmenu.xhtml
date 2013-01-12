@@ -9,16 +9,27 @@
  </h:head>
     <body>
 	    <ui:composition>
-		<div id="pageoptions">
-        	<ul>
-        		<li> 
-        			<h:outputText value="#{GeneralBean.currentUser.usrFirstname}"> </h:outputText> 
-        			<h:form id="disconnectForm" prependId="false">
-        				<h:commandButton value="Se déconnecter" action="#{GeneralBean.disconnectUser}"> </h:commandButton>
-        			</h:form>
-        		</li>
-        	</ul>
-		</div>
+	    <div class="navigation">
+            <div id="account-dropdown-view">
+                <div class="account-dropdown-view">
+                    <a class="account" href="javascript:void(0);" onclick="$('.submenu').toggle();" style="background-color: transparent; opacity: 1;">
+                        <img width="16" height="16" src="Template/css/images/profil.png" />
+                        <h:outputText value="#{GeneralBean.currentUser.usrFirstname}"> </h:outputText> 
+                    </a>
+                    <div class="submenu" style="display: none;">
+                        <ul class="root">
+                            <li>
+                                <a href="" class="logout">
+                                	<h:form id="disconnectForm" prependId="false">
+        								<h:commandButton value="Se déconnecter" action="#{GeneralBean.disconnectUser}"> </h:commandButton>
+        							</h:form>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+               </div>
+           </div>
+        </div>
 		<header>
         	<div id=""> CPE Activity Management Logo </div>
         	<div id="header">
