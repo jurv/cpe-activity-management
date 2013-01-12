@@ -38,8 +38,9 @@ public class MessagesBean {
 	}
 
 	public ArrayList<Message> getDeletedMessagesList() {
-		if(deletedMessagesList.size() == 0 || deletedMessagesList.get(0).getUsrSenderId() != currentUser.getUsrId())
+		if(deletedMessagesList.size() == 0 || deletedMessagesList.get(0).getUsrSenderId() != currentUser.getUsrId()) {
 			deletedMessagesList.addAll(messageRemote.findDeletedMessagesFor(currentUser.getUsrId()));
+		}
 		return deletedMessagesList;
 	}
 
@@ -48,8 +49,10 @@ public class MessagesBean {
 	}
 
 	public ArrayList<Message> getReceivedMessagesList() {
-		if(receivedMessagesList.size() == 0 || receivedMessagesList.get(0).getUsrReceiverId() != currentUser.getUsrId())
+		if(receivedMessagesList.size() == 0 || receivedMessagesList.get(0).getUsrReceiverId() != currentUser.getUsrId()){
+			receivedMessagesList.clear();
 			receivedMessagesList.addAll(messageRemote.findReceivedMessagesFor(currentUser.getUsrId()));
+		}
 		return receivedMessagesList;
 	}
 
@@ -58,8 +61,10 @@ public class MessagesBean {
 	}
 
 	public ArrayList<Message> getSentMessagesList() {
-		if(sentMessagesList.size() == 0 || sentMessagesList.get(0).getUsrSenderId() != currentUser.getUsrId())
+		if(sentMessagesList.size() == 0 || sentMessagesList.get(0).getUsrSenderId() != currentUser.getUsrId()) {
+			sentMessagesList.clear();
 			sentMessagesList.addAll(messageRemote.findSentMessagesFor(currentUser.getUsrId()));
+		}
 		return sentMessagesList;
 	}
 
