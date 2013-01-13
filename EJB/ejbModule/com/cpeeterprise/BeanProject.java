@@ -46,5 +46,8 @@ public class BeanProject implements BeanProjectRemote {
     	  return (Project) em.find(Project.class, Long.parseLong(id));
       }
       
+      public List <Project> findProjectsByUser (int userId) {
+    	  return (List <Project>) em.createQuery("select p from Project p where prj_id IN ( select up from User2Project up where usr_id = " + userId + ")").getResultList();
+      }
 
 }
