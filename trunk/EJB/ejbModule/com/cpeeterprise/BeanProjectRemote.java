@@ -14,4 +14,5 @@ public interface BeanProjectRemote {
 	public void update (Project project);
 	public List <Project> findProjects ();
 	public Project findProject (String id);
+	public List <Project> findProjectsByUser (int userId);
 }

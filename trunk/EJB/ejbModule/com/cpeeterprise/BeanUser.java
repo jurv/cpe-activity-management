@@ -51,6 +51,12 @@ public class BeanUser implements BeanUserRemote {
 		return (List<User>) em.createQuery("select t from User t")
 				.getResultList();
 	}
+	
+	public List<User> findUsersByProject(int prjId) {
+
+		return (List<User>) em.createQuery("select t from User t where usr_id IN (select up from User2Project up where prj_id = " + prjId + ")")
+				.getResultList();
+	}
 
 	public User findUser(int id) {
 
