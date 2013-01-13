@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets" 
+>
+    <h:body>
+ 
+    	<ui:composition template="../Template/template.xhtml">
+    		<ui:define name="content">
+    			<f:metadata>
+    				<f:event type="preRenderView" listener="#{ViewMessageBean.initPage}"/>
+				</f:metadata>
+    			<section id="content">
+	    			<h2> Consultation de message </h2>
+	    			<p>
+	    				Consulter un message. 
+	    			</p>
+	    			<h:form id="viewmessageform">
+						<fieldset>
+							<section>
+								<label for="project"> Projet </label>
+								<div>
+									<h:outputText id="project" value="#{ViewMessageBean.msgProjectName}"/>
+								</div>
+							</section>
+							<section>
+								<label for="sender"> Envoyeur </label>
+								<div>
+									<h:outputText id="sender" value="#{ViewMessageBean.msgSenderName}"/>
+								</div>
+							</section>
+							<section>
+								<label for="receiver"> Receveur </label>
+								<div>
+									<h:outputText id="receiver" value="#{ViewMessageBean.msgReceiverName}"/>
+								</div>
+							</section>
+							<section>
+								<label for="subject"> Sujet </label>
+								<div>
+									<h4>
+										<h:outputText id="subject" value="#{ViewMessageBean.currentMessage.msgSubject}"/>
+									</h4>
+								</div>
+							</section>
+							<section>
+								<label for="content"> Contenu </label>
+								<div>
+									<h6>
+										<h:outputText id="date" value="#{ViewMessageBean.currentMessage.msgDate}"/> 
+									</h6>
+									<blockquote>
+										<h5>
+											<h:outputText id="content" value="#{ViewMessageBean.currentMessage.msgContent}"/>
+										</h5>
+									</blockquote>
+								</div>
+							</section>
+						</fieldset>
+					</h:form>
+				</section>
+    		</ui:define>
+    	</ui:composition>    	
+    </h:body>
+ 
+</html>
