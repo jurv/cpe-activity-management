@@ -16,6 +16,7 @@ public class CreateProjectBean {
 	public BeanProjectRemote projectRemote;
 	private String projectName = "";
 	private String projectTotalTime = "";
+	private String projectComment = "";
 	private Date projectDateCreated = new Date();
 	private Date projectDateFinished = new Date();
 	
@@ -25,9 +26,17 @@ public class CreateProjectBean {
 		project.setPrjLabel(this.projectName);
 		project.setPrjDateCreated(this.projectDateCreated);
 		project.setPrjDateFinished(this.projectDateFinished);
-		project.setPrjComment("Un projet");
+		project.setPrjComment(this.projectComment);
 		project.setCusId(1);
 		projectRemote.update(project);
+	}
+
+	public String getProjectComment() {
+		return projectComment;
+	}
+
+	public void setProjectComment(String projectComment) {
+		this.projectComment = projectComment;
 	}
 
 	public Date getProjectDateCreated() {
