@@ -25,6 +25,15 @@
 		</managed-property>
 	</managed-bean>
 	<managed-bean>
+		<managed-bean-name>ViewMessageBean</managed-bean-name>
+		<managed-bean-class>managedbeans.ViewMessageBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>currentUser</property-name>
+			<value>#{LoginFormBean.current}</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
 		<managed-bean-name>LoginFormBean</managed-bean-name>
 		<managed-bean-class>managedbeans.LoginFormBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
@@ -116,6 +125,10 @@
 		<navigation-case>
 			<from-outcome>HistoriquesChat</from-outcome>
 			<to-view-id>/Pages/historiqueschat.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>DetailsMessage</from-outcome>
+			<to-view-id>/Pages/viewmessage.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 </faces-config>
