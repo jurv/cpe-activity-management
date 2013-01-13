@@ -7,7 +7,6 @@
 >
 
     <h:body>
- 
     	<ui:composition template="../Template/template.xhtml">
     		<ui:define name="content">
     			<section id="content">
@@ -17,7 +16,7 @@
 							<section>
 								<label for="name">Client</label>
 								<div>
-									<h:selectOneMenu value="#{input.customerValue}">
+									<h:selectOneMenu value="#{CreateProjectBean.projectCusId}">
 										<f:selectItems value="#{input.customersItems}"/>
 									</h:selectOneMenu>
 								</div>
@@ -64,10 +63,7 @@
 										    weekRowClass="weekRowClass" 
 										    dayCellClass="dayCellClass" 
 										    currentDayCellClass="currentDayCellClass"
-										    popupTodayString="Today is :" 
-										    popupWeekString="Wk" renderAsPopup="true"
-										    renderPopupButtonAsImage="true" 
-										    popupDateFormat="MM/dd/yyyy"
+										    renderAsPopup="false"
 										    alt="Calendar" title="Calendar">
 								    	</t:inputCalendar>
 									</t:panelGroup>
@@ -77,6 +73,14 @@
 								<label for="time"> Nombre de jours </label>
 								<div>
 									<h:inputText id="time" value="#{CreateProjectBean.projectTotalTime}" />
+								</div>
+							</section>
+							<section>
+								<label for="cdp"> Chef de projet </label>
+								<div>
+									<h:selectOneMenu value="#{CreateProjectBean.projectCdpId}">
+										<f:selectItems value="#{input.cdpItems}"/>
+									</h:selectOneMenu>
 								</div>
 							</section>
 							<section>

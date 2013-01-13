@@ -20,10 +20,11 @@ public class BeanProject implements BeanProjectRemote {
 	@PersistenceContext
 	private EntityManager em;
 	
-    public void persist (Project project) {
+    public Project persist (Project project) {
         em.persist (project);
         em.flush();
         em.refresh(project);
+        return project;
       }
 
       public void delete (Project project) {

@@ -9,8 +9,10 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
 
 import model.Customer;
+import model.User;
 
 import com.cpeeterprise.BeanCustomerRemote;
+import com.cpeeterprise.BeanUserRemote;
 
 @ManagedBean(name="input")
 @SessionScoped
@@ -19,8 +21,13 @@ public class InputBean {
 	@EJB
 	public BeanCustomerRemote customerRemote;
 	
+	@EJB
+	public BeanUserRemote userRemote;
+	
 	private List<SelectItem> customersItems = new ArrayList<SelectItem>();
-	private int customerValue;
+	
+	// Liste des users ayant un profil chef de projet
+	private List<SelectItem> cdpItems = new ArrayList<SelectItem>();
 	
 	public List<SelectItem> getCustomersItems() {
 		if(this.customersItems.isEmpty()){
@@ -31,12 +38,14 @@ public class InputBean {
 		}
 		return customersItems;
 	}
-
-	public int getCustomerValue() {
-		return this.customerValue;
-	}
-
-	public void setCustomerValue(int c) {
-		this.customerValue = c;
+	
+	public List<SelectItem> getCdpItems() {
+		if(this.cdpItems.isEmpty()){
+			List<User> cdps = userRemote.findCdps();
+			for(User u:cdps){
+				cdpItems.add(new SelectItem(u.getUsrId(), u.getUsrFirstname() + " " + u.getUsrLastname()));
+			}
+		}
+		return cdpItems;
 	}
 }

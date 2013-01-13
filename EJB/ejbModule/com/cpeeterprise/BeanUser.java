@@ -94,4 +94,9 @@ public class BeanUser implements BeanUserRemote {
 				.getResultList();
 	}
 
+	@Override
+	public List<User> findCdps() {
+		return (List<User>) em.createQuery("select t from User t where fct_id = 1").getResultList();
+	}
+
 }

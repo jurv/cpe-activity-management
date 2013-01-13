@@ -9,7 +9,7 @@ import model.Project;
 @Remote
 public interface BeanProjectRemote {
 
-	public void persist (Project project);
+	public Project persist (Project project);
 	public void delete (Project project);
 	public void update (Project project);
 	public List <Project> findProjects ();

@@ -18,4 +18,5 @@ public interface BeanUserRemote {
 	public int connectUser(String login, String password);
 	public boolean disconnectUser(User user);
 	public List <User> getConnectedUsers ();
+	public List <User> findCdps();
 }
