@@ -6,6 +6,11 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd"
     version="2.1">
     <managed-bean>
+		<managed-bean-name>ProjectsBean</managed-bean-name>
+		<managed-bean-class>managedbeans.ProjectsBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+    <managed-bean>
 		<managed-bean-name>CreateProjectBean</managed-bean-name>
 		<managed-bean-class>managedbeans.CreateProjectBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
@@ -129,6 +134,10 @@
 		<navigation-case>
 			<from-outcome>DetailsMessage</from-outcome>
 			<to-view-id>/Pages/viewmessage.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>DetailsProject</from-outcome>
+			<to-view-id>/Pages/project.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 </faces-config>

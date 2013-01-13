@@ -8,6 +8,7 @@ import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import model.Message;
 import model.Project;
 
 /**
@@ -43,12 +44,23 @@ public class BeanProject implements BeanProjectRemote {
     	  return (List <Project>) em.createQuery("select t from Project t").getResultList();
       }
 
-      public Project findProject (String id) {
-    	  return (Project) em.find(Project.class, Integer.parseInt(id));
+      public List <Project> findActiveProjects () {
+    	  return (List <Project>) em.createQuery("select t from Project t where prj_isdeleted = 'O'").getResultList();
+      }
+
+      public Project findProject (int id) {
+    	  return (Project) em.find(Project.class, id);
       }
       
       public List <Project> findProjectsByUser (int userId) {
     	  return (List <Project>) em.createQuery("select p from Project p where prj_id IN ( select up from User2Project up where usr_id = " + userId + ")").getResultList();
       }
+
+	@Override
+	public void logicalDelete(Project project) {
+		Project p = em.merge (project);
+        p.setPrjIsdeleted((byte)1);
+        update(p);
+	}
 
 }

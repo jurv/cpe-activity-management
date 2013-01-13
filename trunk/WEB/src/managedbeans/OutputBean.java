@@ -28,6 +28,7 @@ public class OutputBean {
 	public Project test;//a QUOI CA SERT??? => certainement rien du tout...
 	
 	private List<Project> refProjects;
+	private List<Project> refActiveProjects;
 	private List<Customer> refCustomers;
 	
 
@@ -36,6 +37,13 @@ public class OutputBean {
 			refProjects = projectRemote.findProjects();
 		}
 		return refProjects;
+	}
+	
+	public List<Project> getActiveProjectList() {
+		if (refActiveProjects == null) {
+			refActiveProjects = projectRemote.findActiveProjects();
+		}
+		return refActiveProjects;
 	}
 	
 	public List<Customer> getCustomerList() {
