@@ -43,7 +43,7 @@ public class BeanProject implements BeanProjectRemote {
       }
 
       public Project findProject (String id) {
-    	  return (Project) em.find(Project.class, Long.parseLong(id));
+    	  return (Project) em.find(Project.class, Integer.parseInt(id));
       }
       
       public List <Project> findProjectsByUser (int userId) {
