@@ -11,10 +11,12 @@ import javax.servlet.http.HttpSession;
 
 import model.Customer;
 import model.Project;
+import model.Task;
 
 
 import com.cpeeterprise.BeanCustomerRemote;
 import com.cpeeterprise.BeanProjectRemote;
+import com.cpeeterprise.BeanTaskRemote;
 
 @ManagedBean(name="output")
 @RequestScoped
@@ -26,11 +28,16 @@ public class OutputBean {
 	@EJB
 	public BeanCustomerRemote customerRemote;
 	
+	@EJB
+	public BeanTaskRemote taskRemote;
+	
 	
 	public Project test;//a QUOI CA SERT??? => certainement rien du tout...
 	
 	private List<Project> refProjects;
 	private List<Project> refActiveProjects;
+	private List<Task> refTasks;
+	private List<Task> refActiveTasks;
 	private List<Customer> refCustomers;
 	
 
@@ -46,6 +53,20 @@ public class OutputBean {
 			refActiveProjects = projectRemote.findActiveProjects();
 		}
 		return refActiveProjects;
+	}
+	
+	public List<Task> getTaskList() {
+		if (refTasks == null) {
+			refTasks = taskRemote.findTasks();
+		}
+		return refTasks;
+	}
+	
+	public List<Task> getActiveTaskList() {
+		if (refActiveTasks == null) {
+			refActiveTasks = taskRemote.findActiveTasks();
+		}
+		return refActiveTasks;
 	}
 	
 	public List<Customer> getCustomerList() {

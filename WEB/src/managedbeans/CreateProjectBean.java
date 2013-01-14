@@ -21,12 +21,12 @@ public class CreateProjectBean {
 	public BeanUser2ProjectRemote user2projectRemote;
 	
 	private String projectName = "";
-	private String projectTotalTime = "";
 	private String projectComment = "";
 	private Date projectDateCreated = new Date();
 	private Date projectDateFinished = new Date();
-	private int projectCusId;
-	private int projectCdpId;
+	private int projectTotalTime = 0;
+	private int projectCusId = 0;
+	private int projectCdpId = 0;
 	
 	public void updateProject()
 	{
@@ -38,6 +38,7 @@ public class CreateProjectBean {
 		project.setPrjDateFinished(this.projectDateFinished);
 		project.setPrjComment(this.projectComment);
 		project.setCusId(this.projectCusId);
+		project.setPrjNbDays(this.projectTotalTime);
 		project = projectRemote.persist(project);
 		
 		user2project.setPrjId(project.getPrjId());
@@ -94,11 +95,11 @@ public class CreateProjectBean {
 		this.projectName = projectName;
 	}
 
-	public String getProjectTotalTime() {
+	public int getProjectTotalTime() {
 		return projectTotalTime;
 	}
 
-	public void setProjectTotalTime(String projectTotalTime) {
+	public void setProjectTotalTime(int projectTotalTime) {
 		this.projectTotalTime = projectTotalTime;
 	}
 	

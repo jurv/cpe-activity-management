@@ -6,6 +6,11 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd"
     version="2.1">
     <managed-bean>
+        <managed-bean-name>TaskBean</managed-bean-name>
+        <managed-bean-class>managedbeans.TaskBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
 		<managed-bean-name>ProjectsBean</managed-bean-name>
 		<managed-bean-class>managedbeans.ProjectsBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
@@ -140,12 +145,24 @@
 			<to-view-id>/Pages/newproject.xhtml</to-view-id>
 		</navigation-case>
 		<navigation-case>
+            <from-outcome>NewTask</from-outcome>
+            <to-view-id>/Pages/newtask.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
 			<from-outcome>Projects</from-outcome>
 			<to-view-id>/Pages/projects.xhtml</to-view-id>
-		</navigation-case>
+		</navigation-case>	
 		<navigation-case>
+            <from-outcome>Tasks</from-outcome>
+            <to-view-id>/Pages/tasks.xhtml</to-view-id>
+        </navigation-case>  
+        <navigation-case>
 			<from-outcome>Customers</from-outcome>
 			<to-view-id>/Pages/customers.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>NewCustomer</from-outcome>
+			<to-view-id>/Pages/newcustomer.xhtml</to-view-id>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>NewUser</from-outcome>
@@ -172,6 +189,10 @@
 			<to-view-id>/Pages/project.xhtml</to-view-id>
 		</navigation-case>
 		<navigation-case>
+            <from-outcome>DetailsTask</from-outcome>
+            <to-view-id>/Pages/task.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
 			<from-outcome>Dashboard</from-outcome>
 			<to-view-id>/Pages/dashboard.xhtml</to-view-id>
 		</navigation-case>

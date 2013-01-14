@@ -26,13 +26,12 @@ public class BeanProject implements BeanProjectRemote {
         em.flush();
         em.refresh(project);
         return project;
-      }
+    }
 
       public void delete (Project project) {
         Project t = em.merge (project);
         em.remove( t );
         em.flush();
-
       }
 
       public void update (Project project) {
@@ -53,7 +52,7 @@ public class BeanProject implements BeanProjectRemote {
       }
       
       public List <Project> findProjectsByUser (int userId) {
-    	  return (List <Project>) em.createQuery("select p from Project p where prj_id IN ( select up from User2Project up where usr_id = " + userId + ")").getResultList();
+    	  return (List <Project>) em.createQuery("select p from Project p where prj_id IN ( select up from User2Project up where usr_id = '" + userId + "')").getResultList();
       }
 
 	@Override
