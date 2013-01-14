@@ -8,8 +8,28 @@
  
     	<ui:composition template="../Template/template.xhtml">
     		<ui:define name="content">
+    			<f:metadata>
+    				<f:event type="preRenderView" listener="#{ChatsBean.initView}"/>
+				</f:metadata>
     			<section id="content">
-	    			<h2> Historiques de Chat </h2>
+	    			<h2> Historiques de chat </h2>
+	    			<p> Consultez les histoiques de chat </p>
+	    			<div class="tab">
+        				<ul>
+            				<li>
+            					<a href="#tabs-1">Mes conversations</a>
+            				</li>
+            				<li>
+            					<a href="#tabs-2">Conversations des projets dont je suis en charge</a>
+            				</li>
+        				</ul>
+        				<div id="tabs-1" style="margin:10px;">
+        					
+        				</div>
+        				<div id="tabs-2" style="margin:10px;">
+        					
+        				</div>
+        			</div>
 				</section>
     		</ui:define>
     	</ui:composition>    	

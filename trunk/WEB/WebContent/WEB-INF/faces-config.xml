@@ -39,6 +39,15 @@
 		</managed-property>
 	</managed-bean>
 	<managed-bean>
+		<managed-bean-name>ChatsBean</managed-bean-name>
+		<managed-bean-class>managedbeans.ChatsBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>currentUser</property-name>
+			<value>#{LoginFormBean.current}</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
 		<managed-bean-name>LoginFormBean</managed-bean-name>
 		<managed-bean-class>managedbeans.LoginFormBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
