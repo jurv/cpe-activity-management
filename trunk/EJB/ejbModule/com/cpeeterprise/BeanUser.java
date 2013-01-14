@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
 
+import model.Message;
 import model.User;
 
 /**
@@ -99,7 +100,17 @@ public class BeanUser implements BeanUserRemote {
 		return (List<User>) em.createQuery("select t from User t where fct_id = 1").getResultList();
 	}
 
-	public List<User> findUserWithChatConv(int usrId) {
-		return (List<User>) em.createQuery("select t from User t where (usr_id IN (select m from Message m where usr_sender_id = " + usrId + ") or usr_id IN (select m2 from Message m2 where usr_receiver_id = " + usrId + ")) and usr_id <> " + usrId + "").getResultList();
+	public List<User> findUserWithChatConv(int usrId, int prjId) {
+		ArrayList<Message> msg = new ArrayList<Message>();
+		String usrIds = "";
+		String separator = "";
+		msg.addAll(em.createQuery("select m from Message m where usr_sender_id = " + usrId + " and prj_id = " + prjId + " ").getResultList());
+		msg.addAll(em.createQuery("select m from Message m where usr_receiver_id = " + usrId + " and prj_id = " + prjId + " ").getResultList());
+		for(Message m : msg) {
+			usrIds += separator + m.getUsrSenderId();
+			separator = ",";
+		}
+		return (List<User>) em.createQuery("select t from User t where usr_id IN (" + usrIds + ") and usr_id <> " + usrId)
+				.getResultList();
 	}
 }

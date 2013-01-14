@@ -28,10 +28,15 @@ public class ViewChatProjectsBean {
 	public BeanProjectRemote projectRemote;
 	private Project currentProject;
 	private User currentUser = new User();	
+	private ArrayList<User> chatUsers = new ArrayList<User>();
 	public void initView() {
 		
 		// Récupération du projet
 		this.currentProject = projectRemote.findProject(Integer.parseInt((String)FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("prjId")));
+		
+		// Récupération des utilisateurs avec lesquels j'ai communiqué sur ce projet
+		this.getChatUsers().clear();
+		this.getChatUsers().addAll(userRemote.findUserWithChatConv(currentUser.getUsrId(), this.currentProject.getPrjId()));
 	}
 	
 	public User getCurrentUser() {
@@ -48,6 +53,14 @@ public class ViewChatProjectsBean {
 
 	public void setCurrentProject(Project currentProject) {
 		this.currentProject = currentProject;
+	}
+
+	public ArrayList<User> getChatUsers() {
+		return chatUsers;
+	}
+
+	public void setChatUsers(ArrayList<User> chatUsers) {
+		this.chatUsers = chatUsers;
 	}
 
 }
