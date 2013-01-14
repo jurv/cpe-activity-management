@@ -14,13 +14,11 @@
 						<span>Tableau de bord</span>
 					</h:link>
 				</li>
-				<li class="i_users_2"><a><span>Clients</span></a>
-					<ul>
-                        <li><h:link class="leftmenu processing" value="Ajouter un client" outcome="NewCustomer" /></li>
-                        <li><h:link class="leftmenu processing" value="Voir les clients existants" outcome="Customers" /></li>
-                    </ul>
+				<li class="i_users_2">
+					<h:link class="leftmenu processing"  outcome="Customers">
+						<span>Clients</span>
+					</h:link>
 				</li>
-				
 				<li class="i_folder"><a><span>Projets</span></a>
                     <ul>
                         <li><h:link class="leftmenu processing" value="Créer un projet" outcome="NewProject" /></li>

@@ -5,31 +5,66 @@
     xmlns:ui="http://java.sun.com/jsf/facelets" 
 >
     <h:body>
- 
     	<ui:composition template="../Template/template.xhtml">
     		<ui:define name="content">
+    			<f:metadata>
+    				<f:event type="preRenderView" listener="#{MessagesBean.fillMessagesLists}"/>
+				</f:metadata>
     			<section id="content">
-	    			<h2>List of existing projects</h2>
-	    			<f:view>
-						<h:dataTable value="#{output.activeCustomerList}" var="c" border="1" class="datatable">
-							<h:column>
-								<f:facet name="header">Customer Name</f:facet>
-								<h:outputText value="#{c.cusName}" />
-							</h:column>
-							
-							<h:column>
-								<f:facet name="header">Actions</f:facet>
-								<h:form>
-									<h:commandLink value="Supprimer" action="#{CustomersBean.deleteCustomer}" styleClass="btn small">
-										<f:param name="customerIdDel" id="customerIdDel" value="#{c.cusId}"></f:param>
-									</h:commandLink>
-								</h:form>
-							</h:column>
-						</h:dataTable>
-					</f:view>
+	    			<h2> Gestion des clients </h2>
+	    			<p> Consultez, Supprimez et Ajoutez des clients</p>
+	    			<div class="tab">
+        				<ul>
+            				<li>
+            					<a href="#tabs-1">Liste des Clients</a>
+            				</li>
+            				<li>
+            					<a href="#tabs-2">Ajout d'un Client</a>
+            				</li>
+        				</ul>
+        				<div id="tabs-1" style="margin:10px;">
+							<f:view>
+								<h:dataTable value="#{output.activeCustomerList}" var="c" border="1" class="datatable">
+									<h:column>
+										<f:facet name="header">Customer Name</f:facet>
+										<h:outputText value="#{c.cusName}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">Actions</f:facet>
+										<h:form>
+											<h:commandLink value="Supprimer" action="#{CustomersBean.deleteCustomer}" styleClass="btn small">
+												<f:param name="customerIdDel" id="customerIdDel" value="#{c.cusId}"></f:param>
+											</h:commandLink>
+										</h:form>
+									</h:column>
+								</h:dataTable>
+							</f:view>
+							<h:panelGroup rendered="#{empty output.activeCustomerList}">
+								<p>
+									<h5 style='text-align:center;'> Aucun éléments dans la liste client </h5>
+								</p>
+							</h:panelGroup>
+        				</div>
+        				<div id="tabs-2" style="margin:10px;">
+							<h:form id="newcustomerform">
+								<fieldset>
+									<section>
+										<label for="name"> Customer name </label>
+										<div>
+											<h:inputText id="name" value="#{CreateCustomerBean.customerName}" />
+										</div>
+									</section>
+									<section>
+										<div>
+											<h:commandButton value="Create this customer" action="#{CreateCustomerBean.updateCustomer}" />
+										</div>
+									</section>
+								</fieldset>
+							</h:form>
+        				</div>
+        			</div>
 				</section>
     		</ui:define>
     	</ui:composition>    	
     </h:body>
- 
 </html>
