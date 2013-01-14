@@ -11,10 +11,19 @@
     			<section id="content">
 	    			<h2>List of existing projects</h2>
 	    			<f:view>
-						<h:dataTable value="#{output.customerList}" var="c" border="1" class="datatable">
+						<h:dataTable value="#{output.activeCustomerList}" var="c" border="1" class="datatable">
 							<h:column>
 								<f:facet name="header">Customer Name</f:facet>
 								<h:outputText value="#{c.cusName}" />
+							</h:column>
+							
+							<h:column>
+								<f:facet name="header">Actions</f:facet>
+								<h:form>
+									<h:commandLink value="Supprimer" action="#{CustomersBean.deleteCustomer}" styleClass="btn small">
+										<f:param name="customerIdDel" id="customerIdDel" value="#{c.cusId}"></f:param>
+									</h:commandLink>
+								</h:form>
 							</h:column>
 						</h:dataTable>
 					</f:view>
