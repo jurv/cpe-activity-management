@@ -23,7 +23,28 @@
             				</li>
         				</ul>
         				<div id="tabs-1" style="margin:10px;">
-        					
+        					<h:dataTable rendered="#{!empty ViewChatProjectsBean.chatUsers}" value="#{ViewChatProjectsBean.chatUsers}" var="p" class="datatable">
+								<h:column>
+									<f:facet name="header">Nom</f:facet>
+									<h:outputText value="#{p.usrLastname}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Prénom</f:facet>
+									<h:outputText value="#{p.usrFirstname}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Nom d'utilisateur</f:facet>
+									<h:outputText value="#{p.usrLogin}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Actions</f:facet>
+									<h:form>
+										<h:link outcome="DetailsConversation" value="Voir la conversation" styleClass="btn small">
+											<f:param name="usrid" id="usrid" value="#{p.usrId}" />
+										</h:link>
+									</h:form>
+								</h:column>
+							</h:dataTable>
         				</div>
         			</div>
 				</section>
