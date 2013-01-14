@@ -26,6 +26,11 @@
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
+		<managed-bean-name>CreateUserBean</managed-bean-name>
+		<managed-bean-class>managedbeans.CreateUserBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
 		<managed-bean-name>CreateMessageBean</managed-bean-name>
 		<managed-bean-class>managedbeans.CreateMessageBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
@@ -145,6 +150,10 @@
 		<navigation-case>
 			<from-outcome>NewCustomer</from-outcome>
 			<to-view-id>/Pages/newcustomer.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>NewUser</from-outcome>
+			<to-view-id>/Pages/newuser.xhtml</to-view-id>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>Messages</from-outcome>
