@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:t="http://myfaces.apache.org/tomahawk"
+>
+
+    <h:body>
+    	<ui:composition template="../Template/template.xhtml">
+    		<ui:define name="content">
+    			<section id="content">
+	    			<h2>Créer une tâche</h2>
+	    			<h:form id="newprojectform">
+						<fieldset>
+							<section>
+								<label for="name">Projet</label>
+								<div>
+									<h:selectOneMenu value="#{TaskBean.taskPrjId}">
+										<f:selectItems value="#{input.projectsItems}"/>
+									</h:selectOneMenu>
+								</div>
+							</section>
+							<section>
+								<label for="name"> Nom de la tâche </label>
+								<div>
+									<h:inputText id="name" value="#{TaskBean.taskName}" />
+								</div>
+							</section>
+							<section>
+								<label for="comment"> Commentaires </label>
+								<div>
+									<h:inputTextarea id="comment" value="#{TaskBean.taskComment}" />
+								</div>
+							</section>
+							<section>
+								<label for="time"> Nombre de jours </label>
+								<div>
+									<h:inputText id="time" value="#{TaskBean.taskDuration}" />
+								</div>
+							</section>
+							<section>
+								<label for="cdp"> Assignée à </label>
+								<div>
+									<h:selectOneMenu value="#{TaskBean.taskAssignedTo}">
+										<f:selectItems value="#{input.usersItems}"/>
+									</h:selectOneMenu>
+								</div>
+							</section>
+							<section>
+								<div>
+									<h:commandButton value="Créer la tâche" action="#{TaskBean.createTask}"/>
+								</div>
+							</section>
+						</fieldset>
+					</h:form>
+				</section>
+    		</ui:define>
+    	</ui:composition>    	
+    </h:body>
+ 
+</html>

@@ -55,7 +55,7 @@ public class BeanUser implements BeanUserRemote {
 	
 	public List<User> findUsersByProject(int prjId) {
 
-		return (List<User>) em.createQuery("select t from User t where usr_id IN (select up from User2Project up where prj_id = " + prjId + ")")
+		return (List<User>) em.createQuery("select t from User t where usr_id IN (select up from User2Project up where prj_id = '" + prjId + "')")
 				.getResultList();
 	}
 
@@ -91,13 +91,13 @@ public class BeanUser implements BeanUserRemote {
 	@Override
 	public List<User> getConnectedUsers() {
 
-		return (List<User>) em.createQuery("select t from User t where ust_id <> 1")
+		return (List<User>) em.createQuery("select t from User t where ust_id <> '1'")
 				.getResultList();
 	}
 
 	@Override
 	public List<User> findCdps() {
-		return (List<User>) em.createQuery("select t from User t where fct_id = 1").getResultList();
+		return (List<User>) em.createQuery("select t from User t where fct_id = '1'").getResultList();
 	}
 
 	public List<User> findUserWithChatConv(int usrId, int prjId) {

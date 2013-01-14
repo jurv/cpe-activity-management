@@ -39,6 +39,9 @@ public class Project implements Serializable {
 	@Column(name="prj_label")
 	private String prjLabel;
 
+	@Column(name="prj_nb_days")
+	private int prjNbDays;
+
 	public Project() {
 	}
 
@@ -96,6 +99,14 @@ public class Project implements Serializable {
 
 	public void setPrjLabel(String prjLabel) {
 		this.prjLabel = prjLabel;
+	}
+
+	public int getPrjNbDays() {
+		return this.prjNbDays;
+	}
+
+	public void setPrjNbDays(int prjNbDays) {
+		this.prjNbDays = prjNbDays;
 	}
 
 }
