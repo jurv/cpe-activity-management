@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets" 
+>
+    <h:body>
+ 
+    	<ui:composition template="../Template/template.xhtml">
+    		<ui:define name="content">
+    			<f:metadata>
+    				<f:event type="preRenderView" listener="#{ChatsProjectBean.initView}"/>
+				</f:metadata>
+    			<section id="content">
+	    			<h2> Historiques de chat </h2>
+	    			<p> Consultez les histoiques de chat par projet</p>
+	    			<div class="tab">
+        				<ul>
+            				<li>
+            					<a href="#tabs-1">Mes conversations</a>
+            				</li>
+            				<li>
+            					<a href="#tabs-2">Conversations des projets dont je suis en charge</a>
+            				</li>
+        				</ul>
+        				<div id="tabs-1" style="margin:10px;">
+        					<h:dataTable rendered="#{!empty ChatsProjectBean.ownProject}" value="#{ChatsProjectBean.ownProject}" var="p" class="datatable">
+								<h:column>
+								<f:facet name="header">Nom du projet</f:facet>
+								<h:outputText value="#{p.prjLabel}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Description</f:facet>
+								<h:outputText value="#{p.prjComment}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Date de début</f:facet>
+								<h:outputText value="#{p.prjDateCreated}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Date de fin</f:facet>
+								<h:outputText value="#{p.prjDateFinished}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Actions</f:facet>
+								<h:form>
+									<h:link outcome="DetailsChatProject" value="Sélectionner" styleClass="btn small">
+										<f:param name="prjId" id="prjId" value="#{p.prjId}" />
+									</h:link>
+								</h:form>
+							</h:column>
+							</h:dataTable>
+							<h:panelGroup rendered="#{empty ChatsProjectBean.ownProject}">
+								<p>
+									<h5 style='text-align:center;'> Aucun projets ne vous a été attribué </h5>
+								</p>
+							</h:panelGroup>
+        				</div>
+        				<div id="tabs-2" style="margin:10px;">
+        					
+        				</div>
+        			</div>
+				</section>
+    		</ui:define>
+    	</ui:composition>    	
+    </h:body>
+ 
+</html>

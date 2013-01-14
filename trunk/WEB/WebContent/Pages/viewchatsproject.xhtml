@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets" 
+>
+    <h:body>
+ 
+    	<ui:composition template="../Template/template.xhtml">
+    		<ui:define name="content">
+    			<f:metadata>
+    				<f:event type="preRenderView" listener="#{ViewChatProjectsBean.initView}"/>
+				</f:metadata>
+    			<section id="content">
+	    			<h2> Conversations du projet : <h:outputText value="#{ViewChatProjectsBean.currentProject.prjLabel}"/> </h2>
+	    			<p>
+	    				Consulter vos conversations dans le cadre du projet : <h:outputText value="#{ViewChatProjectsBean.currentProject.prjLabel}"/>
+	    			</p>
+	    			<div class="tab">
+        				<ul>
+            				<li>
+            					<a href="#tabs-1">Conversations actives</a>
+            				</li>
+        				</ul>
+        				<div id="tabs-1" style="margin:10px;">
+        					
+        				</div>
+        			</div>
+				</section>
+    		</ui:define>
+    	</ui:composition>    	
+    </h:body>
+ 
+</html>

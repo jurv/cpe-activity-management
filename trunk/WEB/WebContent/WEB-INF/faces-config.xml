@@ -39,8 +39,17 @@
 		</managed-property>
 	</managed-bean>
 	<managed-bean>
-		<managed-bean-name>ChatsBean</managed-bean-name>
-		<managed-bean-class>managedbeans.ChatsBean</managed-bean-class>
+		<managed-bean-name>ViewChatProjectsBean</managed-bean-name>
+		<managed-bean-class>managedbeans.ViewChatProjectsBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>currentUser</property-name>
+			<value>#{LoginFormBean.current}</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>ChatsProjectBean</managed-bean-name>
+		<managed-bean-class>managedbeans.ChatsProjectBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 		<managed-property>
 			<property-name>currentUser</property-name>
@@ -141,8 +150,8 @@
 			<to-view-id>/Pages/newmessage.xhtml</to-view-id>
 		</navigation-case>
 		<navigation-case>
-			<from-outcome>HistoriquesChat</from-outcome>
-			<to-view-id>/Pages/historiqueschat.xhtml</to-view-id>
+			<from-outcome>HistoriquesChatProjet</from-outcome>
+			<to-view-id>/Pages/histochatproject.xhtml</to-view-id>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>DetailsMessage</from-outcome>
@@ -155,6 +164,10 @@
 		<navigation-case>
 			<from-outcome>Dashboard</from-outcome>
 			<to-view-id>/Pages/dashboard.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>DetailsChatProject</from-outcome>
+			<to-view-id>/Pages/viewchatsproject.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 </faces-config>
