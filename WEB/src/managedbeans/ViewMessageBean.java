@@ -32,7 +32,7 @@ public class ViewMessageBean {
 	
 	public void initPage() {
 		this.currentMessage = messageRemote.findMessage(Integer.parseInt((String)FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("msgid")));
-		this.msgProjectName = projectRemote.findProject(String.valueOf(currentMessage.getPrjId())).getPrjLabel();
+		this.msgProjectName = projectRemote.findProject(currentMessage.getPrjId()).getPrjLabel();
 		User receiver = userRemote.findUser(this.currentMessage.getUsrReceiverId());
 		this.msgReceiverName = receiver.getUsrFirstname() + " " + receiver.getUsrLastname();
 		User sender = userRemote.findUser(this.currentMessage.getUsrSenderId());
