@@ -99,4 +99,7 @@ public class BeanUser implements BeanUserRemote {
 		return (List<User>) em.createQuery("select t from User t where fct_id = 1").getResultList();
 	}
 
+	public List<User> findUserWithChatConv(int usrId) {
+		return (List<User>) em.createQuery("select t from User t where (usr_id IN (select m from Message m where usr_sender_id = " + usrId + ") or usr_id IN (select m2 from Message m2 where usr_receiver_id = " + usrId + ")) and usr_id <> " + usrId + "").getResultList();
+	}
 }

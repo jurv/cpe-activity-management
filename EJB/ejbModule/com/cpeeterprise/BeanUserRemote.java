@@ -19,4 +19,5 @@ public interface BeanUserRemote {
 	public boolean disconnectUser(User user);
 	public List <User> getConnectedUsers ();
 	public List <User> findCdps();
+	public List<User> findUserWithChatConv(int usrId);
 }
