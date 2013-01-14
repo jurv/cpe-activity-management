@@ -9,7 +9,12 @@
 	<ui:composition>
 		<nav>
 			<ul id="nav">
-				<li class="i_folder"><a><span>Clients</span></a>
+				<li class="i_imac">
+					<h:link styleClass="i_folder" outcome="Dashboard" class="leftmenu processing"> 
+						<span>Tableau de bord</span>
+					</h:link>
+				</li>
+				<li class="i_users_2"><a><span>Clients</span></a>
 					<ul>
                         <li><h:link class="leftmenu processing" value="Ajouter un client" outcome="NewCustomer" /></li>
                         <li><h:link class="leftmenu processing" value="Voir les clients existants" outcome="Customers" /></li>
