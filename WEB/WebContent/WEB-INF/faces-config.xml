@@ -148,10 +148,6 @@
 			<to-view-id>/Pages/customers.xhtml</to-view-id>
 		</navigation-case>
 		<navigation-case>
-			<from-outcome>NewCustomer</from-outcome>
-			<to-view-id>/Pages/newcustomer.xhtml</to-view-id>
-		</navigation-case>
-		<navigation-case>
 			<from-outcome>NewUser</from-outcome>
 			<to-view-id>/Pages/newuser.xhtml</to-view-id>
 		</navigation-case>
