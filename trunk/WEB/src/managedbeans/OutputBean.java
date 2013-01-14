@@ -2,7 +2,9 @@ package managedbeans;
 
 import java.util.List;
 import javax.ejb.EJB;
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
@@ -15,7 +17,7 @@ import com.cpeeterprise.BeanCustomerRemote;
 import com.cpeeterprise.BeanProjectRemote;
 
 @ManagedBean(name="output")
-@SessionScoped
+@RequestScoped
 public class OutputBean {
 	
 	@EJB
@@ -49,6 +51,12 @@ public class OutputBean {
 	public List<Customer> getCustomerList() {
 		if (refCustomers == null) {
 			refCustomers = customerRemote.findCustomers();
+		}
+		return refCustomers;
+	}
+	public List<Customer> getActiveCustomerList() {
+		if (refCustomers == null) {
+			refCustomers = customerRemote.findActiveCustomers();
 		}
 		return refCustomers;
 	}
