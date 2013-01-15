@@ -32,7 +32,10 @@ public class ViewChatProjectsBean {
 	public void initView() {
 		
 		// Récupération du projet
-		this.currentProject = projectRemote.findProject(Integer.parseInt((String)FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("prjId")));
+		String param = (String)FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("prjId") ;
+		Integer prjId = (param != null && param != "") ? Integer.parseInt(param) : 0;  
+		if(prjId > 0)
+			this.currentProject = projectRemote.findProject(prjId);
 		
 		// Récupération des utilisateurs avec lesquels j'ai communiqué sur ce projet
 		this.getChatUsers().clear();
