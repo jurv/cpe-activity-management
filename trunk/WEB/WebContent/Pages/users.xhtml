@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets" 
+>
+    <h:body>
+ 
+    	<ui:composition template="../Template/template.xhtml">
+    		<ui:define name="content">
+    			<section id="content">
+	    			<h2>Gestion des utilisateurs</h2>
+		    			<f:view>
+							<h:dataTable value="#{output.userList}" var="u" border="1" class="datatable">
+								<h:column>
+									<f:facet name="header">Nom Utilisateur</f:facet>
+									<h:outputText value="#{u.usrLastname}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Prenom</f:facet>
+									<h:outputText value="#{u.usrFirstname}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Actions</f:facet>
+									<h:form>
+										<h:commandLink value="Supprimer" action="#{UsersBean.deleteUser}" styleClass="btn small">
+											<f:param name="userIdDel" id="userIdDel" value="#{u.usrId}"></f:param>
+										</h:commandLink>
+									</h:form>
+								</h:column>
+							</h:dataTable>
+						</f:view>
+				</section>
+    		</ui:define>
+    	</ui:composition>    	
+    </h:body>
+ 
+</html>
