@@ -10,13 +10,17 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
 import model.Customer;
+import model.Function;
 import model.Project;
 import model.Task;
+import model.User;
 
 
 import com.cpeeterprise.BeanCustomerRemote;
 import com.cpeeterprise.BeanProjectRemote;
 import com.cpeeterprise.BeanTaskRemote;
+import com.cpeeterprise.BeanUserRemote;
+import com.cpeeterprise.BeanFunctionRemote;
 
 @ManagedBean(name="output")
 @RequestScoped
@@ -30,6 +34,11 @@ public class OutputBean {
 	
 	@EJB
 	public BeanTaskRemote taskRemote;
+	@EJB
+	public BeanUserRemote userRemote;
+	
+	@EJB
+	public BeanFunctionRemote functionRemote;
 	
 	
 	public Project test;//a QUOI CA SERT??? => certainement rien du tout...
@@ -39,6 +48,8 @@ public class OutputBean {
 	private List<Task> refTasks;
 	private List<Task> refActiveTasks;
 	private List<Customer> refCustomers;
+	private List<User> refUsers;
+	private List<Function> refFunctions;
 	
 
 	public List<Project> getProjectList() {
@@ -80,5 +91,17 @@ public class OutputBean {
 			refCustomers = customerRemote.findActiveCustomers();
 		}
 		return refCustomers;
+	}
+	public List<User> getUserList(){
+		if(refUsers == null){
+			refUsers = userRemote.findUsers();
+		}
+		return refUsers;
+	}
+	public List<User> getFunctionList(){
+		if(refFunctions == null){
+			refFunctions = functionRemote.findFunction();
+		}
+		return refUsers;
 	}
 }

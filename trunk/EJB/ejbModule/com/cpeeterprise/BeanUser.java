@@ -11,6 +11,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
 
 import model.Message;
+import model.Customer;
 import model.User;
 
 /**
@@ -113,4 +114,10 @@ public class BeanUser implements BeanUserRemote {
 		return (List<User>) em.createQuery("select t from User t where usr_id IN (" + usrIds + ") and usr_id <> " + usrId)
 				.getResultList();
 	}
+	
+	public void logicalDelete(User usr) {
+		User user = em.merge (usr);
+		user.setUsrIsdeleted((byte)1);
+		update(user);
+	  }
 }

@@ -11,6 +11,11 @@
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
     <managed-bean>
+		<managed-bean-name>CreateFunctionBean</managed-bean-name>
+		<managed-bean-class>managedbeans.CreateFunctionBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+    <managed-bean>
 		<managed-bean-name>ProjectsBean</managed-bean-name>
 		<managed-bean-class>managedbeans.ProjectsBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
@@ -33,6 +38,11 @@
 	<managed-bean>
 		<managed-bean-name>CreateUserBean</managed-bean-name>
 		<managed-bean-class>managedbeans.CreateUserBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>UsersBean</managed-bean-name>
+		<managed-bean-class>managedbeans.UsersBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
@@ -165,8 +175,16 @@
 			<to-view-id>/Pages/newcustomer.xhtml</to-view-id>
 		</navigation-case>
 		<navigation-case>
+			<from-outcome>Users</from-outcome>
+			<to-view-id>/Pages/users.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
 			<from-outcome>NewUser</from-outcome>
 			<to-view-id>/Pages/newuser.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>NewFunction</from-outcome>
+			<to-view-id>/Pages/newfunction.xhtml</to-view-id>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>Messages</from-outcome>
