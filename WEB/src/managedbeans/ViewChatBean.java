@@ -40,8 +40,8 @@ public class ViewChatBean {
 			this.currentUserChatter = userRemote.findUser(usrChatterId);
 	
 		// Récupération des messages
-		this.messagesList.clear();
-		this.messagesList.addAll(messageRemote.findMessagesForConv(this.currentUser.getUsrId(), this.currentUserChatter.getUsrId()));
+		this.getMessagesList().clear();
+		this.getMessagesList().addAll(messageRemote.findMessagesForConv(this.currentUser.getUsrId(), this.currentUserChatter.getUsrId()));
 	}
 
 	public User getCurrentUser() {
@@ -58,5 +58,13 @@ public class ViewChatBean {
 
 	public void setCurrentUserChatter(User currentUserChatter) {
 		this.currentUserChatter = currentUserChatter;
+	}
+
+	public ArrayList<Message> getMessagesList() {
+		return messagesList;
+	}
+
+	public void setMessagesList(ArrayList<Message> messagesList) {
+		this.messagesList = messagesList;
 	}
 }
