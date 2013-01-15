@@ -50,6 +50,7 @@
 								</h:form>
 							</h:column>
 							</h:dataTable>
+							
 							<h:panelGroup rendered="#{empty ChatsProjectBean.ownProject}">
 								<p>
 									<h5 style='text-align:center;'> Aucun projets ne vous a été attribué </h5>
@@ -57,7 +58,38 @@
 							</h:panelGroup>
         				</div>
         				<div id="tabs-2" style="margin:10px;">
-        					
+        					<h:dataTable rendered="#{!empty ChatsProjectBean.managedProject}" value="#{ChatsProjectBean.managedProject}" var="p" class="datatable">
+								<h:column>
+									<f:facet name="header">Nom du projet</f:facet>
+									<h:outputText value="#{p.prjLabel}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Description</f:facet>
+									<h:outputText value="#{p.prjComment}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Date de début</f:facet>
+									<h:outputText value="#{p.prjDateCreated}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Date de fin</f:facet>
+									<h:outputText value="#{p.prjDateFinished}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Actions</f:facet>
+									<h:form>
+										<h:link outcome="DetailsChatProject" value="Sélectionner" styleClass="btn small">
+											<f:param name="prjId" id="prjId" value="#{p.prjId}" />
+										</h:link>
+									</h:form>
+								</h:column>
+							</h:dataTable>
+							
+        					<h:panelGroup rendered="#{empty ChatsProjectBean.managedProject}">
+								<p>
+									<h5 style='text-align:center;'> Vous n'avez pas de projets en charge pour lequels des conversations existent. </h5>
+								</p>
+							</h:panelGroup>
         				</div>
         			</div>
 				</section>
