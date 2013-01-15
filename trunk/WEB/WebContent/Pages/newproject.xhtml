@@ -5,7 +5,6 @@
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:t="http://myfaces.apache.org/tomahawk"
 >
-
     <h:body>
     	<ui:composition template="../Template/template.xhtml">
     		<ui:define name="content">
@@ -78,10 +77,28 @@
 							<section>
 								<label for="cdp"> Chef de projet </label>
 								<div>
-									<h:selectOneMenu value="#{CreateProjectBean.projectCdpId}">
-										<f:selectItems value="#{input.cdpItems}"/>
+									<h:selectOneMenu id="cdp" value="#{CreateProjectBean.projectCdpId}">
+										<f:selectItems value="#{input.usersItems}"/>
 									</h:selectOneMenu>
 								</div>
+							</section>
+							<section>
+								<label for="dev"> Developpeur: </label>
+								<h:selectManyCheckbox id="dev" value="#{CreateProjectBean.listDev}">
+								   	<f:selectItems value="#{input.usersItems}" />
+								</h:selectManyCheckbox>
+							</section>
+							<section>
+								<label for="tes"> Testeur: </label>
+								<h:selectManyCheckbox id="tes" value="#{CreateProjectBean.listTes}">
+								   	<f:selectItems value="#{input.usersItems}" />
+								</h:selectManyCheckbox>
+							</section>
+							<section>
+								<label for="rel"> Relecteur: </label>
+								<h:selectManyCheckbox id="rel" value="#{CreateProjectBean.listRel}">
+								   	<f:selectItems value="#{input.usersItems}" />
+								</h:selectManyCheckbox>
 							</section>
 							<section>
 								<div>

@@ -1,20 +1,33 @@
 package managedbeans;
 
+import java.io.Console;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+
 import com.cpeeterprise.BeanProjectRemote;
 import com.cpeeterprise.BeanUser2ProjectRemote;
 
+import model.Function;
 import model.Project;
+import model.User;
 import model.User2Project;
 
 @ManagedBean
 @SessionScoped
 public class CreateProjectBean {
 	
+	// Constantes
+	final int ID_CDP = 1;
+	final int ID_DEP = 2;
+	final int ID_DEV = 3;
+	final int ID_TES = 4;
+	final int ID_REL = 5;
+
 	@EJB
 	public BeanProjectRemote projectRemote;
 	@EJB
@@ -27,6 +40,10 @@ public class CreateProjectBean {
 	private int projectTotalTime = 0;
 	private int projectCusId = 0;
 	private int projectCdpId = 0;
+	
+	private List<String> listDev;
+	private List<String> listTes;
+	private List<String> listRel;
 	
 	public void updateProject()
 	{
@@ -42,9 +59,38 @@ public class CreateProjectBean {
 		project = projectRemote.persist(project);
 		
 		user2project.setPrjId(project.getPrjId());
-		user2project.setFctId(2);
+		user2project.setFctId(ID_DEP);
 		user2project.setUsrId(this.projectCdpId);
 		user2projectRemote.persist(user2project);
+		
+		Iterator<String> itListDev = listDev.iterator(); 
+		while(itListDev.hasNext()) {
+		    int dev = Integer.parseInt(itListDev.next());
+		    User2Project userDev2project = new User2Project();
+		    userDev2project.setPrjId(project.getPrjId());
+		    userDev2project.setFctId(ID_DEV);
+		    userDev2project.setUsrId(dev);
+			user2projectRemote.persist(userDev2project);
+		}
+		Iterator<String> itListRel = listRel.iterator(); 
+		while(itListRel.hasNext()) {
+		    int rel = Integer.parseInt(itListRel.next());
+		    User2Project userRel2project = new User2Project();
+		    userRel2project.setPrjId(project.getPrjId());
+		    userRel2project.setFctId(ID_REL);
+		    userRel2project.setUsrId(rel);
+			user2projectRemote.persist(userRel2project);
+		} 
+		Iterator<String> itListTes = listTes.iterator(); 
+		while(itListTes.hasNext()) {
+			int rel = Integer.parseInt(itListTes.next());
+		    User2Project userTes2project = new User2Project();
+		    userTes2project.setPrjId(project.getPrjId());
+		    userTes2project.setFctId(ID_TES);
+		    userTes2project.setUsrId(rel);
+			user2projectRemote.persist(userTes2project);
+		} 
+		
 	}
 
 	public int getProjectCusId() {
@@ -102,5 +148,28 @@ public class CreateProjectBean {
 	public void setProjectTotalTime(int projectTotalTime) {
 		this.projectTotalTime = projectTotalTime;
 	}
+
+	public List<String> getListDev() {
+		return listDev;
+	}
+
+	public void setListDev(List<String> lstDev) {
+		this.listDev = lstDev;
+	}
 	
+	public List<String> getListRel() {
+		return listRel;
+	}
+
+	public void setListRel(List<String> lstRel) {
+		this.listRel = lstRel;
+	}
+	
+	public List<String> getListTes() {
+		return listTes;
+	}
+	public void setListTes(List<String> lstTes) {
+		this.listTes = lstTes;
+	}
 }
+

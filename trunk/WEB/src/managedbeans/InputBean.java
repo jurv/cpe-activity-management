@@ -87,7 +87,7 @@ public class InputBean {
 	
 	public List<SelectItem> getCustomersItems() {
 		if(this.customersItems.isEmpty()){
-			List<Customer> customers = customerRemote.findCustomers();
+			List<Customer> customers = customerRemote.findActiveCustomers();
 			for(Customer c:customers){
 				customersItems.add(new SelectItem(c.getCusId(), c.getCusName()));
 			}
