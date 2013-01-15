@@ -87,6 +87,6 @@ public class BeanMessage implements BeanMessageRemote {
       }
       
       public List<Message> findMessagesForConv(int usrId1, int usrId2) {
-    	  return (List <Message>) em.createQuery("select t from Message t where (usr_sender_id = " + usrId1 + " and  usr_receiver_id = " + usrId2 + ") or (usr_sender_id = " + usrId2 + " and  usr_receiver_id = " + usrId1 + ") order by msg_date DESC").getResultList();
+    	  return (List <Message>) em.createQuery("select t from Message t where (usr_sender_id = " + usrId1 + " and  usr_receiver_id = " + usrId2 + ") or (usr_sender_id = " + usrId2 + " and  usr_receiver_id = " + usrId1 + ") order by msg_date ASC").getResultList();
       }
 }
