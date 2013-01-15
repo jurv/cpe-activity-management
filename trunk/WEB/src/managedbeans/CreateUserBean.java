@@ -20,8 +20,9 @@ public class CreateUserBean {
 	private String userPassword = "";
 	private int userFctId;
 	
-	public void updateUser()
+	public String updateUser()
 	{
+		String nextPage="Users";
 		User user = new User();
 		user.setUsrLastname(this.getUserLastName());
 		user.setUsrFirstname(this.getUserFirstName());
@@ -29,6 +30,7 @@ public class CreateUserBean {
 		user.setUsrPassword(getUserPassword());
 		user.setFctId(getUserFctId());
 		userRemote.update(user);
+		return nextPage;
 	}
 
 	public String getUserLastName() {
