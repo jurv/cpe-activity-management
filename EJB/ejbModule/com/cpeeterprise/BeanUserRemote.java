@@ -20,5 +20,6 @@ public interface BeanUserRemote {
 	public List <User> getConnectedUsers ();
 	public List <User> findCdps();
 	public List<User> findUserWithChatConv(int usrId, int prjId);
+	public List<User> findUserWithChatConv(int usrId);
 	public void logicalDelete(User usr);
 }

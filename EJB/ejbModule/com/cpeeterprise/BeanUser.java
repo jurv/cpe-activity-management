@@ -115,6 +115,20 @@ public class BeanUser implements BeanUserRemote {
 				.getResultList();
 	}
 	
+	public List<User> findUserWithChatConv(int usrId) {
+		ArrayList<Message> msg = new ArrayList<Message>();
+		String usrIds = "";
+		String separator = "";
+		msg.addAll(em.createQuery("select m from Message m where usr_sender_id = " + usrId + " ").getResultList());
+		msg.addAll(em.createQuery("select m from Message m where usr_receiver_id = " + usrId + " ").getResultList());
+		for(Message m : msg) {
+			usrIds += separator + m.getUsrSenderId();
+			separator = ",";
+		}
+		return (List<User>) em.createQuery("select t from User t where usr_id IN (" + usrIds + ") and usr_id <> " + usrId)
+				.getResultList();
+	}
+	
 	public void logicalDelete(User usr) {
 		User user = em.merge (usr);
 		user.setUsrIsdeleted((byte)1);
