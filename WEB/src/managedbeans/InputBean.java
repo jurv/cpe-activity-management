@@ -10,10 +10,13 @@ import javax.faces.model.SelectItem;
 
 import model.Customer;
 import model.Project;
+import model.Function;
 import model.User;
 
 import com.cpeeterprise.BeanCustomerRemote;
+
 import com.cpeeterprise.BeanProjectRemote;
+import com.cpeeterprise.BeanFunctionRemote;
 import com.cpeeterprise.BeanUserRemote;
 
 @ManagedBean(name="input")
@@ -29,6 +32,9 @@ public class InputBean {
 	@EJB
 	public BeanUserRemote userRemote;
 	
+	@EJB
+	public BeanFunctionRemote functionRemote;
+	
 	private List<SelectItem> customersItems = new ArrayList<SelectItem>();
 	
 	// Liste des users ayant un profil chef de projet
@@ -38,6 +44,9 @@ public class InputBean {
 	
 	private List<SelectItem> projectsItems = new ArrayList<SelectItem>();
 	
+	
+	// Liste des differentes fonctions créé
+	private List<SelectItem> funcItems = new ArrayList<SelectItem>();
 	
 	public List<SelectItem> getCustomersItems() {
 		if(this.customersItems.isEmpty()){
@@ -77,5 +86,15 @@ public class InputBean {
 			}
 		}
 		return projectsItems;
+	}
+	
+	public List<SelectItem> getFuncItems() {
+		if(this.funcItems.isEmpty()){
+			List<Function> functions = functionRemote.findFunction();
+			for (Function f:functions){
+				funcItems.add(new SelectItem(f.getFctId(),f.getFctLabel()));
+			}
+		}
+		return funcItems;
 	}
 }
