@@ -64,6 +64,10 @@ public class BeanUser implements BeanUserRemote {
 
 		return (User) em.find(User.class, id);
 	}
+	
+	public List<User> findActiveUsers() {
+		return (List <User>) em.createQuery("select c from User c where usr_isdeleted = 'O'").getResultList();
+	}
 
 	@Override
 	public int connectUser(String login, String password) {
