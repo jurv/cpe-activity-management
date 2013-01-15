@@ -45,8 +45,9 @@ public class CreateProjectBean {
 	private List<String> listTes;
 	private List<String> listRel;
 	
-	public void updateProject()
+	public String updateProject()
 	{
+		String nextPage="Projects";
 		Project project = new Project();
 		User2Project user2project = new User2Project();
 		
@@ -90,7 +91,7 @@ public class CreateProjectBean {
 		    userTes2project.setUsrId(rel);
 			user2projectRemote.persist(userTes2project);
 		} 
-		
+		return nextPage;
 	}
 
 	public int getProjectCusId() {
