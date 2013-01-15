@@ -12,16 +12,23 @@ import model.Customer;
 import model.Project;
 import model.Function;
 import model.User;
+import model.WorkPiece;
+import model.Task;
 
 import com.cpeeterprise.BeanCustomerRemote;
 
 import com.cpeeterprise.BeanProjectRemote;
 import com.cpeeterprise.BeanFunctionRemote;
+import com.cpeeterprise.BeanTaskRemote;
 import com.cpeeterprise.BeanUserRemote;
+import com.cpeeterprise.BeanWorkPieceRemote;
 
 @ManagedBean(name="input")
 @SessionScoped
 public class InputBean {
+	
+	@EJB
+	public BeanWorkPieceRemote workPieceRemote;
 	
 	@EJB
 	public BeanCustomerRemote customerRemote;
@@ -35,6 +42,10 @@ public class InputBean {
 	@EJB
 	public BeanFunctionRemote functionRemote;
 	
+	@EJB
+	public BeanTaskRemote taskRemote;
+	
+	
 	private List<SelectItem> customersItems = new ArrayList<SelectItem>();
 	
 	// Liste des users ayant un profil chef de projet
@@ -44,9 +55,35 @@ public class InputBean {
 	
 	private List<SelectItem> projectsItems = new ArrayList<SelectItem>();
 	
+	private List <SelectItem> myTasksItems = new ArrayList<SelectItem>();
 	
-	// Liste des differentes fonctions créé
 	private List<SelectItem> funcItems = new ArrayList<SelectItem>();
+	
+	
+	
+	private User currentUser = new User();	
+	
+	
+	public User getCurrentUser() {
+		return currentUser;
+	}
+
+	public void setCurrentUser(User currentUser) {
+		this.currentUser = currentUser;
+	}
+
+	
+	public List<SelectItem> getMyTasksItems(){
+		int usrId = currentUser.getUsrId();
+		System.out.println("ID de l'utilisateur courant : " + usrId);
+		if(this.myTasksItems.isEmpty()){
+			List<Task> tasks = taskRemote.findTasksByUser(usrId);
+			for(Task t:tasks){
+				myTasksItems.add(new SelectItem(t.getTskId(), t.getTskLabel()));
+			}
+		}
+		return myTasksItems;
+	}
 	
 	public List<SelectItem> getCustomersItems() {
 		if(this.customersItems.isEmpty()){

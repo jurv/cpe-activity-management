@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.Date;
 
 
 /**
@@ -20,14 +21,19 @@ public class WorkPiece implements Serializable {
 	@Column(name="tsk_id")
 	private int tskId;
 
+	@Column(name="tss_id")
+	private int tssId;
+
 	@Column(name="usr_id")
 	private int usrId;
 
+	@Lob
 	@Column(name="wrk_comment")
-	private int wrkComment;
+	private String wrkComment;
 
+	@Temporal(TemporalType.DATE)
 	@Column(name="wrk_date")
-	private int wrkDate;
+	private Date wrkDate;
 
 	@Column(name="wrk_duration")
 	private int wrkDuration;
@@ -51,6 +57,14 @@ public class WorkPiece implements Serializable {
 		this.tskId = tskId;
 	}
 
+	public int getTssId() {
+		return this.tssId;
+	}
+
+	public void setTssId(int tssId) {
+		this.tssId = tssId;
+	}
+
 	public int getUsrId() {
 		return this.usrId;
 	}
@@ -59,19 +73,19 @@ public class WorkPiece implements Serializable {
 		this.usrId = usrId;
 	}
 
-	public int getWrkComment() {
+	public String getWrkComment() {
 		return this.wrkComment;
 	}
 
-	public void setWrkComment(int wrkComment) {
+	public void setWrkComment(String wrkComment) {
 		this.wrkComment = wrkComment;
 	}
 
-	public int getWrkDate() {
+	public Date getWrkDate() {
 		return this.wrkDate;
 	}
 
-	public void setWrkDate(int wrkDate) {
+	public void setWrkDate(Date wrkDate) {
 		this.wrkDate = wrkDate;
 	}
 

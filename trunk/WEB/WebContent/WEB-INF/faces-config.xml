@@ -5,6 +5,16 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd"
     version="2.1">
+    
+    <managed-bean>
+        <managed-bean-name>input</managed-bean-name>
+        <managed-bean-class>managedbeans.InputBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+        <managed-property>
+            <property-name>currentUser</property-name>
+            <value>#{LoginFormBean.current}</value>
+        </managed-property>
+    </managed-bean>
     <managed-bean>
         <managed-bean-name>TaskBean</managed-bean-name>
         <managed-bean-class>managedbeans.TaskBean</managed-bean-class>
@@ -20,6 +30,15 @@
 		<managed-bean-class>managedbeans.ProjectsBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+    <managed-bean>
+        <managed-bean-name>WorkPieceBean</managed-bean-name>
+        <managed-bean-class>managedbeans.WorkPieceBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+        <managed-property>
+            <property-name>currentUser</property-name>
+            <value>#{LoginFormBean.current}</value>
+        </managed-property>
+    </managed-bean>
     <managed-bean>
 		<managed-bean-name>CreateProjectBean</managed-bean-name>
 		<managed-bean-class>managedbeans.CreateProjectBean</managed-bean-class>
@@ -184,6 +203,10 @@
 			<to-view-id>/Pages/newcustomer.xhtml</to-view-id>
 		</navigation-case>
 		<navigation-case>
+            <from-outcome>NewWorkPiece</from-outcome>
+            <to-view-id>/Pages/newworkpiece.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
 			<from-outcome>Users</from-outcome>
 			<to-view-id>/Pages/users.xhtml</to-view-id>
 		</navigation-case>

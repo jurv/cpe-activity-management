@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:t="http://myfaces.apache.org/tomahawk"
+>
+
+    <h:body>
+    	<ui:composition template="../Template/template.xhtml">
+    		<ui:define name="content">
+    			<section id="content">
+	    			<h2>Ajouter un élément à votre agenda</h2>
+	    			<h:form id="newprojectform">
+						<fieldset>
+							<section>
+								<label for="name">Tâche</label>
+								<div>
+									<h:selectOneMenu value="#{WorkPieceBean.workPieceTskId}">
+										<f:selectItems value="#{input.myTasksItems}"/>
+									</h:selectOneMenu>
+								</div>
+							</section>
+							<section>
+								<label for="comment"> Commentaires </label>
+								<div>
+									<h:inputTextarea id="comment" value="#{WorkPieceBean.workPieceComment}" />
+								</div>
+							</section>
+							<section>
+								<label for="date"> Date </label>
+								<div>
+									<t:panelGroup styleClass="date_input">
+										<t:inputCalendar id="date" 
+										    type="date"
+										    maxlength="10" 
+										    value="#{WorkPieceBean.workPieceDate}"
+										    monthYearRowClass="monthYearRowClass" 
+										    weekRowClass="weekRowClass" 
+										    dayCellClass="dayCellClass" 
+										    currentDayCellClass="currentDayCellClass"
+										    renderAsPopup="false"
+										    alt="Calendar" title="Calendar">
+								    	</t:inputCalendar>
+									</t:panelGroup>
+								</div>
+							</section>
+							<section>
+								<label for="duration"> Durée </label>
+								<div>
+									<div>
+                                        <h:inputText id="duration" value="#{WorkPieceBean.workPieceDuration}" />
+                                    </div>
+								</div>
+							</section>
+							<section>
+								<div>
+									<h:commandButton value="Créer cet élément" action="#{WorkPieceBean.createWorkPiece}"/>
+								</div>
+							</section>
+						</fieldset>
+					</h:form>
+				</section>
+    		</ui:define>
+    	</ui:composition>    	
+    </h:body>
+ 
+</html>
