@@ -54,6 +54,10 @@ public class BeanProject implements BeanProjectRemote {
       public List <Project> findProjectsByUser (int userId) {
     	  return (List <Project>) em.createQuery("select p from Project p where prj_id IN ( select up from User2Project up where usr_id = '" + userId + "')").getResultList();
       }
+      
+      public List <Project> findManagedProjectsByUser (int userId) {
+    	  return (List <Project>) em.createQuery("select p from Project p where prj_id IN ( select up from User2Project up where usr_id = '" + userId + "' and fct_id in (select fct from Function fct where fct_level >= 20))").getResultList();
+      }
 
 	@Override
 	public void logicalDelete(Project project) {
