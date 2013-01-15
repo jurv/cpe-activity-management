@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets" 
+>
+    <h:body>
+ 
+    	<ui:composition template="../Template/template.xhtml">
+    		<ui:define name="content">
+    			<f:metadata>
+    				<f:event type="preRenderView" listener="#{ViewChatBean.initPage}"/>
+				</f:metadata>
+    			<section id="content">
+	    			<h2> Historique de conversation avec  <h:outputText value="#{ViewChatBean.currentUserChatter.usrFirstname} #{ViewChatBean.currentUserChatter.usrLastname}"/> </h2>
+	    			<p>
+	    				Voir l'historique de conversation avec <h:outputText value="#{ViewChatBean.currentUserChatter.usrFirstname} #{ViewChatBean.currentUserChatter.usrLastname}"/>
+	    			</p>
+				</section>
+    		</ui:define>
+    	</ui:composition>    	
+    </h:body>
+ 
+</html>
