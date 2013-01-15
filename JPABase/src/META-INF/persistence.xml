@@ -17,6 +17,7 @@
         <class>model.User2Project</class>
         <class>model.UserStatus</class>
         <class>model.Message</class>
+        <class>model.WorkPiece</class>
         <properties>
             <property name="hibernate.show_sql" value="true"/>
         </properties>
