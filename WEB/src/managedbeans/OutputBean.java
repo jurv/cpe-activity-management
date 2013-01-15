@@ -98,6 +98,12 @@ public class OutputBean {
 		}
 		return refUsers;
 	}
+	public List<User> getActiveUserList(){
+		if(refUsers == null){
+			refUsers = userRemote.findActiveUsers();
+		}
+		return refUsers;
+	}
 	public List<User> getFunctionList(){
 		if(refFunctions == null){
 			refFunctions = functionRemote.findFunction();

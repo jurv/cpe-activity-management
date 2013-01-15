@@ -25,7 +25,7 @@ public class UsersBean {
 	public boolean deleteUser() {
 		int usrId = Integer.parseInt((String)FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("userIdDel"));
 		User user = userRemote.findUser(usrId);
-		userRemote.delete(user);
+		userRemote.logicalDelete(user);
 		return true;
 	}
 }

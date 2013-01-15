@@ -11,7 +11,7 @@
     			<section id="content">
 	    			<h2>Gestion des utilisateurs</h2>
 		    			<f:view>
-							<h:dataTable value="#{output.userList}" var="u" border="1" class="datatable">
+							<h:dataTable value="#{output.activeUserList}" var="u" border="1" class="datatable">
 								<h:column>
 									<f:facet name="header">Nom Utilisateur</f:facet>
 									<h:outputText value="#{u.usrLastname}" />
