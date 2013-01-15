@@ -22,10 +22,11 @@ public class UsersBean {
 	@EJB
 	public BeanUserRemote userRemote;
 		
-	public boolean deleteUser() {
+	public String deleteUser() {
+		String nextPage="Dashboard";
 		int usrId = Integer.parseInt((String)FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("userIdDel"));
 		User user = userRemote.findUser(usrId);
 		userRemote.logicalDelete(user);
-		return true;
+		return nextPage;
 	}
 }

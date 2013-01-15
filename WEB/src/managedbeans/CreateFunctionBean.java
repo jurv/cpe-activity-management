@@ -17,12 +17,14 @@ public class CreateFunctionBean {
 	private String functionLabel = "";
 	private int functionLevel;
 	
-	public void updateFunction()
+	public String updateFunction()
 	{
+		String nextPage="Users";
 		Function function = new Function();
 		function.setFctLabel(getFunctionLabel());
 		function.setFctLevel(getFunctionLevel());
 		functionRemote.update(function);
+		return nextPage;
 	}
 
 	public String getFunctionLabel() {
