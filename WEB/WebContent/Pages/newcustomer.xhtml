@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+    <h:body>
+    	<ui:composition template="../Template/template.xhtml">
+    		<ui:define name="content">
+    			<section id="content">
+	    			<h2>Ajouter un nouveau Client</h2>
+	    			<h:form id="newcustomerform">
+						<fieldset>
+							<section>
+								<label for="name"> Customer name </label>
+								<div>
+									<h:inputText id="name" value="#{CreateCustomerBean.customerName}" />
+								</div>
+							</section>
+							<section>
+								<div>
+									<h:commandButton value="Créer un CLient" action="#{CreateCustomerBean.updateCustomer}" />
+								</div>
+							</section>
+						</fieldset>
+					</h:form>
+				</section>
+    		</ui:define>
+    	</ui:composition>    	
+    </h:body>
+</html>

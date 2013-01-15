@@ -2,12 +2,8 @@ package managedbeans;
 
 import java.util.List;
 import javax.ejb.EJB;
-import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpSession;
 
 import model.Customer;
 import model.Function;
@@ -28,20 +24,14 @@ public class OutputBean {
 	
 	@EJB
 	public BeanProjectRemote projectRemote;
-	
 	@EJB
 	public BeanCustomerRemote customerRemote;
-	
 	@EJB
 	public BeanTaskRemote taskRemote;
 	@EJB
 	public BeanUserRemote userRemote;
-	
 	@EJB
 	public BeanFunctionRemote functionRemote;
-	
-	
-	public Project test;//a QUOI CA SERT??? => certainement rien du tout...
 	
 	private List<Project> refProjects;
 	private List<Project> refActiveProjects;
