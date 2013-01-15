@@ -38,10 +38,15 @@ public class ViewChatBean {
 		Integer usrChatterId = (param != null && param != "") ? Integer.parseInt(param) : 0;  
 		if(usrChatterId > 0)
 			this.currentUserChatter = userRemote.findUser(usrChatterId);
+		
+		// Récupération de l'utilisateur source, si celui-ci n'existe pas, 
+		// on prendra l'utilisateur courant
+		param = (String)FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("usrSourceId") ;
+		Integer usrSourceId = (param != null && param != "") ? Integer.parseInt(param) : 0; 
 	
 		// Récupération des messages
 		this.getMessagesList().clear();
-		this.getMessagesList().addAll(messageRemote.findMessagesForConv(this.currentUser.getUsrId(), this.currentUserChatter.getUsrId()));
+		this.getMessagesList().addAll(messageRemote.findMessagesForConv(((usrSourceId > 0)? usrSourceId : this.currentUser.getUsrId()), this.currentUserChatter.getUsrId()));
 	}
 
 	public User getCurrentUser() {

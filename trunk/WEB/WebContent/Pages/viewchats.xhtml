@@ -16,6 +16,43 @@
 	    			<p>
 	    				Voir les historiques de conversation de <h:outputText value="#{ViewChatsBean.currentUserChatter.usrFirstname} #{ViewChatsBean.currentUserChatter.usrLastname}"/> pour le projet <h:outputText value="#{ViewChatsBean.currentProject.prjLabel}"/>
 	    			</p>
+	    			<div class="tab">
+        				<ul>
+            				<li>
+            					<a href="#tabs-1">Conversations actives</a>
+            				</li>
+        				</ul>
+        				<div id="tabs-1" style="margin:10px;">
+        					<h:dataTable rendered="#{!empty ViewChatsBean.usersList}" value="#{ViewChatsBean.usersList}" var="p" class="datatable">
+								<h:column>
+									<f:facet name="header">Nom</f:facet>
+									<h:outputText value="#{p.usrLastname}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Prénom</f:facet>
+									<h:outputText value="#{p.usrFirstname}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Nom d'utilisateur</f:facet>
+									<h:outputText value="#{p.usrLogin}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Actions</f:facet>
+									<h:form>
+										<h:link outcome="DetailsConversation" value="Voir la conversation" styleClass="btn small">
+											<f:param name="usrChatterId" id="usrChatterId" value="#{p.usrId}" />
+											<f:param name="usrSourceId" id="usrSourceId" value="#{ViewChatsBean.currentUserChatter.usrId}" />
+										</h:link>
+									</h:form>
+								</h:column>
+							</h:dataTable>
+							<h:panelGroup rendered="#{empty ViewChatsBean.usersList}">
+								<p>
+									<h5 style='text-align:center;'> L'utilisateur <h:outputText value="#{ViewChatsBean.currentUserChatter.usrFirstname} #{ViewChatsBean.currentUserChatter.usrLastname}"/> n'a pas de conversations actives.</h5>
+								</p>
+							</h:panelGroup>
+        				</div>
+        			</div>
 				</section>
     		</ui:define>
     	</ui:composition>    	
