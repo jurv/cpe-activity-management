@@ -18,5 +18,6 @@ public interface BeanMessageRemote {
 	public List <Message> findOlderMessages (int senderId, int receiverId);
 	public List<Message> findDeletedMessagesFor(int receiverId);
 	public List<Message> findReceivedMessagesFor(int receiverId);
+	public List<Message> findMessagesForConv(int usrId1, int usrId2);
     public List<Message> findSentMessagesFor(int senderId);
 }
