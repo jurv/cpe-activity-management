@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:t="http://myfaces.apache.org/tomahawk"
+>
+
+    <h:body>
+ 
+    	<ui:composition template="../Template/template.xhtml">
+    		<ui:define name="content">
+    			<section id="content">
+	    			<h2>Ajouter une nouvelle Fonction</h2>
+	    			<h:form id="newuserform">
+						<fieldset>
+							<section>
+								<label for="label"> Nom de la fonction </label>
+								<div>
+									<h:inputText id="label" value="#{CreateFunctionBean.functionLabel}" />
+								</div>
+							</section>
+							<section>
+								<label for="level"> Niveau de la fonction </label>
+								<div>
+									<h:inputText id="level" value="#{CreateFunctionBean.functionLevel}" />
+								</div>
+							</section>
+							<section>
+								<div>
+									<h:commandButton value="Create this function" action="#{CreateFunctionBean.updateFunction}" />
+								</div>
+							</section>
+						</fieldset>
+					</h:form>
+				</section>
+    		</ui:define>
+    	</ui:composition>    	
+    </h:body>
+ 
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:t="http://myfaces.apache.org/tomahawk"
+>
+
+    <h:body>
+ 
+    	<ui:composition template="../Template/template.xhtml">
+    		<ui:define name="content">
+    			<section id="content">
+	    			<h2>Ajouter un nouvel utilisateur</h2>
+	    			<h:form id="newuserform">
+							<fieldset>
+								<section>
+									<label for="firstName"> Prenom de l'utilisateur </label>
+									<div>
+										<h:inputText id="firstName" value="#{CreateUserBean.userFirstName}" />
+									</div>
+								</section>
+								<section>
+									<label for="lastName"> Nom de l'utilisateur </label>
+									<div>
+										<h:inputText id="lastName" value="#{CreateUserBean.userLastName}" />
+									</div>
+								</section>
+								<section>
+									<label for="login"> Login</label>
+									<div>
+										<h:inputText id="login" value="#{CreateUserBean.userLogin}" />
+									</div>
+								</section>
+								<section>
+									<label for="password"> Mot de passe </label>
+									<div>
+										<h:inputSecret id="password" value="#{CreateUserBean.userPassword}" />
+									</div>
+								</section>
+								<section>
+									<label for="function"> Fonction de l'utilisateur </label>
+									<div>
+										<h:selectOneMenu value="#{CreateUserBean.userFctId}">
+											<f:selectItems value="#{input.funcItems}"/>
+										</h:selectOneMenu>
+									</div>
+								</section>
+								<section>
+									<div>
+										<h:commandButton value="Create this user" action="#{CreateUserBean.updateUser}" />
+									</div>
+								</section>
+							</fieldset>
+						</h:form>
+				</section>
+    		</ui:define>
+    	</ui:composition>    	
+    </h:body>
+ 
+</html>
