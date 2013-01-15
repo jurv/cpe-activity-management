@@ -37,9 +37,17 @@ public class ViewChatProjectsBean {
 		if(prjId > 0)
 			this.currentProject = projectRemote.findProject(prjId);
 		
-		// Récupération des utilisateurs avec lesquels j'ai communiqué sur ce projet
+		// On tente de récupérer l'id de l'utilisateur pour lequel on veut afficher les conversations
+		// Si on n'y arrive pas on prend l'utilisateur courant
+		param = (String)FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("usrChatterId") ;
+		Integer usrChatterId =  (param != null && param != "") ? Integer.parseInt(param) : 0; 
 		this.getChatUsers().clear();
-		this.getChatUsers().addAll(userRemote.findUserWithChatConv(currentUser.getUsrId(), this.currentProject.getPrjId()));
+		if(usrChatterId > 0)
+			this.getChatUsers().addAll(userRemote.findUserWithChatConv(usrChatterId, this.currentProject.getPrjId()));
+		else {
+			// Récupération des utilisateurs avec lesquels j'ai communiqué sur ce projet
+			this.getChatUsers().addAll(userRemote.findUserWithChatConv(currentUser.getUsrId(), this.currentProject.getPrjId()));
+		}
 	}
 	
 	public User getCurrentUser() {

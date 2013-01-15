@@ -30,6 +30,7 @@ public class ViewChatsBean {
 	private User currentUser;
 	private User currentUserChatter;
 	private Project currentProject;
+	private ArrayList<User> usersList = new ArrayList<User>();
 	
 	public void initPage() {
 
@@ -44,6 +45,10 @@ public class ViewChatsBean {
 		Integer prjId = (param != null && param != "") ? Integer.parseInt(param) : 0;  
 		if(usrChatterId > 0)
 			this.currentProject = projectRemote.findProject(prjId);
+		
+		// Récupération des utilisateurs du projets
+		this.usersList.clear();
+		this.usersList.addAll(this.userRemote.findUserWithChatConv(this.currentUserChatter.getUsrId(), this.currentProject.getPrjId()));
 	}
 
 	public User getCurrentUser() {
@@ -68,5 +73,13 @@ public class ViewChatsBean {
 
 	public void setCurrentProject(Project currentProject) {
 		this.currentProject = currentProject;
+	}
+
+	public ArrayList<User> getUsersList() {
+		return usersList;
+	}
+
+	public void setUsersList(ArrayList<User> usersList) {
+		this.usersList = usersList;
 	}
 }
