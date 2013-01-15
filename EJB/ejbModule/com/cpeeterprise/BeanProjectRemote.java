@@ -17,5 +17,6 @@ public interface BeanProjectRemote {
 	public List <Project> findActiveProjects ();
 	public Project findProject (int id);
 	public List <Project> findProjectsByUser (int userId);
+	public List <Project> findManagedProjectsByUser (int userId);
 	public void logicalDelete(Project project);
 }

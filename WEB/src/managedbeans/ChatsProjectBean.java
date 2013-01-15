@@ -35,6 +35,10 @@ public class ChatsProjectBean {
 		// Récupération de la liste des projets de l'utilisateur
 		this.ownProject.clear();
 		this.ownProject.addAll(projectRemote.findProjectsByUser(this.currentUser.getUsrId()));
+		
+		// Récupération de la liste des projets pour lesquels l'utilisateur a un role de management
+		this.managedProject.clear();
+		this.managedProject.addAll(projectRemote.findManagedProjectsByUser(this.currentUser.getUsrId()));
 	}
 	
 	public User getCurrentUser() {
