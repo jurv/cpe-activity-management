@@ -16,6 +16,22 @@
 	    			<p>
 	    				Voir l'historique de conversation avec <h:outputText value="#{ViewChatBean.currentUserChatter.usrFirstname} #{ViewChatBean.currentUserChatter.usrLastname}"/>
 	    			</p>
+	    			<h:form>
+   						<ui:repeat var="m" value="#{ViewChatBean.messagesList}" varStatus="status">
+   							<section>
+								<div>
+									<h:outputText value="#{m.msgDate}"/>
+									:  
+									<strong>
+										<h:outputText value="#{ViewChatBean.currentUserChatter.usrFirstname} #{ViewChatBean.currentUserChatter.usrLastname}" rendered="#{ViewChatBean.currentUserChatter.usrId == m.usrSenderId}"/>
+   										<h:outputText value="#{ViewChatBean.currentUser.usrFirstname} #{ViewChatBean.currentUser.usrLastname}" rendered="#{ViewChatBean.currentUser.usrId == m.usrSenderId}"/>
+									</strong>
+									:
+									<h:outputText value="#{m.msgContent}"/>
+								</div>
+   							</section>
+   						</ui:repeat>
+   					</h:form>
 				</section>
     		</ui:define>
     	</ui:composition>    	
