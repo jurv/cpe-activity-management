@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets" 
+>
+    <h:body>
+    	<ui:composition template="../Template/template.xhtml">
+    		<ui:define name="content">
+    		<f:metadata>
+    				<f:event type="preRenderView" listener="#{ProjectDetailsBean.initPage}"/>
+				</f:metadata>	
+    			<section id="content">
+	    			<h2><h:outputLabel for="name" value="#{ProjectDetailsBean.currentProject.prjLabel}"/></h2>
+	    			<p>Détail du projet </p>
+	    			<div class="tab">
+        				<ul>
+        					<li>
+            					<a href="#tabs-6">En cours</a>
+            				</li>
+            				<li>
+            					<a href="#tabs-1">Non commencé</a>
+            				</li>
+            				<li>
+            					<a href="#tabs-2">Commencé</a>
+            				</li>
+            				<li>
+            					<a href="#tabs-4">Terminé</a>
+            				</li>
+            				<li>
+            					<a href="#tabs-3">Validé</a>
+            				</li>
+            				<li>
+            					<a href="#tabs-5">Annulé</a>
+            				</li>
+        				</ul>
+        				<div id="tabs-1" style="margin:10px;">
+							<h:dataTable rendered="#{!empty ProjectDetailsBean.notStartedTasks}" value="#{ProjectDetailsBean.notStartedTasks}" border="1" var="t" class="datatable">
+								<h:column style="width:30px;">
+									<f:facet name="header">Nom</f:facet>
+									<h:outputText value="#{t.tskLabel}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Description</f:facet>
+									<h:outputText value="#{t.tskDescription}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Début</f:facet>
+									<h:outputText value="#{t.tskDateBegun}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Fin</f:facet>
+									<h:outputText value="#{T.tskDateFinished}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">DeadLine</f:facet>
+									<h:outputText value="#{t.tskDateDeadline}" />
+								</h:column>
+								
+							</h:dataTable>
+							<h:panelGroup rendered="#{empty ProjectDetailsBean.notStartedTasks}">
+								<p>
+									<h5 style='text-align:center;'> Aucune tâche non-commencée </h5>
+								</p>
+							</h:panelGroup>
+        				</div>
+        				<div id="tabs-2" style="margin:10px;">
+        					<h:dataTable rendered="#{!empty ProjectDetailsBean.startedTasks}" value="#{ProjectDetailsBean.startedTasks}" border="1" var="t" class="datatable">
+								<h:column style="width:30px;">
+									<f:facet name="header">Nom</f:facet>
+									<h:outputText value="#{t.tskLabel}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Description</f:facet>
+									<h:outputText value="#{t.tskDescription}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Début</f:facet>
+									<h:outputText value="#{t.tskDateBegun}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Fin</f:facet>
+									<h:outputText value="#{T.tskDateFinished}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">DeadLine</f:facet>
+									<h:outputText value="#{t.tskDateDeadline}" />
+								</h:column>
+								
+							</h:dataTable>
+							<h:panelGroup rendered="#{empty ProjectDetailsBean.startedTasks}">
+								<p>
+									<h5 style='text-align:center;'> Aucune tâche commencée </h5>
+								</p>
+							</h:panelGroup>
+        				</div>
+        				<div id="tabs-3" style="margin:10px;">
+        					<h:dataTable rendered="#{!empty ProjectDetailsBean.validatedTasks}" value="#{ProjectDetailsBean.validatedTasks}" border="1" var="t" class="datatable">
+								<h:column style="width:30px;">
+									<f:facet name="header">Nom</f:facet>
+									<h:outputText value="#{t.tskLabel}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Description</f:facet>
+									<h:outputText value="#{t.tskDescription}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Début</f:facet>
+									<h:outputText value="#{t.tskDateBegun}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Fin</f:facet>
+									<h:outputText value="#{T.tskDateFinished}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">DeadLine</f:facet>
+									<h:outputText value="#{t.tskDateDeadline}" />
+								</h:column>
+							</h:dataTable>
+							<h:panelGroup rendered="#{empty ProjectDetailsBean.validatedTasks}">
+								<p>
+									<h5 style='text-align:center;'> Aucune tâche Validée </h5>
+								</p>
+							</h:panelGroup>
+        				</div>
+        				<div id="tabs-4" style="margin:10px;">
+        					<h:dataTable rendered="#{!empty ProjectDetailsBean.finishedTasks}" value="#{ProjectDetailsBean.finishedTasks}" border="1" var="t" class="datatable">
+								<h:column style="width:30px;">
+									<f:facet name="header">Nom</f:facet>
+									<h:outputText value="#{t.tskLabel}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Description</f:facet>
+									<h:outputText value="#{t.tskDescription}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Début</f:facet>
+									<h:outputText value="#{t.tskDateBegun}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Fin</f:facet>
+									<h:outputText value="#{T.tskDateFinished}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">DeadLine</f:facet>
+									<h:outputText value="#{t.tskDateDeadline}" />
+								</h:column>
+							</h:dataTable>
+							<h:panelGroup rendered="#{empty ProjectDetailsBean.finishedTasks}">
+								<p>
+									<h5 style='text-align:center;'> Aucune tâche Finie </h5>
+								</p>
+							</h:panelGroup>
+        				</div>
+        				<div id="tabs-5" style="margin:10px;">
+        					<h:dataTable rendered="#{!empty ProjectDetailsBean.canceledTasks}" value="#{ProjectDetailsBean.canceledTasks}" border="1" var="t" class="datatable">
+								<h:column style="width:30px;">
+									<f:facet name="header">Nom</f:facet>
+									<h:outputText value="#{t.tskLabel}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Description</f:facet>
+									<h:outputText value="#{t.tskDescription}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Début</f:facet>
+									<h:outputText value="#{t.tskDateBegun}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Fin</f:facet>
+									<h:outputText value="#{T.tskDateFinished}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">DeadLine</f:facet>
+									<h:outputText value="#{t.tskDateDeadline}" />
+								</h:column>
+							</h:dataTable>
+							<h:panelGroup rendered="#{empty ProjectDetailsBean.canceledTasks}">
+								<p>
+									<h5 style='text-align:center;'> Aucune tâche Annulée </h5>
+								</p>
+							</h:panelGroup>
+        				
+        				</div>
+        				<div id="tabs-6" style="margin:10px;">
+        				<h:dataTable rendered="#{!empty ProjectDetailsBean.inProgressTasks}" value="#{ProjectDetailsBean.inProgressTasks}" border="1" var="t" class="datatable">
+								<h:column style="width:30px;">
+									<f:facet name="header">Nom</f:facet>
+									<h:outputText value="#{t.tskLabel}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Description</f:facet>
+									<h:outputText value="#{t.tskDescription}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Début</f:facet>
+									<h:outputText value="#{t.tskDateBegun}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Fin</f:facet>
+									<h:outputText value="#{T.tskDateFinished}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">DeadLine</f:facet>
+									<h:outputText value="#{t.tskDateDeadline}" />
+								</h:column>
+							</h:dataTable>
+							<h:panelGroup rendered="#{empty ProjectDetailsBean.inProgressTasks}">
+								<p>
+									<h5 style='text-align:center;'> Aucune tâche En Cours </h5>
+								</p>
+							</h:panelGroup>
+        				</div>
+        			</div>
+        		</section>
+        	</ui:define>
+    	</ui:composition>    	
+    </h:body>
+</html>
