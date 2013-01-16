@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"   
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      >
+<html lang="fr"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets" 
+>
     <h:body>
  
     	<ui:composition template="../Template/template.xhtml">
  			<ui:define name="content">
- 			
+ 				<f:metadata>
+    				<f:event type="preRenderView" listener="#{DashboardBean.initView}"/>
+				</f:metadata>
  				<section id="content">	
 	    			<div class="g12">
     					<div class="g6">
@@ -39,26 +42,18 @@
 					   <div class="g6">
         					<h3>Mes fonctions</h3>
         					<p> Statistiques sur mes fonctions au sein des projets. </p>
-					        <table class="chart" data-type="bars" data-tooltip-pattern="%1 projet(s)" data-inner-radius="0.5">
-					            <tbody>
-					            	<tr>
-					                    <th> Tâches Annulées </th>
-					                    <td> 10 </td>
-					                </tr>
-					                <tr>
-					                    <th> Tâches Commencées </th>
-					                    <td> 20 </td>
-					                </tr>
-					                <tr>
-					                    <th> Tâches Terminées </th>
-					                    <td> 10 </td>
-					                </tr>
-					                <tr>
-					                    <th> Tâches Validées </th>
-					                    <td> 10 </td>
-					                </tr>
-					            </tbody>
-					        </table>  
+        					<h:panelGroup rendered="#{!empty DashboardBean.userFunctions}">
+						        <table class="chart" data-type="bars" data-tooltip-pattern="%1 projet(s)" data-inner-radius="0.5">
+						            <tbody>
+						            	<ui:repeat var="f" value="#{DashboardBean.userFunctions}" varStatus="status">
+						            		<tr>
+						                    	<th> <h:outputText value="#{f.label}"/> </th>
+						                    	<td> <h:outputText value="#{f.count}"/> </td>
+						                	</tr>
+						                </ui:repeat>
+						            </tbody>
+						        </table>  
+					        </h:panelGroup>
 					   </div>
 					</div>
 					<div class="g12 widgets">
@@ -68,13 +63,17 @@
 					        <thead>
 					            <tr>
 					                <th></th>
-					                <th>12/12/2012</th>
+					                <ui:repeat var="f" value="#{DashboardBean.userWrkAmount}" varStatus="status">
+										<th> <h:outputText value="#{f.label}" /> </th>
+						            </ui:repeat>
 					            </tr>
 					        </thead>
 					        <tbody>
 					            <tr>
 					                <th>Temps (minutes)</th>
-					                <td>245</td>
+					                <ui:repeat var="f" value="#{DashboardBean.userWrkAmount}" varStatus="status">
+										<td> <h:outputText value="#{f.count}" /> </td>
+						            </ui:repeat>
 					            </tr>
 					        </tbody>
 					    </table>
