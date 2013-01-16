@@ -14,7 +14,6 @@ public class Task implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="tsk_id")
 	private int tskId;
 
@@ -58,6 +57,9 @@ public class Task implements Serializable {
 
 	@Column(name="tsk_parent_id")
 	private int tskParentId;
+
+	@Column(name="tss_id")
+	private int tssId;
 
 	@Column(name="tst_id")
 	private int tstId;
@@ -173,6 +175,14 @@ public class Task implements Serializable {
 
 	public void setTskParentId(int tskParentId) {
 		this.tskParentId = tskParentId;
+	}
+
+	public int getTssId() {
+		return this.tssId;
+	}
+
+	public void setTssId(int tssId) {
+		this.tssId = tssId;
 	}
 
 	public int getTstId() {
