@@ -33,6 +33,7 @@ public class DashboardBean {
 	public BeanWorkPieceRemote workPieceRemote;
 	
 	private User currentUser;
+	private boolean dataLoaded = false;
 	private HashMap <String, Integer> tasksStatus = new HashMap<String, Integer>(); 
 	private ArrayList <ObjectOutput> userFunctions = new ArrayList <ObjectOutput>(); 
 	private ArrayList <ObjectOutput> userWrkAmount = new ArrayList <ObjectOutput>(); 
@@ -65,15 +66,19 @@ public class DashboardBean {
 	
 	public void initView () {
 		
-		// On remplit les décomptes de tâches pour l'utilisateur courant
-		
-		// On remplit les décomptes des fonctions au sein des projets
-		this.getUserFunctions().clear();
-		this.getUserFunctions().addAll(getUserFunctionsOutput());
-		
-		// On remplit les temps de travail de l'utilisateur
-		this.getUserFunctions().clear();
-		this.userWrkAmount.addAll(getUserWorkAmountOutput());
+		if(dataLoaded == false) {
+			// On remplit les décomptes de tâches pour l'utilisateur courant
+			
+			// On remplit les décomptes des fonctions au sein des projets
+			this.userFunctions.clear();
+			this.userFunctions.addAll(getUserFunctionsOutput());
+			
+			// On remplit les temps de travail de l'utilisateur
+			this.userWrkAmount.clear();
+			this.userWrkAmount.addAll(getUserWorkAmountOutput());
+			
+			dataLoaded = true;
+		}
 	}
 	
 	public ArrayList <ObjectOutput> getUserFunctionsOutput() {
