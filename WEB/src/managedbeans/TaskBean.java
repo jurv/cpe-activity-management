@@ -24,6 +24,7 @@ public class TaskBean {
 	private int taskPrjId = 0;
 	private int taskDuration = 0;
 	private int taskAssignedTo = 0;
+	private int taskId = 0;
 	
 	public void createTask()
 	{
@@ -115,9 +116,20 @@ public class TaskBean {
 
 
 	public boolean deleteTask() {
-		int tskId = Integer.parseInt((String)FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("prjIdDel"));
+		int tskId = Integer.parseInt((String)FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("tskIdDel"));
 		Task tsk = taskRemote.findTask(tskId);
 		taskRemote.logicalDelete(tsk);
 		return true;
+	}
+	
+	public void loadTask(){
+		this.taskId = Integer.parseInt((String)FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("tskIdDet"));
+		Task tsk = taskRemote.findTask(this.taskId);
+
+		this.taskAssignedTo = tsk.getUsrAssignedtoId();
+		this.taskComment    = tsk.getTskDescription();
+		this.taskDuration   = tsk.getTskDuration();
+		this.taskName       = tsk.getTskLabel();
+		this.taskPrjId      = tsk.getPrjId();
 	}
 }

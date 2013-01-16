@@ -10,8 +10,37 @@
     		<ui:define name="content">
     			<section id="content">
 	    			<h2>Détail de la tâche</h2>
-	    			<f:view>
-					</f:view>
+	    			<f:metadata>
+	                    <f:event type="preRenderView" listener="#{TaskBean.loadTask}"/>
+	                </f:metadata>
+	    			<h:form>
+                        <fieldset>
+                            <section>
+                                
+                            </section>
+                            <section>
+                                <label for="name"> Nom de la tâche </label>
+                                <div>
+                                    <h:outputText id="name" value="#{TaskBean.taskName}" />
+                                </div>
+                            </section>
+                            <section>
+                                <label for="comment"> Commentaires </label>
+                                <div>
+                                    <h:outputText id="comment" value="#{TaskBean.taskComment}" />
+                                </div>
+                            </section>
+                            <section>
+                                <label for="time"> Nombre de jours </label>
+                                <div>
+                                    <h:outputText id="time" value="#{TaskBean.taskDuration}" />
+                                </div>
+                            </section>
+                            <section>
+                                
+                            </section>
+                        </fieldset>
+					</h:form>
 				</section>
     		</ui:define>
     	</ui:composition>    	
