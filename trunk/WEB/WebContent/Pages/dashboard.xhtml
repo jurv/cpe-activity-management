@@ -8,7 +8,79 @@
     <h:body>
  
     	<ui:composition template="../Template/template.xhtml">
- 
+ 			<ui:define name="content">
+ 			
+ 				<section id="content">	
+	    			<div class="g12">
+    					<div class="g6">
+        					<h3>Mes tâches</h3>
+        					<p> Statistiques sur mes tâches de projets. </p>
+					        <table class="chart" data-type="pie" data-tooltip-pattern="%1 tâche(s)" data-inner-radius="0.5">
+					            <tbody>
+					            	<tr>
+					                    <th> Tâches Annulées </th>
+					                    <td> 10 </td>
+					                </tr>
+					                <tr>
+					                    <th> Tâches Commencées </th>
+					                    <td> 20 </td>
+					                </tr>
+					                <tr>
+					                    <th> Tâches Terminées </th>
+					                    <td> 10 </td>
+					                </tr>
+					                <tr>
+					                    <th> Tâches Validées </th>
+					                    <td> 10 </td>
+					                </tr>
+					            </tbody>
+					        </table>  
+					   </div>
+					   <div class="g6">
+        					<h3>Mes fonctions</h3>
+        					<p> Statistiques sur mes fonctions au sein des projets. </p>
+					        <table class="chart" data-type="bars" data-tooltip-pattern="%1 projet(s)" data-inner-radius="0.5">
+					            <tbody>
+					            	<tr>
+					                    <th> Tâches Annulées </th>
+					                    <td> 10 </td>
+					                </tr>
+					                <tr>
+					                    <th> Tâches Commencées </th>
+					                    <td> 20 </td>
+					                </tr>
+					                <tr>
+					                    <th> Tâches Terminées </th>
+					                    <td> 10 </td>
+					                </tr>
+					                <tr>
+					                    <th> Tâches Validées </th>
+					                    <td> 10 </td>
+					                </tr>
+					            </tbody>
+					        </table>  
+					   </div>
+					</div>
+					<div class="g12 widgets">
+					    <h3 class="handle">Répartition du temps de travail</h3>
+					    <p>Répartation de votre temps de travail.</p>
+					    <table class="chart" data-fill="true" data-legend="false" >
+					        <thead>
+					            <tr>
+					                <th></th>
+					                <th>12/12/2012</th>
+					            </tr>
+					        </thead>
+					        <tbody>
+					            <tr>
+					                <th>Temps (minutes)</th>
+					                <td>245</td>
+					            </tr>
+					        </tbody>
+					    </table>
+					</div>
+	    		</section>
+ 			</ui:define>
     	</ui:composition>
  
     </h:body>
