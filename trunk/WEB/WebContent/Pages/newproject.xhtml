@@ -84,21 +84,27 @@
 							</section>
 							<section>
 								<label for="dev"> Developpeur: </label>
-								<h:selectManyCheckbox id="dev" value="#{CreateProjectBean.listDev}">
-								   	<f:selectItems value="#{input.usersItems}" />
-								</h:selectManyCheckbox>
+								<div>
+									<h:selectManyListbox id="dev" value="#{CreateProjectBean.listDev}">
+									   	<f:selectItems value="#{input.usersItems}" />
+									</h:selectManyListbox>
+								</div>
 							</section>
 							<section>
 								<label for="tes"> Testeur: </label>
-								<h:selectManyCheckbox id="tes" value="#{CreateProjectBean.listTes}">
-								   	<f:selectItems value="#{input.usersItems}" />
-								</h:selectManyCheckbox>
+								<div>
+									<h:selectManyListbox id="tes" value="#{CreateProjectBean.listTes}">
+									   	<f:selectItems value="#{input.usersItems}" />
+									</h:selectManyListbox>
+								</div>
 							</section>
 							<section>
 								<label for="rel"> Relecteur: </label>
-								<h:selectManyCheckbox id="rel" value="#{CreateProjectBean.listRel}">
-								   	<f:selectItems value="#{input.usersItems}" />
-								</h:selectManyCheckbox>
+								<div>
+									<h:selectManyListbox id="rel" value="#{CreateProjectBean.listRel}">
+									   	<f:selectItems value="#{input.usersItems}" />
+									</h:selectManyListbox>
+								</div>
 							</section>
 							<section>
 								<div>
