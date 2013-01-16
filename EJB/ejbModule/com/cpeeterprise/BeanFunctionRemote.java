@@ -15,5 +15,6 @@ public interface BeanFunctionRemote {
 	public List <Function> findFunction ();
 	public Function findFunction (int id);
 	public Function findFunction (String id);
+	public List<Function> findAllFunctionsForUser(int usrId);
 	public void logicalDelete(Function fct);
 }

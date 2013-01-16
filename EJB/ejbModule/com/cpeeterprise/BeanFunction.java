@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import model.Function;
+import model.User2Project;
 
 /**
  * Session Bean implementation class BeanFunction
@@ -56,6 +57,19 @@ public class BeanFunction implements BeanFunctionRemote {
       public Function findFunction (String id) {
 
         return (Function) em.find(Function.class, Long.parseLong(id));
+      }
+      
+      public List<Function> findAllFunctionsForUser(int usrId) {
+    	  String ids = "";
+    	  String sep = "";
+    	  
+    	  List<User2Project> u2p = (List <User2Project>) em.createQuery("select up from User2Project up where usr_id = " + usrId).getResultList();
+    	  for(User2Project up : u2p) {
+    		  ids += sep + up.getFctId();
+    		  sep = ",";
+    	  }
+    	  
+    	  return (List <Function>) em.createQuery("select t from Function t where fct_id in (" + ids + ")").getResultList();
       }
 
 	  public void logicalDelete(Function fct) {
