@@ -32,72 +32,36 @@ public class OutputBean {
 	public BeanUserRemote userRemote;
 	@EJB
 	public BeanFunctionRemote functionRemote;
-	
-	private List<Project> refProjects;
-	private List<Project> refActiveProjects;
-	private List<Task> refTasks;
-	private List<Task> refActiveTasks;
-	private List<Customer> refCustomers;
-	private List<User> refUsers;
-	private List<Function> refFunctions;
-	
 
 	public List<Project> getProjectList() {
-		if (refProjects == null) {
-			refProjects = projectRemote.findProjects();
-		}
-		return refProjects;
+		return projectRemote.findProjects();
 	}
 	
 	public List<Project> getActiveProjectList() {
-		if (refActiveProjects == null) {
-			refActiveProjects = projectRemote.findActiveProjects();
-		}
-		return refActiveProjects;
+		return projectRemote.findActiveProjects();
 	}
 	
 	public List<Task> getTaskList() {
-		if (refTasks == null) {
-			refTasks = taskRemote.findTasks();
-		}
-		return refTasks;
+		return taskRemote.findTasks();
 	}
 	
 	public List<Task> getActiveTaskList() {
-		if (refActiveTasks == null) {
-			refActiveTasks = taskRemote.findActiveTasks();
-		}
-		return refActiveTasks;
+		return taskRemote.findActiveTasks();
 	}
 	
 	public List<Customer> getCustomerList() {
-		if (refCustomers == null) {
-			refCustomers = customerRemote.findCustomers();
-		}
-		return refCustomers;
+		return customerRemote.findCustomers();
 	}
 	public List<Customer> getActiveCustomerList() {
-		if (refCustomers == null) {
-			refCustomers = customerRemote.findActiveCustomers();
-		}
-		return refCustomers;
+		return customerRemote.findActiveCustomers();
 	}
 	public List<User> getUserList(){
-		if(refUsers == null){
-			refUsers = userRemote.findUsers();
-		}
-		return refUsers;
+		return userRemote.findUsers();
 	}
 	public List<User> getActiveUserList(){
-		if(refUsers == null){
-			refUsers = userRemote.findActiveUsers();
-		}
-		return refUsers;
+		return userRemote.findActiveUsers();
 	}
-	public List<User> getFunctionList(){
-		if(refFunctions == null){
-			refFunctions = functionRemote.findFunction();
-		}
-		return refUsers;
+	public List<Function> getFunctionList(){
+		return functionRemote.findFunction();
 	}
 }
