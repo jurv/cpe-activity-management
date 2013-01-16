@@ -30,6 +30,11 @@
 		<managed-bean-class>managedbeans.ProjectsBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>ProjectDetailsBean</managed-bean-name>
+		<managed-bean-class>managedbeans.ProjectDetailsBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
     <managed-bean>
         <managed-bean-name>WorkPieceBean</managed-bean-name>
         <managed-bean-class>managedbeans.WorkPieceBean</managed-bean-class>
@@ -254,7 +259,7 @@
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>DetailsProject</from-outcome>
-			<to-view-id>/Pages/project.xhtml</to-view-id>
+			<to-view-id>/Pages/projectDetails.xhtml</to-view-id>
 		</navigation-case>
 		<navigation-case>
             <from-outcome>DetailsTask</from-outcome>

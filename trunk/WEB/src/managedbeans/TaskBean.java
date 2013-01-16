@@ -26,6 +26,9 @@ public class TaskBean {
 	private int taskAssignedTo = 0;
 	private int taskId = 0;
 	
+	//Constantes
+	final int ID_STA_NOTSTARTED = 1;
+	
 	public void createTask()
 	{
 		Task task = new Task();
@@ -37,6 +40,7 @@ public class TaskBean {
 		task.setTskDuration(this.taskDuration);
 		task.setTskLabel(this.taskName);
 //		task.setTskLevel();
+		task.setTssId(ID_STA_NOTSTARTED);
 		task.setUsrAssignedbyId(1);
 		task.setUsrAssignedtoId(this.taskAssignedTo);
 		

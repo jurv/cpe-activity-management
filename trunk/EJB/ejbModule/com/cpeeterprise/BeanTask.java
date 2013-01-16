@@ -53,6 +53,10 @@ public class BeanTask implements BeanTaskRemote {
       public List <Task> findTasksByUser (int userId) {
     	  return (List <Task>) em.createQuery("select t from Task t where usr_assignedto_id = '" + userId + "'").getResultList();
       }
+      
+      public List <Task> findTasksByProject (int prjId, int statusId) {
+    	  return (List <Task>) em.createQuery("select t from Task t where prj_id = '" + prjId + "' and tss_id = '" + statusId + "'").getResultList();
+      }
 
 	@Override
 	public void logicalDelete(Task task) {
