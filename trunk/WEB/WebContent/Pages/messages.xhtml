@@ -32,8 +32,12 @@
 									<h:outputText value="#{p.msgDate}" />
 								</h:column>
 								<h:column>
-									<f:facet name="header">Utilisateur</f:facet>
-									<h:outputText value="#{p.usrSenderId}" />
+									<f:facet name="header">A Utilisateur</f:facet>
+									<h:outputText value="#{p.receiver.usrFirstname} #{p.receiver.usrLastname}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">De Utilisateur</f:facet>
+									<h:outputText value="#{p.sender.usrFirstname} #{p.sender.usrLastname}" />
 								</h:column>
 								<h:column>
 									<f:facet name="header">Sujet</f:facet>
@@ -41,7 +45,7 @@
 								</h:column>
 								<h:column>
 									<f:facet name="header">Projet</f:facet>
-									<h:outputText value="#{p.prjId}" />
+									<h:outputText value="#{p.project.prjLabel}" />
 								</h:column>
 								<h:column>
 									<f:facet name="header">Actions</f:facet>
@@ -69,8 +73,12 @@
 									<h:outputText value="#{p.msgDate}" />
 								</h:column>
 								<h:column>
-									<f:facet name="header">Utilisateur</f:facet>
-									<h:outputText value="#{p.usrSenderId}" />
+									<f:facet name="header">A Utilisateur</f:facet>
+									<h:outputText value="#{p.receiver.usrFirstname} #{p.receiver.usrLastname}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">De Utilisateur</f:facet>
+									<h:outputText value="#{p.sender.usrFirstname} #{p.sender.usrLastname}" />
 								</h:column>
 								<h:column>
 									<f:facet name="header">Sujet</f:facet>
@@ -78,7 +86,7 @@
 								</h:column>
 								<h:column>
 									<f:facet name="header">Projet</f:facet>
-									<h:outputText value="#{p.prjId}" />
+									<h:outputText value="#{p.project.prjLabel}" />
 								</h:column>
 								<h:column>
 									<f:facet name="header">Actions</f:facet>
@@ -106,8 +114,12 @@
 									<h:outputText value="#{p.msgDate}" />
 								</h:column>
 								<h:column>
-									<f:facet name="header">Utilisateur</f:facet>
-									<h:outputText value="#{p.usrReceiverId}" />
+									<f:facet name="header">A Utilisateur</f:facet>
+									<h:outputText value="#{p.receiver.usrFirstname} #{p.receiver.usrLastname}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">De Utilisateur</f:facet>
+									<h:outputText value="#{p.sender.usrFirstname} #{p.sender.usrLastname}" />
 								</h:column>
 								<h:column>
 									<f:facet name="header">Sujet</f:facet>
@@ -115,7 +127,7 @@
 								</h:column>
 								<h:column>
 									<f:facet name="header">Projet</f:facet>
-									<h:outputText value="#{p.prjId}" />
+									<h:outputText value="#{p.project.prjLabel}" />
 								</h:column>
 								<h:column>
 									<f:facet name="header">Actions</f:facet>

@@ -75,7 +75,7 @@ public class BeanMessage implements BeanMessageRemote {
       }
 
       public List<Message> findDeletedMessagesFor(int receiverId) {
-    	  return (List <Message>) em.createQuery("select t from Message t where usr_receiver_id = " + receiverId + " and msg_isdeleted = '1' and msg_subject <> 'Chat'").getResultList();
+    	  return (List <Message>) em.createQuery("select t from Message t where (usr_receiver_id = " + receiverId + " or usr_sender_id = " + receiverId + ") and msg_isdeleted = '1' and msg_subject <> 'Chat'").getResultList();
       }
       
       public List<Message> findReceivedMessagesFor(int receiverId) {

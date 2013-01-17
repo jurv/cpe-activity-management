@@ -290,4 +290,8 @@
 		<converter-id>userConverter</converter-id>
 		<converter-class>converter.UserConverter</converter-class>
 	</converter>
+	<converter>
+		<converter-id>projectConverter</converter-id>
+		<converter-class>converter.ProjectConverter</converter-class>
+	</converter>
 </faces-config>

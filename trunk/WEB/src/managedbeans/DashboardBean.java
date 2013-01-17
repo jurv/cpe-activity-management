@@ -2,6 +2,8 @@ package managedbeans;
 
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -46,7 +48,7 @@ public class DashboardBean {
 	private ArrayList <ObjectOutput> userWrkAmount = new ArrayList <ObjectOutput>(); 
 	private ArrayList <ObjectOutput> userTasks = new ArrayList <ObjectOutput>();
 	
-	public class ObjectOutput {
+	public class ObjectOutput implements Comparable<ObjectOutput> {
 		private int count = 0;
 		private String label = "";
 		public ObjectOutput(int pcount, String pLabel) {
@@ -70,6 +72,11 @@ public class DashboardBean {
 		public boolean equals (Object o) {
 			return (getLabel() == ((ObjectOutput)o).getLabel());
 		}
+		
+		@Override
+		public int compareTo(ObjectOutput o) {
+			return getLabel().compareTo(o.getLabel());
+		}
 	}
 	
 	public void initView () {
@@ -87,6 +94,7 @@ public class DashboardBean {
 			// On remplit les temps de travail de l'utilisateur
 			this.userWrkAmount.clear();
 			this.userWrkAmount.addAll(getUserWorkAmountOutput());
+			Collections.sort(this.userWrkAmount);
 			
 			dataLoaded = true;
 		}

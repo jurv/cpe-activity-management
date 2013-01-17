@@ -21,16 +21,16 @@
 							<section>
 								<label for="project"> Projet </label>
 								<div>
-									<h:selectOneListbox id="project" required="true" requiredMessage="Veuillez spécifier un projet" value="#{CreateMessageBean.newMessage.prjId}" onchange="submit()" valueChangeListener="#{CreateMessageBean.selectedProjectChanged}" >
-										<f:selectItems value="#{CreateMessageBean.listProjects}" var="p" itemValue="#{p.prjId}" itemLabel="#{p.prjLabel}"/>
+									<h:selectOneListbox id="project" required="true" requiredMessage="Veuillez spécifier un projet" value="#{CreateMessageBean.newMessage.project}" onchange="submit()" valueChangeListener="#{CreateMessageBean.selectedProjectChanged}" converter="#{projectConverter}">
+										<f:selectItems value="#{CreateMessageBean.listProjects}" var="p" itemValue="#{p}" itemLabel="#{p.prjLabel}"/>
 									</h:selectOneListbox>
 									<h:outputText rendered="#{empty CreateMessageBean.listProjects}" value="Vous n'avez pas de projet attribué !" styleClass="error-message"/>
 									<h:message for="project" class='error-message'/>
 								</div>
 								<label for="user"> Utilisateur </label>
 								<div>
-									<h:selectOneListbox id="user" required="true" requiredMessage="Veuillez spécifier un destinataire" value="#{CreateMessageBean.newMessage.usrReceiverId}" >
-										<f:selectItems value="#{CreateMessageBean.listReceivers}" var="p" itemValue="#{p.usrId}" itemLabel="#{p.usrLastname}"/>
+									<h:selectOneListbox id="user" required="true" requiredMessage="Veuillez spécifier un destinataire" value="#{CreateMessageBean.newMessage.receiver}" converter="#{userConverter}" size="1">
+										<f:selectItems value="#{CreateMessageBean.listReceivers}" var="p" itemValue="#{p}" itemLabel="#{p.usrFirstname} #{p.usrLastname}"/>
 									</h:selectOneListbox>
 									<h:message for="user" class='error-message'/>
 									<h:outputText rendered="#{empty CreateMessageBean.listReceivers}" value="Aucun utilisateur ne sont attribués sur ce projet" styleClass="error-message"/>
