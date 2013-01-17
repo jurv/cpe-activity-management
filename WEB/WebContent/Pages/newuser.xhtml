@@ -17,33 +17,38 @@
 								<section>
 									<label for="firstName"> Prenom de l'utilisateur </label>
 									<div>
-										<h:inputText id="firstName" value="#{CreateUserBean.userFirstName}" />
+										<h:inputText id="firstName" value="#{CreateUserBean.userFirstName}"  required="true" requiredMessage="Spécifiez un prénom"/>
+                                        <h:message for="firstName" class='error-message'></h:message>
 									</div>
 								</section>
 								<section>
 									<label for="lastName"> Nom de l'utilisateur </label>
 									<div>
-										<h:inputText id="lastName" value="#{CreateUserBean.userLastName}" />
+										<h:inputText id="lastName" value="#{CreateUserBean.userLastName}" required="true" requiredMessage="Spécifiez un nom"/>
+                                    <h:message for="lastName" class='error-message'></h:message>
 									</div>
 								</section>
 								<section>
 									<label for="login"> Login</label>
 									<div>
-										<h:inputText id="login" value="#{CreateUserBean.userLogin}" />
+										<h:inputText id="login" value="#{CreateUserBean.userLogin}" required="true" requiredMessage="Spécifiez un login"/>
+                                        <h:message for="login" class='error-message'></h:message>
 									</div>
 								</section>
 								<section>
 									<label for="password"> Mot de passe </label>
 									<div>
-										<h:inputSecret id="password" value="#{CreateUserBean.userPassword}" />
+										<h:inputSecret id="password" value="#{CreateUserBean.userPassword}" required="true" requiredMessage="Spécifiez un mot de passe"/>
+                                        <h:message for="password" class='error-message'></h:message>
 									</div>
 								</section>
 								<section>
 									<label for="function"> Fonction de l'utilisateur </label>
 									<div>
-										<h:selectOneMenu value="#{CreateUserBean.userFctId}">
-											<f:selectItems value="#{input.funcItems}"/>
+										<h:selectOneMenu id="function" value="#{CreateUserBean.userFctId}" required="true" requiredMessage="Spécifiez une fonction">
+                                    		<f:selectItems value="#{input.funcItems}"/>
 										</h:selectOneMenu>
+                                        <h:message for="function" class='error-message'></h:message>
 									</div>
 								</section>
 								<section>

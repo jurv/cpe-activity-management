@@ -14,11 +14,12 @@
 	    			<h:form id="newprojectform">
 						<fieldset>
 							<section>
-								<label for="name">Tâche</label>
+								<label for="task">Tâche</label>
 								<div>
-									<h:selectOneMenu value="#{WorkPieceBean.workPieceTskId}">
+									<h:selectOneMenu id="task" value="#{WorkPieceBean.workPieceTskId}" required="true" requiredMessage="Spécifiez une tâche">
 										<f:selectItems value="#{input.myTasksItems}"/>
 									</h:selectOneMenu>
+                                    <h:message for="task" class='error-message'></h:message>
 								</div>
 							</section>
 							<section>
@@ -40,8 +41,9 @@
 										    dayCellClass="dayCellClass" 
 										    currentDayCellClass="currentDayCellClass"
 										    renderAsPopup="false"
-										    alt="Calendar" title="Calendar">
-								    	</t:inputCalendar>
+										    alt="Calendar" title="Calendar" required="true" requiredMessage="Spécifiez une date">
+                                    	</t:inputCalendar>
+                                        <h:message for="date" class='error-message'></h:message>
 									</t:panelGroup>
 								</div>
 							</section>
@@ -49,7 +51,8 @@
 								<label for="duration"> Durée </label>
 								<div>
 									<div>
-                                        <h:inputText id="duration" value="#{WorkPieceBean.workPieceDuration}" />
+                                        <h:inputText id="duration" value="#{WorkPieceBean.workPieceDuration}" required="true" requiredMessage="Spécifiez une durée"/>
+                                        <h:message for="duration" class='error-message'></h:message>
                                     </div>
 								</div>
 							</section>
