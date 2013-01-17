@@ -10,6 +10,7 @@
     		<ui:define name="content">
     			<f:metadata>
 	                <f:event type="preRenderView" listener="#{TaskBean.loadTask}"/>
+	                <f:param name="tskIdDet" id="tskIdDet" value=#{TaskBean.tskIdDet}/>
 	            </f:metadata>
     			<section id="content">
 	    			<h2>Détail de la tâche</h2>

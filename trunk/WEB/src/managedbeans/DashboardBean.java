@@ -80,28 +80,30 @@ public class DashboardBean {
 	}
 	
 	public void initView () {
-		
-		if(dataLoaded == false) {
 			
+		//if(!dataLoaded) {
 			// On remplit les décomptes de tâches pour l'utilisateur courant
-			this.getUserTasks().clear();
-			this.getUserTasks().addAll(getUserTasksOutput());
-			
+		//if(this.userTasks.size()  == 0) {
+			this.userTasks.clear();
+			this.userTasks.addAll(getUserTasksOutput());
+		//}
+		//if(this.userFunctions.size() == 0) {	
 			// On remplit les décomptes des fonctions au sein des projets
 			this.userFunctions.clear();
 			this.userFunctions.addAll(getUserFunctionsOutput());
-			
+		//}
+		//if(this.userWrkAmount.size() == 0) {	
 			// On remplit les temps de travail de l'utilisateur
 			this.userWrkAmount.clear();
 			this.userWrkAmount.addAll(getUserWorkAmountOutput());
 			Collections.sort(this.userWrkAmount);
-			
-			dataLoaded = true;
-		}
+		//}
+		//	dataLoaded = true;
+		//}
 	}
 	
 	public ArrayList <ObjectOutput> getUserFunctionsOutput() {
-		LinkedHashMap <String, Integer> fctsMap = new LinkedHashMap<String, Integer>(); 
+		HashMap <String, Integer> fctsMap = new HashMap<String, Integer>(); 
 		List<Function> usrFcts = functionRemote.findAllFunctionsForUser(this.currentUser.getUsrId());
 		List<Function> allFcts = functionRemote.findFunction();
 		ArrayList<ObjectOutput> fcts = new ArrayList<ObjectOutput>();
@@ -113,7 +115,8 @@ public class DashboardBean {
 			}
 			else {
 				fctsMap.remove(f.getFctLabel());
-				fctsMap.put(f.getFctLabel(), occ++);
+				occ++;
+				fctsMap.put(f.getFctLabel(), occ);
 			}
 		}
 		for(Function f : allFcts) {
@@ -130,7 +133,7 @@ public class DashboardBean {
 	}
 	
 	public ArrayList <ObjectOutput> getUserWorkAmountOutput() {
-		LinkedHashMap <String, Integer> wpsMap = new LinkedHashMap<String, Integer>(); 
+		HashMap <String, Integer> wpsMap = new HashMap<String, Integer>(); 
 		ArrayList<ObjectOutput> wrkAmount = new ArrayList<ObjectOutput>();
 		ArrayList<WorkPiece> wps = new ArrayList<WorkPiece>();
 		wps.addAll(this.workPieceRemote.findWorkPiecesByUser(this.currentUser.getUsrId()));
@@ -154,7 +157,7 @@ public class DashboardBean {
 	}
 	
 	public ArrayList <ObjectOutput> getUserTasksOutput() {
-		LinkedHashMap <String, Integer> tsksMap = new LinkedHashMap<String, Integer>(); 
+		HashMap <String, Integer> tsksMap = new HashMap<String, Integer>(); 
 		ArrayList<ObjectOutput> tsksOutput = new ArrayList<ObjectOutput>();
 		ArrayList<Task> tsks = new ArrayList<Task>();
 		ArrayList<TaskStatus> tskss = new ArrayList<TaskStatus>();
@@ -162,18 +165,18 @@ public class DashboardBean {
 		tskss.addAll(taskStatusRemote.findTaskStatus());
 		
 		for(Task f : tsks) {
-			Integer occ = tsksMap.get(f.getTskId());
 			String value = "";
 			for(TaskStatus tss : tskss) {
 				if(tss.getTssId() == f.getTssId())
 					value = tss.getTssLabel();
 			}
+			Integer occ = tsksMap.get(value);
 			if(occ == null) {
 				tsksMap.put(value, 1);
 			}
 			else {
 				tsksMap.remove(value);
-				tsksMap.put(value, occ ++);
+				tsksMap.put(value, occ+1);
 			}
 		}
 		
