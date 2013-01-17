@@ -106,6 +106,7 @@ public class WorkPieceBean {
 
 	public void createWorkPiece()
 	{
+		this.workPieceUsrId = this.currentUser.getUsrId();
 		
 		WorkPiece workPiece = new WorkPiece();
 		workPiece.setTskId(this.workPieceTskId);
