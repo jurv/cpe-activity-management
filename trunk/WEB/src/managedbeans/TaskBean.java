@@ -10,6 +10,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import model.Task;
+import model.User;
 import model.WorkPiece;
 
 import com.cpeeterprise.BeanTaskRemote;
@@ -28,7 +29,7 @@ public class TaskBean {
 	private String taskComment = "";
 	private int taskPrjId = 0;
 	private int taskDuration = 0;
-	private int taskAssignedTo = 0;
+	private User taskAssignedTo ;
 	private int taskId = 0;
 	private int taskTstId = 0;
 	private ArrayList<WorkPiece> wps = new ArrayList<WorkPiece>();
@@ -51,7 +52,7 @@ public class TaskBean {
 //		task.setTskLevel();
 		task.setTssId(ID_STA_NOTSTARTED);
 		task.setUsrAssignedbyId(1);
-		task.setUsrAssignedtoId(this.taskAssignedTo);
+		task.setUser(this.taskAssignedTo);
 		task.setTstId(this.taskTstId);
 		
 		taskRemote.persist(task);
@@ -127,13 +128,13 @@ public class TaskBean {
 
 
 
-	public int getTaskAssignedTo() {
+	public User getTaskAssignedTo() {
 		return taskAssignedTo;
 	}
 
 
 
-	public void setTaskAssignedTo(int taskAssignedTo) {
+	public void setTaskAssignedTo(User taskAssignedTo) {
 		this.taskAssignedTo = taskAssignedTo;
 	}
 
@@ -149,7 +150,7 @@ public class TaskBean {
 	public void loadTask(){
 		this.taskId = Integer.parseInt((String)FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("tskIdDet"));
 		Task tsk = taskRemote.findTask(this.taskId);
-		this.taskAssignedTo = tsk.getUsrAssignedtoId();
+		this.taskAssignedTo = tsk.getUser();
 		this.taskComment    = tsk.getTskDescription();
 		this.taskDuration   = tsk.getTskDuration();
 		this.taskName       = tsk.getTskLabel();

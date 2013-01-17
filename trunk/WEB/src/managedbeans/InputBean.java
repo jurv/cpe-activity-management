@@ -115,7 +115,7 @@ public class InputBean {
 		if(this.usersItems.isEmpty()){
 			List<User> users = userRemote.findUsers();
 			for(User u:users){
-				usersItems.add(new SelectItem(u.getUsrId(), u.getUsrFirstname() + " " + u.getUsrLastname()));
+				usersItems.add(new SelectItem(u, u.getUsrFirstname() + " " + u.getUsrLastname()));
 			}
 		}
 		return usersItems;
