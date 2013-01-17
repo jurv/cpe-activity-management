@@ -34,6 +34,14 @@
 								</div>
 							</section>
 							<section>
+                                <label for="tst"> Type de tâche </label>
+                                <div>
+                                    <h:selectOneMenu value="#{TaskBean.taskTstId}">
+                                        <f:selectItems value="#{input.tstItems}"/>
+                                    </h:selectOneMenu>
+                                </div>
+                            </section>
+                            <section>
 								<label for="time"> Nombre de jours </label>
 								<div>
 									<h:inputText id="time" value="#{TaskBean.taskDuration}" />
