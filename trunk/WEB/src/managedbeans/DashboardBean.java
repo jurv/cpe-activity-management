@@ -13,11 +13,15 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
 import model.Function;
+import model.Task;
+import model.TaskStatus;
 import model.WorkPiece;
 import model.User;
 
 
 import com.cpeeterprise.BeanFunctionRemote;
+import com.cpeeterprise.BeanTaskRemote;
+import com.cpeeterprise.BeanTaskStatusRemote;
 import com.cpeeterprise.BeanUserRemote;
 import com.cpeeterprise.BeanWorkPieceRemote;
 
@@ -31,12 +35,16 @@ public class DashboardBean {
 	public BeanFunctionRemote functionRemote;
 	@EJB
 	public BeanWorkPieceRemote workPieceRemote;
+	@EJB
+	public BeanTaskRemote taskRemote;
+	@EJB
+	public BeanTaskStatusRemote taskStatusRemote;
 	
 	private User currentUser;
 	private boolean dataLoaded = false;
-	private HashMap <String, Integer> tasksStatus = new HashMap<String, Integer>(); 
 	private ArrayList <ObjectOutput> userFunctions = new ArrayList <ObjectOutput>(); 
 	private ArrayList <ObjectOutput> userWrkAmount = new ArrayList <ObjectOutput>(); 
+	private ArrayList <ObjectOutput> userTasks = new ArrayList <ObjectOutput>();
 	
 	public class ObjectOutput {
 		private int count = 0;
@@ -67,7 +75,10 @@ public class DashboardBean {
 	public void initView () {
 		
 		if(dataLoaded == false) {
+			
 			// On remplit les décomptes de tâches pour l'utilisateur courant
+			this.getUserTasks().clear();
+			this.getUserTasks().addAll(getUserTasksOutput());
 			
 			// On remplit les décomptes des fonctions au sein des projets
 			this.userFunctions.clear();
@@ -133,6 +144,44 @@ public class DashboardBean {
 		
 		return wrkAmount;
 	}
+	
+	public ArrayList <ObjectOutput> getUserTasksOutput() {
+		LinkedHashMap <String, Integer> tsksMap = new LinkedHashMap<String, Integer>(); 
+		ArrayList<ObjectOutput> tsksOutput = new ArrayList<ObjectOutput>();
+		ArrayList<Task> tsks = new ArrayList<Task>();
+		ArrayList<TaskStatus> tskss = new ArrayList<TaskStatus>();
+		tsks.addAll(this.taskRemote.findTasksByUser(this.currentUser.getUsrId()));
+		tskss.addAll(taskStatusRemote.findTaskStatus());
+		
+		for(Task f : tsks) {
+			Integer occ = tsksMap.get(f.getTskId());
+			String value = "";
+			for(TaskStatus tss : tskss) {
+				if(tss.getTssId() == f.getTssId())
+					value = tss.getTssLabel();
+			}
+			if(occ == null) {
+				tsksMap.put(value, 1);
+			}
+			else {
+				tsksMap.remove(value);
+				tsksMap.put(value, occ ++);
+			}
+		}
+		
+		for(TaskStatus f : tskss) {
+			Integer occ = tsksMap.get(f.getTssLabel());
+			if(occ == null) {
+				tsksMap.put(f.getTssLabel(), 0);
+			}
+		}
+		
+		for(String i : tsksMap.keySet()) {
+			tsksOutput.add(new ObjectOutput(tsksMap.get(i), i));
+		}
+		
+		return tsksOutput;
+	}
 
 	public User getCurrentUser() {
 		return currentUser;
@@ -140,14 +189,6 @@ public class DashboardBean {
 
 	public void setCurrentUser(User currentUser) {
 		this.currentUser = currentUser;
-	}
-
-	public HashMap <String, Integer> getTasksStatus() {
-		return tasksStatus;
-	}
-
-	public void setTasksStatus(HashMap <String, Integer> tasksStatus) {
-		this.tasksStatus = tasksStatus;
 	}
 
 	public ArrayList <ObjectOutput> getUserFunctions() {
@@ -164,5 +205,13 @@ public class DashboardBean {
 
 	public void setUserWrkAmount(ArrayList <ObjectOutput> userWrkAmount) {
 		this.userWrkAmount = userWrkAmount;
+	}
+
+	public ArrayList <ObjectOutput> getUserTasks() {
+		return userTasks;
+	}
+
+	public void setUserTasks(ArrayList <ObjectOutput> userTasks) {
+		this.userTasks = userTasks;
 	}
 }
