@@ -8,11 +8,12 @@
     	<ui:composition template="../Template/template.xhtml">
     		<ui:define name="content">
     			<section id="content">
-	    			<h2>Ajouter un nouveau Client</h2>
+	    			<h2>Nouveau client</h2>
+	    			<p> Ajouter un nouveau client en remplissant le formulaire.</p>
 	    			<h:form id="newcustomerform">
 						<fieldset>
 							<section>
-								<label for="name"> Customer name </label>
+								<label for="name"> Nom du client </label>
 								<div>
 									<h:inputText id="name" value="#{CreateCustomerBean.customerName}" required="true" requiredMessage="Spécifiez un nom de client"/>
                                     <h:message for="name" class='error-message'></h:message>
@@ -20,7 +21,7 @@
 							</section>
 							<section>
 								<div>
-									<h:commandButton value="Créer un CLient" action="#{CreateCustomerBean.updateCustomer}" />
+									<h:commandButton value="Créer le Client" action="#{CreateCustomerBean.updateCustomer}" />
 								</div>
 							</section>
 						</fieldset>
