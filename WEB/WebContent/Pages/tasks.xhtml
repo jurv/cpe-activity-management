@@ -21,7 +21,11 @@
         				</ul>
         				<div id="tabs-1" style="margin:10px;">
 			    			<f:view>
-								<h:dataTable value="#{output.activeTaskList}" var="t" border="1" class="datatable">
+									<h:dataTable value="#{output.activeTaskList}" var="t" border="1" class="datatable">
+										<h:column style="width:30px;">
+										<f:facet name="header">Nom</f:facet>
+										<h:outputText value="#{t.user.usrLastname} #{t.user.usrFirstname}" />
+									</h:column>
 									<h:column>
 										<f:facet name="header">Nom de la tâche</f:facet>
 										<h:outputText value="#{t.tskLabel}" />
