@@ -11,6 +11,7 @@ import javax.faces.model.SelectItem;
 import model.Customer;
 import model.Project;
 import model.Function;
+import model.TaskType;
 import model.User;
 import model.WorkPiece;
 import model.Task;
@@ -20,6 +21,7 @@ import com.cpeeterprise.BeanCustomerRemote;
 import com.cpeeterprise.BeanProjectRemote;
 import com.cpeeterprise.BeanFunctionRemote;
 import com.cpeeterprise.BeanTaskRemote;
+import com.cpeeterprise.BeanTaskTypeRemote;
 import com.cpeeterprise.BeanUserRemote;
 import com.cpeeterprise.BeanWorkPieceRemote;
 
@@ -44,6 +46,9 @@ public class InputBean {
 	
 	@EJB
 	public BeanTaskRemote taskRemote;
+
+	@EJB
+	public BeanTaskTypeRemote taskTypeRemote;
 	
 	
 	private List<SelectItem> customersItems = new ArrayList<SelectItem>();
@@ -59,6 +64,7 @@ public class InputBean {
 	
 	private List<SelectItem> funcItems = new ArrayList<SelectItem>();
 	
+	private List<SelectItem> tstItems = new ArrayList<SelectItem>();
 	
 	
 	private User currentUser = new User();	
@@ -134,4 +140,15 @@ public class InputBean {
 		}
 		return funcItems;
 	}
+	
+	public List<SelectItem> getTstItems() {
+		if(this.tstItems.isEmpty()){
+			List<TaskType> tst = taskTypeRemote.findActiveTaskTypes();
+			for (TaskType t:tst){
+				tstItems.add(new SelectItem(t.getTstId(),t.getTstLabel()));
+			}
+		}
+		return tstItems;
+	}
+	
 }

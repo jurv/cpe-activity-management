@@ -25,12 +25,15 @@ public class TaskBean {
 	private int taskDuration = 0;
 	private int taskAssignedTo = 0;
 	private int taskId = 0;
+	private int taskTstId = 0;
 	
 	//Constantes
 	final int ID_STA_NOTSTARTED = 1;
 	
-	public void createTask()
+	public String createTask()
 	{
+		String nextPage="Tasks";
+		
 		Task task = new Task();
 		
 		task.setPrjId(this.taskPrjId);
@@ -43,10 +46,21 @@ public class TaskBean {
 		task.setTssId(ID_STA_NOTSTARTED);
 		task.setUsrAssignedbyId(1);
 		task.setUsrAssignedtoId(this.taskAssignedTo);
+		task.setTstId(this.taskTstId);
 		
 		taskRemote.persist(task);
+		
+		return nextPage;
 	}
 		
+	public int getTaskTstId() {
+		return taskTstId;
+	}
+
+	public void setTaskTstId(int taskTstId) {
+		this.taskTstId = taskTstId;
+	}
+
 	public BeanTaskRemote getTaskRemote() {
 		return taskRemote;
 	}
