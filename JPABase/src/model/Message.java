@@ -2,7 +2,6 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-
 import java.sql.Timestamp;
 
 
@@ -11,7 +10,7 @@ import java.sql.Timestamp;
  * 
  */
 @Entity
-public class Message implements Serializable, Comparable<Message> {
+public class Message implements Serializable , Comparable<Message> {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -35,14 +34,20 @@ public class Message implements Serializable, Comparable<Message> {
 	@Column(name="msg_subject")
 	private String msgSubject;
 
-	@Column(name="prj_id")
-	private int prjId;
-
-	@Column(name="usr_receiver_id")
-	private int usrReceiverId;
-
-	@Column(name="usr_sender_id")
-	private int usrSenderId;
+	//bi-directional many-to-one association to User
+	@ManyToOne
+	@JoinColumn(name="usr_sender_id")
+	private User sender;
+	
+	//bi-directional many-to-one association to User
+	@ManyToOne
+	@JoinColumn(name="usr_receiver_id")
+	private User receiver;
+	
+	//bi-directional many-to-one association to Project
+	@ManyToOne
+	@JoinColumn(name="prj_id")
+	private Project project;
 
 	public Message() {
 	}
@@ -95,28 +100,20 @@ public class Message implements Serializable, Comparable<Message> {
 		this.msgSubject = msgSubject;
 	}
 
-	public int getPrjId() {
-		return this.prjId;
+	public User getSender() {
+		return sender;
 	}
 
-	public void setPrjId(int prjId) {
-		this.prjId = prjId;
+	public void setSender(User sender) {
+		this.sender = sender;
 	}
 
-	public int getUsrReceiverId() {
-		return this.usrReceiverId;
+	public User getReceiver() {
+		return receiver;
 	}
 
-	public void setUsrReceiverId(int usrReceiverId) {
-		this.usrReceiverId = usrReceiverId;
-	}
-
-	public int getUsrSenderId() {
-		return this.usrSenderId;
-	}
-
-	public void setUsrSenderId(int usrSenderId) {
-		this.usrSenderId = usrSenderId;
+	public void setReceiver(User receiver) {
+		this.receiver = receiver;
 	}
 
 	@Override
@@ -127,5 +124,13 @@ public class Message implements Serializable, Comparable<Message> {
 	@Override
 	public boolean equals (Object o) {
 		return (this.msgId == ((Message)o).getMsgId());
+	}
+
+	public Project getProject() {
+		return project;
+	}
+
+	public void setProject(Project project) {
+		this.project = project;
 	}
 }

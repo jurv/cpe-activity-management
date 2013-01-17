@@ -86,8 +86,8 @@ public class ConnectedUsersBean {
 		Message mess = new Message();
 		mess.setMsgContent(newMessage);
 		mess.setMsgSubject("Chat");
-		mess.setUsrSenderId(this.currentUser.getUsrId());
-		mess.setUsrReceiverId(receiverId);
+		mess.setSender(this.currentUser);
+		mess.setReceiver(userRemote.findUser(receiverId));
 		mess = messageRemote.persist(mess);
 		this.listMessages.add(mess);
 		this.lastMessage = mess;
@@ -110,7 +110,7 @@ public class ConnectedUsersBean {
 				
 		// On récupère les messages pour cet utilisateur
 		if(lastMessage != null) {
-			for(Message mess : messageRemote.findOlderMessages(lastMessage.getUsrReceiverId(), lastMessage.getUsrSenderId()))
+			for(Message mess : messageRemote.findOlderMessages(lastMessage.getReceiver().getUsrId(), lastMessage.getSender().getUsrId()))
 				if(!this.listMessages.contains(mess))
 					this.listMessages.add(mess);
 		}
@@ -120,12 +120,12 @@ public class ConnectedUsersBean {
 		
 		for(Message mess : this.listMessages) {
 			
-			if(!this.knownUsers.containsKey(mess.getUsrSenderId()))
-				this.knownUsers.put(mess.getUsrSenderId(),userRemote.findUser(mess.getUsrSenderId()));
-			this.listMessagesString += "<strong>" + knownUsers.get(mess.getUsrSenderId()).getUsrFirstname() + "</strong>" + " : " + mess.getMsgContent() + "<br/>";
+			if(!this.knownUsers.containsKey(mess.getSender().getUsrId()))
+				this.knownUsers.put(mess.getSender().getUsrId(),userRemote.findUser(mess.getSender().getUsrId()));
+			this.listMessagesString += "<strong>" + knownUsers.get(mess.getSender().getUsrId()).getUsrFirstname() + "</strong>" + " : " + mess.getMsgContent() + "<br/>";
 				
 			if(mess.getMsgIsread() == 0) {
-				if(mess.getUsrSenderId() != currentUser.getUsrId()) {
+				if(mess.getSender().getUsrId() != currentUser.getUsrId()) {
 					mess.setMsgIsread((byte)1);
 					messageRemote.update(mess);
 				}
@@ -138,8 +138,8 @@ public class ConnectedUsersBean {
 	public void refreshMessages(ActionEvent evt) {
 		if(lastMessage == null) {
 			lastMessage = new Message();
-			lastMessage.setUsrReceiverId(Integer.parseInt((String)FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("receiverid")));
-			lastMessage.setUsrSenderId(currentUser.getUsrId());
+			lastMessage.setReceiver(userRemote.findUser(Integer.parseInt((String)FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("receiverid"))));
+			lastMessage.setSender(currentUser);
 		}
 		getListMessagesString();
 	}

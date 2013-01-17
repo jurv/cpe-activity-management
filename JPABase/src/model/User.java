@@ -42,6 +42,14 @@ public class User implements Serializable , Comparable<User>{
 	@Column(name="ust_id")
 	private int ustId;
 
+	//bi-directional many-to-one association to Message
+	@OneToMany(mappedBy="sender")
+	private List<Message> messagesSent;
+	
+	//bi-directional many-to-one association to Message
+	@OneToMany(mappedBy="receiver")
+	private List<Message> messagesReceived;
+
 	//bi-directional many-to-one association to Task
 	@OneToMany(mappedBy="user")
 	private List<Task> tasks;
@@ -129,6 +137,22 @@ public class User implements Serializable , Comparable<User>{
 		this.tasks = tasks;
 	}
 
+	public List<Message> getMessagesSent() {
+		return messagesSent;
+	}
+
+	public void setMessagesSent(List<Message> messagesSent) {
+		this.messagesSent = messagesSent;
+	}
+
+	public List<Message> getMessagesReceived() {
+		return messagesReceived;
+	}
+
+	public void setMessagesReceived(List<Message> messagesReceived) {
+		this.messagesReceived = messagesReceived;
+	}
+	
 	@Override
 	public int compareTo(User o) {
 		return Integer.compare(getUsrId(), o.getUsrId());
@@ -138,4 +162,5 @@ public class User implements Serializable , Comparable<User>{
 	public boolean equals (Object o) {
 		return (this.usrId == ((User)o).getUsrId());
 	}
+
 }

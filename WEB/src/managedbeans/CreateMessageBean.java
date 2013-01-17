@@ -49,9 +49,8 @@ public class CreateMessageBean {
 		}
 		
 		// On initialise le message
-		this.newMessage.setUsrReceiverId(0);
 		this.newMessage.setMsgDate(new java.sql.Timestamp(Calendar.getInstance().getTime().getTime()));
-		this.newMessage.setUsrSenderId(currentUser.getUsrId());
+		this.newMessage.setSender(currentUser);
 		this.newMessage.setMsgIsread((byte)0);
 		this.newMessage.setMsgIsdeleted((byte)0);
 	}
@@ -96,13 +95,14 @@ public class CreateMessageBean {
 		}
 	}
 	
-	public void sendMessage() {
+	public String sendMessage() {
 		messageRemote.persist(this.newMessage);
 		this.newMessage = new Message();
 		this.newMessage.setMsgDate(new java.sql.Timestamp(Calendar.getInstance().getTime().getTime()));
-		this.newMessage.setUsrReceiverId(0);
-		this.newMessage.setUsrSenderId(currentUser.getUsrId());
+		this.newMessage.setSender(currentUser);
 		this.newMessage.setMsgIsread((byte)0);
 		this.newMessage.setMsgIsdeleted((byte)0);
+		
+		return "Messages";
 	}
 }

@@ -14,6 +14,7 @@ import model.User;
 import model.WorkPiece;
 
 import com.cpeeterprise.BeanTaskRemote;
+import com.cpeeterprise.BeanUserRemote;
 import com.cpeeterprise.BeanWorkPieceRemote;
 
 @ManagedBean
@@ -24,6 +25,8 @@ public class TaskBean {
 	public BeanTaskRemote taskRemote;
 	@EJB
 	public BeanWorkPieceRemote workPieceRemote;
+	@EJB
+	public BeanUserRemote userRemote;
 
 	private String taskName = "";
 	private String taskComment = "";

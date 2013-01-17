@@ -66,17 +66,17 @@ public class MessagesBean {
 	
 	public void fillMessagesLists () {
 		
-		if(sentMessagesList.size() == 0 || sentMessagesList.get(0).getUsrSenderId() != currentUser.getUsrId()) {
+		if(sentMessagesList.size() == 0 || sentMessagesList.get(0).getSender().getUsrId() != currentUser.getUsrId()) {
 			sentMessagesList.clear();
 			sentMessagesList.addAll(messageRemote.findSentMessagesFor(currentUser.getUsrId()));
 		}
 		
-		if(receivedMessagesList.size() == 0 || receivedMessagesList.get(0).getUsrReceiverId() != currentUser.getUsrId()){
+		if(receivedMessagesList.size() == 0 || receivedMessagesList.get(0).getReceiver().getUsrId() != currentUser.getUsrId()){
 			receivedMessagesList.clear();
 			receivedMessagesList.addAll(messageRemote.findReceivedMessagesFor(currentUser.getUsrId()));
 		}
 		
-		if(deletedMessagesList.size() == 0 || deletedMessagesList.get(0).getUsrSenderId() != currentUser.getUsrId()) {
+		if(deletedMessagesList.size() == 0 || deletedMessagesList.get(0).getSender().getUsrId() != currentUser.getUsrId()) {
 			deletedMessagesList.clear();
 			deletedMessagesList.addAll(messageRemote.findDeletedMessagesFor(currentUser.getUsrId()));
 		}
