@@ -104,6 +104,10 @@ public class BeanUser implements BeanUserRemote {
 	public List<User> findCdps() {
 		return (List<User>) em.createQuery("select t from User t where fct_id = '1'").getResultList();
 	}
+	@Override
+	public List<User> findActiveCdps() {
+		return (List<User>) em.createQuery("select t from User t where fct_id = '1' and usr_isdeleted = 'O'").getResultList();
+	}
 
 	public List<User> findUserWithChatConv(int usrId, int prjId) {
 		ArrayList<Message> msg = new ArrayList<Message>();

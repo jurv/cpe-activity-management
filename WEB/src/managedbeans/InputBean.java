@@ -103,7 +103,7 @@ public class InputBean {
 	
 	public List<SelectItem> getCdpItems() {
 		if(this.cdpItems.isEmpty()){
-			List<User> cdps = userRemote.findCdps();
+			List<User> cdps = userRemote.findActiveCdps();
 			for(User u:cdps){
 				cdpItems.add(new SelectItem(u.getUsrId(), u.getUsrFirstname() + " " + u.getUsrLastname()));
 			}
@@ -113,9 +113,19 @@ public class InputBean {
 	
 	public List<SelectItem> getUsersItems() {
 		if(this.usersItems.isEmpty()){
-			List<User> users = userRemote.findUsers();
+			List<User> users = userRemote.findActiveUsers();
 			for(User u:users){
 				usersItems.add(new SelectItem(u, u.getUsrFirstname() + " " + u.getUsrLastname()));
+			}
+		}
+		return usersItems;
+	}
+	
+	public List<SelectItem> getUsersItemsId() {
+		if(this.usersItems.isEmpty()){
+			List<User> users = userRemote.findActiveUsers();
+			for(User u:users){
+				usersItems.add(new SelectItem(u.getUsrId(), u.getUsrFirstname() + " " + u.getUsrLastname()));
 			}
 		}
 		return usersItems;

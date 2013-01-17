@@ -96,23 +96,23 @@
 								<label for="dev"> Developpeur: </label>
 								<div>
 									<h:selectManyListbox id="dev" value="#{CreateProjectBean.listDev}">
-									   	<f:selectItems value="#{input.usersItems}" />
+									   	<f:selectItems value="#{input.usersItemsId}" />
 									</h:selectManyListbox>
 								</div>
 							</section>
 							<section>
 								<label for="tes"> Testeur: </label>
 								<div>
-									<h:selectManyListbox id="tes" value="#{CreateProjectBean.listTes}">
-									   	<f:selectItems value="#{input.usersItems}" />
+									<h:selectManyListbox id="tes" value="#{CreateProjectBean.listTes}" >
+									   	<f:selectItems value="#{input.usersItemsId}" />
 									</h:selectManyListbox>
 								</div>
 							</section>
 							<section>
 								<label for="rel"> Relecteur: </label>
 								<div>
-									<h:selectManyListbox id="rel" value="#{CreateProjectBean.listRel}">
-									   	<f:selectItems value="#{input.usersItems}" />
+									<h:selectManyListbox id="rel" value="#{CreateProjectBean.listRel}" >
+									   	<f:selectItems value="#{input.usersItemsId}" />
 									</h:selectManyListbox>
 								</div>
 							</section>

@@ -51,7 +51,8 @@ public class CreateProjectBean {
 		
 		String nextPage="Projects";
 		Project project = new Project();
-		User2Project user2project = new User2Project();
+		User2Project user2projectCdp = new User2Project();
+		User2Project user2projectDir = new User2Project();
 		
 		project.setPrjLabel(this.projectName);
 		project.setPrjDateCreated(this.projectDateCreated);
@@ -62,16 +63,16 @@ public class CreateProjectBean {
 		project = projectRemote.persist(project);
 		
 		//ajout chef de projet
-		user2project.setPrjId(project.getPrjId());
-		user2project.setFctId(ID_CDP);
-		user2project.setUsrId(this.projectCdpId);
-		user2projectRemote.persist(user2project);
+		user2projectCdp.setPrjId(project.getPrjId());
+		user2projectCdp.setFctId(ID_CDP);
+		user2projectCdp.setUsrId(this.projectCdpId);
+		user2projectRemote.persist(user2projectCdp);
 		
 		//ajout directeur de projet
-		user2project.setPrjId(project.getPrjId());
-		user2project.setFctId(ID_DEP);
-		user2project.setUsrId(this.currentUser.getUsrId());
-		user2projectRemote.persist(user2project);
+		user2projectDir.setPrjId(project.getPrjId());
+		user2projectDir.setFctId(ID_DEP);
+		user2projectDir.setUsrId(this.currentUser.getUsrId());
+		user2projectRemote.persist(user2projectDir);
 		
 		Iterator<String> itListDev = listDev.iterator(); 
 		while(itListDev.hasNext()) {
