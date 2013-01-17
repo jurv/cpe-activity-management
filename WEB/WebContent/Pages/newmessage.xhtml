@@ -21,7 +21,7 @@
 							<section>
 								<label for="project"> Projet </label>
 								<div>
-									<h:selectOneListbox id="project" required="true" requiredMessage="Veuillez spécifier un projet" value="#{CreateMessageBean.newMessage.project}" onchange="submit()" valueChangeListener="#{CreateMessageBean.selectedProjectChanged}" converter="#{projectConverter}">
+									<h:selectOneListbox id="project" required="true" requiredMessage="Veuillez spécifier un projet" value="#{CreateMessageBean.newMessage.project}" converter="#{projectConverter}" size="1">
 										<f:selectItems value="#{CreateMessageBean.listProjects}" var="p" itemValue="#{p}" itemLabel="#{p.prjLabel}"/>
 									</h:selectOneListbox>
 									<h:outputText rendered="#{empty CreateMessageBean.listProjects}" value="Vous n'avez pas de projet attribué !" styleClass="error-message"/>

@@ -30,6 +30,7 @@ public class GeneralBean {
 	
 	public String disconnectUser() {
 		if(userRemote.disconnectUser(currentUser)) {
+			//((HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true)).invalidate();
 			return "Disconnected";
 		}
 		return "Connected";

@@ -87,10 +87,9 @@
 							<section>
 								<label for="cdp"> Chef de projet </label>
 								<div>
-									<h:selectOneMenu id="cdp" value="#{CreateProjectBean.projectCdpId}" required="true" requiredMessage="Spécifiez un chef de projet">
+									<h:selectOneMenu id="cdp" value="#{CreateProjectBean.projectCdpId}">
                                     	<f:selectItems value="#{input.cdpItems}"/>
 									</h:selectOneMenu>
-									<h:message for="cdp" class='error-message'></h:message>
 								</div>
 							</section>
 							<section>
