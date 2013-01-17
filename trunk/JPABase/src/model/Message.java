@@ -10,7 +10,7 @@ import java.sql.Timestamp;
  * 
  */
 @Entity
-public class Message implements Serializable , Comparable<Message> {
+public class Message implements Serializable, Comparable<Message> {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -35,15 +35,15 @@ public class Message implements Serializable , Comparable<Message> {
 	private String msgSubject;
 
 	//bi-directional many-to-one association to User
-	@ManyToOne
-	@JoinColumn(name="usr_sender_id")
-	private User sender;
-	
-	//bi-directional many-to-one association to User
-	@ManyToOne
-	@JoinColumn(name="usr_receiver_id")
-	private User receiver;
-	
+		@ManyToOne
+		@JoinColumn(name="usr_sender_id")
+		private User sender;
+		
+		//bi-directional many-to-one association to User
+		@ManyToOne
+		@JoinColumn(name="usr_receiver_id")
+		private User receiver;
+
 	//bi-directional many-to-one association to Project
 	@ManyToOne
 	@JoinColumn(name="prj_id")
@@ -100,6 +100,14 @@ public class Message implements Serializable , Comparable<Message> {
 		this.msgSubject = msgSubject;
 	}
 
+	public Project getProject() {
+		return this.project;
+	}
+
+	public void setProject(Project project) {
+		this.project = project;
+	}
+
 	public User getSender() {
 		return sender;
 	}
@@ -116,21 +124,13 @@ public class Message implements Serializable , Comparable<Message> {
 		this.receiver = receiver;
 	}
 
-	@Override
-	public int compareTo(Message o) {
-		return Integer.compare(getMsgId(), o.getMsgId());
-	}
-	
-	@Override
-	public boolean equals (Object o) {
-		return (this.msgId == ((Message)o).getMsgId());
-	}
-
-	public Project getProject() {
-		return project;
-	}
-
-	public void setProject(Project project) {
-		this.project = project;
-	}
+	 @Override
+     public int compareTo(Message o) {
+             return Integer.compare(getMsgId(), o.getMsgId());
+     }
+     
+     @Override
+     public boolean equals (Object o) {
+             return (this.msgId == ((Message)o).getMsgId());
+     }
 }
