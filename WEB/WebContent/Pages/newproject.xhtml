@@ -49,8 +49,10 @@
 										    currentDayCellClass="currentDayCellClass"
 										    renderAsPopup="false"
 										    alt="Calendar" title="Calendar"
-										    required="true" requiredMessage="Spécifiez une date de début">
+										    required="true" requiredMessage="Spécifiez une date de début"
+										    >
                                     	</t:inputCalendar>
+                                    	
                                     	<h:message for="dob" class='error-message'></h:message>
 									</t:panelGroup>
 								</div>
@@ -69,7 +71,8 @@
 										    currentDayCellClass="currentDayCellClass"
 										    renderAsPopup="false"
 										    alt="Calendar" title="Calendar"
-                                            required="true" requiredMessage="Spécifiez une date de fin">
+                                            required="true" requiredMessage="Spécifiez une date de fin"
+                                            validator="dateProjectValidator">
                                         </t:inputCalendar>
                                         <h:message for="doe" class='error-message'></h:message>
 									</t:panelGroup>
@@ -86,7 +89,7 @@
 								<label for="cdp"> Chef de projet </label>
 								<div>
 									<h:selectOneMenu id="cdp" value="#{CreateProjectBean.projectCdpId}" required="true" requiredMessage="Spécifiez un chef de projet">
-                                    	<f:selectItems value="#{input.usersItems}"/>
+                                    	<f:selectItems value="#{input.cdpItems}"/>
 									</h:selectOneMenu>
 									<h:message for="cdp" class='error-message'></h:message>
 								</div>

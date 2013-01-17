@@ -47,7 +47,9 @@
                             <section>
 								<label for="time"> Nombre de jours </label>
 								<div>
-									<h:inputText id="time" value="#{TaskBean.taskDuration}"  required="true" requiredMessage="Spécifiez un temps"/>
+									<h:inputText id="time" value="#{TaskBean.taskDuration}"  required="true" validatorMessage="Spécifiez un entier positif" requiredMessage="Spécifiez un temps">
+										<f:validateLongRange minimum="0" maximum="99999" />
+									</h:inputText>
                                     <h:message for="time" class='error-message'></h:message>
 								</div>
 							</section>
