@@ -14,17 +14,19 @@
 	    			<h:form id="newprojectform">
 						<fieldset>
 							<section>
-								<label for="name">Projet</label>
+								<label for="projet">Projet</label>
 								<div>
-									<h:selectOneMenu value="#{TaskBean.taskPrjId}">
+									<h:selectOneMenu id="projet" value="#{TaskBean.taskPrjId}" required="true" requiredMessage="Spécifiez un projet">
 										<f:selectItems value="#{input.projectsItems}"/>
 									</h:selectOneMenu>
+                                    <h:message for="projet" class='error-message'></h:message>
 								</div>
 							</section>
 							<section>
 								<label for="name"> Nom de la tâche </label>
 								<div>
-									<h:inputText id="name" value="#{TaskBean.taskName}" />
+									<h:inputText id="name" value="#{TaskBean.taskName}"  required="true" requiredMessage="Spécifiez un niveau"/>
+                                    <h:message for="name" class='error-message'></h:message>
 								</div>
 							</section>
 							<section>
@@ -44,15 +46,17 @@
                             <section>
 								<label for="time"> Nombre de jours </label>
 								<div>
-									<h:inputText id="time" value="#{TaskBean.taskDuration}" />
+									<h:inputText id="time" value="#{TaskBean.taskDuration}"  required="true" requiredMessage="Spécifiez un temps"/>
+                                    <h:message for="time" class='error-message'></h:message>
 								</div>
 							</section>
 							<section>
 								<label for="cdp"> Assignée à </label>
 								<div>
-									<h:selectOneMenu value="#{TaskBean.taskAssignedTo}">
+									<h:selectOneMenu id="assignedTo" value="#{TaskBean.taskAssignedTo}" required="true" requiredMessage="Spécifiez un niveau">
 										<f:selectItems value="#{input.usersItems}"/>
 									</h:selectOneMenu>
+                                    <h:message for="assignedTo" class='error-message'></h:message>
 								</div>
 							</section>
 							<section>

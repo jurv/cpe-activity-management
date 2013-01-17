@@ -17,7 +17,8 @@
 							<section>
 								<label for="label"> Nom de la fonction </label>
 								<div>
-									<h:inputText id="label" value="#{CreateFunctionBean.functionLabel}" />
+									<h:inputText id="label" value="#{CreateFunctionBean.functionLabel}"  required="true" requiredMessage="Spécifiez un nom de fonction"/>
+                                    <h:message for="label" class='error-message'></h:message>
 								</div>
 							</section>
 							<section>
@@ -27,7 +28,8 @@
 								
 								<div>
 									<p>10 : Developpeur,  30  : Directeur de projet</p>
-									<h:inputText id="level" value="#{CreateFunctionBean.functionLevel}" />
+									<h:inputText id="level" value="#{CreateFunctionBean.functionLevel}" required="true" requiredMessage="Spécifiez un niveau"/>
+                                    <h:message for="level" class='error-message'></h:message>
 								</div>
 							</section>
 							<section>

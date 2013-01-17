@@ -14,7 +14,8 @@
 							<section>
 								<label for="name"> Customer name </label>
 								<div>
-									<h:inputText id="name" value="#{CreateCustomerBean.customerName}" />
+									<h:inputText id="name" value="#{CreateCustomerBean.customerName}" required="true" requiredMessage="Spécifiez un nom de client"/>
+                                    <h:message for="name" class='error-message'></h:message>
 								</div>
 							</section>
 							<section>
