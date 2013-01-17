@@ -68,8 +68,10 @@ public class Task implements Serializable {
 	@Column(name="usr_assignedby_id")
 	private int usrAssignedbyId;
 
-	@Column(name="usr_assignedto_id")
-	private int usrAssignedtoId;
+	//bi-directional many-to-one association to User
+	@ManyToOne
+	@JoinColumn(name="usr_assignedto_id")
+	private User user;
 
 	public Task() {
 	}
@@ -202,12 +204,12 @@ public class Task implements Serializable {
 		this.usrAssignedbyId = usrAssignedbyId;
 	}
 
-	public int getUsrAssignedtoId() {
-		return this.usrAssignedtoId;
+	public User getUser() {
+		return this.user;
 	}
 
-	public void setUsrAssignedtoId(int usrAssignedtoId) {
-		this.usrAssignedtoId = usrAssignedtoId;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 }

@@ -17,5 +17,6 @@ public interface BeanTaskRemote {
 	public Task findTask (int id);
 	public List <Task> findTasksByUser (int userId);
 	public List <Task> findTasksByProject (int prjId,int staId);
+	public List <Task> findTasksByProject (int prjId);
 	public void logicalDelete(Task task);
 }

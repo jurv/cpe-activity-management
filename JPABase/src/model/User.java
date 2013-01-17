@@ -2,8 +2,7 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-
-import com.sun.istack.internal.NotNull;
+import java.util.List;
 
 
 /**
@@ -11,7 +10,7 @@ import com.sun.istack.internal.NotNull;
  * 
  */
 @Entity
-public class User implements Serializable, Comparable<User> {
+public class User implements Serializable , Comparable<User>{
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -42,6 +41,10 @@ public class User implements Serializable, Comparable<User> {
 
 	@Column(name="ust_id")
 	private int ustId;
+
+	//bi-directional many-to-one association to Task
+	@OneToMany(mappedBy="user")
+	private List<Task> tasks;
 
 	public User() {
 	}
@@ -116,6 +119,14 @@ public class User implements Serializable, Comparable<User> {
 
 	public void setUstId(int ustId) {
 		this.ustId = ustId;
+	}
+
+	public List<Task> getTasks() {
+		return this.tasks;
+	}
+
+	public void setTasks(List<Task> tasks) {
+		this.tasks = tasks;
 	}
 
 	@Override
