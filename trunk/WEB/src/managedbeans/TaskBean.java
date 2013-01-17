@@ -1,6 +1,7 @@
 package managedbeans;
 
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.ejb.EJB;
@@ -9,8 +10,10 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import model.Task;
+import model.WorkPiece;
 
 import com.cpeeterprise.BeanTaskRemote;
+import com.cpeeterprise.BeanWorkPieceRemote;
 
 @ManagedBean
 @SessionScoped
@@ -18,7 +21,9 @@ public class TaskBean {
 	
 	@EJB
 	public BeanTaskRemote taskRemote;
-	
+	@EJB
+	public BeanWorkPieceRemote workPieceRemote;
+
 	private String taskName = "";
 	private String taskComment = "";
 	private int taskPrjId = 0;
@@ -26,6 +31,7 @@ public class TaskBean {
 	private int taskAssignedTo = 0;
 	private int taskId = 0;
 	private int taskTstId = 0;
+	private ArrayList<WorkPiece> wps = new ArrayList<WorkPiece>();
 	
 	//Constantes
 	final int ID_STA_NOTSTARTED = 1;
@@ -143,11 +149,23 @@ public class TaskBean {
 	public void loadTask(){
 		this.taskId = Integer.parseInt((String)FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("tskIdDet"));
 		Task tsk = taskRemote.findTask(this.taskId);
-
 		this.taskAssignedTo = tsk.getUsrAssignedtoId();
 		this.taskComment    = tsk.getTskDescription();
 		this.taskDuration   = tsk.getTskDuration();
 		this.taskName       = tsk.getTskLabel();
 		this.taskPrjId      = tsk.getPrjId();
+		
+		if(this.getWps().size() == 0) {
+			this.getWps().clear();
+			this.getWps().addAll(workPieceRemote.findWorkPiecesByTask(this.taskId));
+		}
+	}
+
+	public ArrayList<WorkPiece> getWps() {
+		return wps;
+	}
+
+	public void setWps(ArrayList<WorkPiece> wps) {
+		this.wps = wps;
 	}
 }

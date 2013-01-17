@@ -9,30 +9,42 @@
     	<ui:composition template="../Template/template.xhtml">
     		<ui:define name="content">
     			<section id="content">
-	    			<h2>Liste des tâches</h2>
-	    			<f:view>
-						<h:dataTable value="#{output.activeTaskList}" var="t" border="1" class="datatable">
-							<h:column>
-								<f:facet name="header">Nom de la tâche</f:facet>
-								<h:outputText value="#{t.tskLabel}" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">Description</f:facet>
-								<h:outputText value="#{t.tskDescription}" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">Actions</f:facet>
-								<h:form>
-									<h:commandLink value="Supprimer" action="#{TaskBean.deleteTask}" styleClass="btn small">
-										<f:param name="tskIdDel" id="tskIdDel" value="#{t.tskId}"></f:param>
-									</h:commandLink>
-									<h:link outcome="DetailsTask" value="Voir le détail" styleClass="btn small">
-										<f:param name="tskIdDet" id="tskIdDet" value="#{t.tskId}" />
-									</h:link>
-								</h:form>
-							</h:column>
-						</h:dataTable>
-					</f:view>
+	    			<h2> Liste des tâches </h2>
+	    			<p>
+	    				Voir les tâches.
+	    			</p>
+	    			<div class="tab">
+        				<ul>
+            				<li>
+            					<a href="#tabs-1">Tâches</a>
+            				</li>
+        				</ul>
+        				<div id="tabs-1" style="margin:10px;">
+			    			<f:view>
+								<h:dataTable value="#{output.activeTaskList}" var="t" border="1" class="datatable">
+									<h:column>
+										<f:facet name="header">Nom de la tâche</f:facet>
+										<h:outputText value="#{t.tskLabel}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">Description</f:facet>
+										<h:outputText value="#{t.tskDescription}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">Actions</f:facet>
+										<h:form>
+											<h:commandLink value="Supprimer" action="#{TaskBean.deleteTask}" styleClass="btn small">
+												<f:param name="tskIdDel" id="tskIdDel" value="#{t.tskId}"></f:param>
+											</h:commandLink>
+											<h:link outcome="DetailsTask" value="Voir le détail" styleClass="btn small">
+												<f:param name="tskIdDet" id="tskIdDet" value="#{t.tskId}" />
+											</h:link>
+										</h:form>
+									</h:column>
+								</h:dataTable>
+							</f:view>
+						</div>
+					</div>
 				</section>
     		</ui:define>
     	</ui:composition>    	
