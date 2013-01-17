@@ -14,5 +14,6 @@ public interface BeanWorkPieceRemote {
 	public void update (WorkPiece workPiece);
 	public List <WorkPiece> findWorkPieces ();
 	public WorkPiece findWorkPiece (int id);
+	public List <WorkPiece> findWorkPiecesByTask (int tskId);
 	public List <WorkPiece> findWorkPiecesByUser (int userId);
 }

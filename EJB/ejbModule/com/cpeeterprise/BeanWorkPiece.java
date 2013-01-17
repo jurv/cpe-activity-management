@@ -49,4 +49,8 @@ public class BeanWorkPiece implements BeanWorkPieceRemote {
   public List <WorkPiece> findWorkPiecesByUser (int userId) {
 	  return (List <WorkPiece>) em.createQuery("select wp from WorkPiece wp where usr_id = '" + userId + "'").getResultList();
   }
+  
+  public List <WorkPiece> findWorkPiecesByTask (int tskId) {
+	  return (List <WorkPiece>) em.createQuery("select wp from WorkPiece wp where tsk_id = '" + tskId + "'").getResultList();
+  }
 }
