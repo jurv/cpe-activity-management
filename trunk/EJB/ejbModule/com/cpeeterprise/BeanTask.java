@@ -65,4 +65,9 @@ public class BeanTask implements BeanTaskRemote {
         update(t);
 	}
 
+	@Override
+	public List<Task> findTasksByProject(int prjId) {
+		 return (List <Task>) em.createQuery("select t from Task t where prj_id = '" + prjId + "'").getResultList();
+	}
+
 }

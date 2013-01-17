@@ -37,16 +37,18 @@ public class ProjectDetailsBean {
 	final int ID_STA_VALIDATED = 4;
 	final int ID_STA_CANCELED = 5;
 	final int ID_STA_INPROGRESS = 6; 
-
 	
+	// Current Project
 	private Project currentProject;
 	
-	private List<Task> notStartedTasks;
-	private List<Task> startedTasks;
-	private List<Task> canceledTasks;
-	private List<Task> validatedTasks;
-	private List<Task> inProgressTasks;
-	private List<Task> finishedTasks;
+	// Tasks List
+	private List<Task> notStartedTasks = new ArrayList<Task>();
+	private List<Task> startedTasks = new ArrayList<Task>();;
+	private List<Task> canceledTasks = new ArrayList<Task>();;
+	private List<Task> validatedTasks = new ArrayList<Task>();;
+	private List<Task> inProgressTasks = new ArrayList<Task>();;
+	private List<Task> finishedTasks = new ArrayList<Task>();;
+	private List<Task> allTasks = new ArrayList<Task>();;
 	
 	public void initPage()
 	{
@@ -55,7 +57,35 @@ public class ProjectDetailsBean {
 		Integer prjId = (param != null && param != "") ? Integer.parseInt(param) : 0;  
 		if(prjId > 0)
 			this.currentProject = projectRemote.findProject(prjId);
+		
+		//Récupération des Tâches de l'objet courant
+		this.allTasks = taskRemote.findTasksByProject(this.currentProject.getPrjId());
+		for(Task t : this.allTasks){
+			switch(t.getTssId()){
+			case ID_STA_NOTSTARTED :
+				this.notStartedTasks.add(t);
+				break;
+			case ID_STA_STARTED:
+				this.startedTasks.add(t);
+				break;
+			case ID_STA_FINISHED:
+				this.startedTasks.add(t);
+				break;
+			case ID_STA_VALIDATED:
+				this.validatedTasks.add(t);
+				break;
+			case ID_STA_CANCELED:
+				this.canceledTasks.add(t);
+				break;
+			case ID_STA_INPROGRESS:
+				this.inProgressTasks.add(t);
+				break;
+			default:
+				break;
+			}
+		}
 	}
+	
 	public Project getCurrentProject() {
 		return this.currentProject;
 	}
@@ -65,7 +95,7 @@ public class ProjectDetailsBean {
 	}
 
 	public List<Task> getNotStartedTasks() {
-		return taskRemote.findTasksByProject(this.currentProject.getPrjId(),ID_STA_NOTSTARTED);
+		return this.notStartedTasks;
 	}
 
 	public void setNotStartedTasks(List<Task> tasks) {
@@ -73,7 +103,7 @@ public class ProjectDetailsBean {
 	}
 	
 	public List<Task> getStartedTasks() {
-		return taskRemote.findTasksByProject(this.currentProject.getPrjId(),ID_STA_STARTED);
+		return this.startedTasks;
 	}
 
 	public void setStartedTasks(List<Task> tasks) {
@@ -81,7 +111,7 @@ public class ProjectDetailsBean {
 	}
 	
 	public List<Task> getInProgressTasks() {
-		return taskRemote.findTasksByProject(this.currentProject.getPrjId(),ID_STA_INPROGRESS);
+		return this.inProgressTasks;
 	}
 
 	public void setInProgressTasks(List<Task> tasks) {
@@ -89,21 +119,21 @@ public class ProjectDetailsBean {
 	}
 	
 	public List<Task> getCanceledTasks() {
-		return taskRemote.findTasksByProject(this.currentProject.getPrjId(),ID_STA_CANCELED);
+		return this.canceledTasks;
 	}
 
 	public void setCanceledTasks(List<Task> tasks) {
 		this.canceledTasks = tasks;
 	}
 	public List<Task> getFinishedTasks() {
-		return taskRemote.findTasksByProject(this.currentProject.getPrjId(),ID_STA_CANCELED);
+		return this.finishedTasks;
 	}
 
 	public void setFinishedTasks(List<Task> tasks) {
 		this.finishedTasks = tasks;
 	}
 	public List<Task> getValidatedTasks() {
-		return taskRemote.findTasksByProject(this.currentProject.getPrjId(),ID_STA_CANCELED);
+		return this.canceledTasks;
 	}
 
 	public void setValidatedTasks(List<Task> tasks) {

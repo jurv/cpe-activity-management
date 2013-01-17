@@ -38,6 +38,10 @@
 							<h:dataTable rendered="#{!empty ProjectDetailsBean.notStartedTasks}" value="#{ProjectDetailsBean.notStartedTasks}" border="1" var="t" class="datatable">
 								<h:column style="width:30px;">
 									<f:facet name="header">Nom</f:facet>
+									<h:outputText value="#{t.user.usrLastname}" />
+								</h:column>
+								<h:column style="width:30px;">
+									<f:facet name="header">Nom</f:facet>
 									<h:outputText value="#{t.tskLabel}" />
 								</h:column>
 								<h:column>
