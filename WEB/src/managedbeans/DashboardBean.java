@@ -44,6 +44,7 @@ public class DashboardBean {
 	
 	private User currentUser;
 	private boolean dataLoaded = false;
+	private int countLoad = 0;
 	private ArrayList <ObjectOutput> userFunctions = new ArrayList <ObjectOutput>(); 
 	private ArrayList <ObjectOutput> userWrkAmount = new ArrayList <ObjectOutput>(); 
 	private ArrayList <ObjectOutput> userTasks = new ArrayList <ObjectOutput>();
@@ -81,7 +82,7 @@ public class DashboardBean {
 	
 	public void initView () {
 			
-		//if(!dataLoaded) {
+		if(countLoad % 10 == 0 || !dataLoaded) {
 			// On remplit les décomptes de tâches pour l'utilisateur courant
 		//if(this.userTasks.size()  == 0) {
 			this.userTasks.clear();
@@ -98,8 +99,9 @@ public class DashboardBean {
 			this.userWrkAmount.addAll(getUserWorkAmountOutput());
 			Collections.sort(this.userWrkAmount);
 		//}
-		//	dataLoaded = true;
-		//}
+			dataLoaded = true;
+			countLoad++;
+		}
 	}
 	
 	public ArrayList <ObjectOutput> getUserFunctionsOutput() {
