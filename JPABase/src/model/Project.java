@@ -2,7 +2,6 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-
 import java.util.Date;
 import java.util.List;
 
@@ -43,7 +42,7 @@ public class Project implements Serializable {
 
 	@Column(name="prj_nb_days")
 	private int prjNbDays;
-	
+
 	//bi-directional many-to-one association to Message
 	@OneToMany(mappedBy="project")
 	private List<Message> messages;
@@ -116,7 +115,7 @@ public class Project implements Serializable {
 	}
 
 	public List<Message> getMessages() {
-		return messages;
+		return this.messages;
 	}
 
 	public void setMessages(List<Message> messages) {
