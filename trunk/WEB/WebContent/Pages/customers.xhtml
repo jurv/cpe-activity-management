@@ -9,22 +9,32 @@
     		<ui:define name="content">
     			<section id="content">
 	    			<h2> Liste des clients </h2>
-	    			<f:view>
-						<h:dataTable value="#{output.activeCustomerList}" var="c" border="1" class="datatable">
-							<h:column>
-								<f:facet name="header">Customer Name</f:facet>
-								<h:outputText value="#{c.cusName}" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">Actions</f:facet>
-								<h:form>
-									<h:commandLink value="Supprimer" action="#{CustomersBean.deleteCustomer}" styleClass="btn small">
-										<f:param name="customerIdDel" id="customerIdDel" value="#{c.cusId}"></f:param>
-									</h:commandLink>
-								</h:form>
-							</h:column>
-						</h:dataTable>
-					</f:view>	
+	    			<p>Liste des clients enregistrés.</p>
+	    			<div class="tab">
+        				<ul>
+            				<li>
+            					<a href="#tabs-1">Clients</a>
+            				</li>
+        				</ul>
+        				<div id="tabs-1" style="margin:10px;">
+			    			<f:view>
+								<h:dataTable value="#{output.activeCustomerList}" var="c" border="1" class="datatable">
+									<h:column>
+										<f:facet name="header">Customer Name</f:facet>
+										<h:outputText value="#{c.cusName}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">Actions</f:facet>
+										<h:form>
+											<h:commandLink value="Supprimer" action="#{CustomersBean.deleteCustomer}" styleClass="btn small">
+												<f:param name="customerIdDel" id="customerIdDel" value="#{c.cusId}"></f:param>
+											</h:commandLink>
+										</h:form>
+									</h:column>
+								</h:dataTable>
+							</f:view>	
+						</div>
+					</div>
 				</section>
     		</ui:define>
     	</ui:composition>    	

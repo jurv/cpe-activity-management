@@ -10,37 +10,47 @@
     		<ui:define name="content">
     			<section id="content">
 	    			<h2>Liste des projets</h2>
-	    			<f:view>
-						<h:dataTable value="#{output.activeProjectList}" var="p" border="1" class="datatable">
-							<h:column>
-								<f:facet name="header">Nom du projet</f:facet>
-								<h:outputText value="#{p.prjLabel}" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">Description</f:facet>
-								<h:outputText value="#{p.prjComment}" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">Date de début</f:facet>
-								<h:outputText value="#{p.prjDateCreated}" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">Date de fin</f:facet>
-								<h:outputText value="#{p.prjDateFinished}" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">Actions</f:facet>
-								<h:form>
-									<h:commandLink value="Supprimer" action="#{ProjectsBean.deleteProject}" styleClass="btn small">
-										<f:param name="prjIdDel" id="prjIdDel" value="#{p.prjId}"></f:param>
-									</h:commandLink>
-									<h:link outcome="DetailsProject" value="Voir le détail" styleClass="btn small">
-										<f:param name="prjIdDet" id="prjIdDet" value="#{p.prjId}" />
-									</h:link>
-								</h:form>
-							</h:column>
-						</h:dataTable>
-					</f:view>
+	    			<p>Liste des projets.</p>
+	    			<div class="tab">
+        				<ul>
+            				<li>
+            					<a href="#tabs-1">Clients</a>
+            				</li>
+        				</ul>
+        				<div id="tabs-1" style="margin:10px;">
+			    			<f:view>
+								<h:dataTable value="#{output.activeProjectList}" var="p" border="1" class="datatable">
+									<h:column>
+										<f:facet name="header">Nom du projet</f:facet>
+										<h:outputText value="#{p.prjLabel}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">Description</f:facet>
+										<h:outputText value="#{p.prjComment}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">Date de début</f:facet>
+										<h:outputText value="#{p.prjDateCreated}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">Date de fin</f:facet>
+										<h:outputText value="#{p.prjDateFinished}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">Actions</f:facet>
+										<h:form>
+											<h:commandLink value="Supprimer" action="#{ProjectsBean.deleteProject}" styleClass="btn small">
+												<f:param name="prjIdDel" id="prjIdDel" value="#{p.prjId}"></f:param>
+											</h:commandLink>
+											<h:link outcome="DetailsProject" value="Voir le détail" styleClass="btn small">
+												<f:param name="prjIdDet" id="prjIdDet" value="#{p.prjId}" />
+											</h:link>
+										</h:form>
+									</h:column>
+								</h:dataTable>
+							</f:view>
+						</div>
+					</div>
 				</section>
     		</ui:define>
     	</ui:composition>    	
