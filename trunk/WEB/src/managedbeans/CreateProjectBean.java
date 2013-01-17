@@ -33,6 +33,7 @@ public class CreateProjectBean {
 	@EJB
 	public BeanUser2ProjectRemote user2projectRemote;
 	
+	private User currentUser;
 	private String projectName = "";
 	private String projectComment = "";
 	private Date projectDateCreated = new Date();
@@ -47,6 +48,7 @@ public class CreateProjectBean {
 	
 	public String updateProject()
 	{
+		
 		String nextPage="Projects";
 		Project project = new Project();
 		User2Project user2project = new User2Project();
@@ -59,9 +61,16 @@ public class CreateProjectBean {
 		project.setPrjNbDays(this.projectTotalTime);
 		project = projectRemote.persist(project);
 		
+		//ajout chef de projet
+		user2project.setPrjId(project.getPrjId());
+		user2project.setFctId(ID_CDP);
+		user2project.setUsrId(this.projectCdpId);
+		user2projectRemote.persist(user2project);
+		
+		//ajout directeur de projet
 		user2project.setPrjId(project.getPrjId());
 		user2project.setFctId(ID_DEP);
-		user2project.setUsrId(this.projectCdpId);
+		user2project.setUsrId(this.currentUser.getUsrId());
 		user2projectRemote.persist(user2project);
 		
 		Iterator<String> itListDev = listDev.iterator(); 
@@ -93,7 +102,14 @@ public class CreateProjectBean {
 		} 
 		return nextPage;
 	}
+	public User getCurrentUser() {
+		return currentUser;
+	}
 
+	public void setCurrentUser(User currentUser) {
+		this.currentUser = currentUser;
+	}
+	
 	public int getProjectCusId() {
 		return this.projectCusId;
 	}

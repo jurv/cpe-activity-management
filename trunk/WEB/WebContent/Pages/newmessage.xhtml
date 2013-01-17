@@ -30,7 +30,7 @@
 								<label for="user"> Utilisateur </label>
 								<div>
 									<h:selectOneListbox id="user" required="true" requiredMessage="Veuillez spécifier un destinataire" value="#{CreateMessageBean.newMessage.receiver}" converter="#{userConverter}" size="1">
-										<f:selectItems value="#{CreateMessageBean.listReceivers}" var="p" itemValue="#{p}" itemLabel="#{p.usrFirstname} #{p.usrLastname}"/>
+										<f:selectItems value="#{CreateMessageBean.listReceivers}" var="u" itemValue="#{u}" itemLabel="#{u.usrFirstname} #{u.usrLastname}"/>
 									</h:selectOneListbox>
 									<h:message for="user" class='error-message'/>
 									<h:outputText rendered="#{empty CreateMessageBean.listReceivers}" value="Aucun utilisateur ne sont attribués sur ce projet" styleClass="error-message"/>
