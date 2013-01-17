@@ -20,24 +20,17 @@
         					<p> Statistiques sur mes tâches de projets. </p>
 					        <table class="chart" data-type="pie" data-tooltip-pattern="%1 tâche(s)" data-inner-radius="0.5">
 					            <tbody>
-					            	<tr>
-					                    <th> Tâches Annulées </th>
-					                    <td> 10 </td>
-					                </tr>
-					                <tr>
-					                    <th> Tâches Commencées </th>
-					                    <td> 20 </td>
-					                </tr>
-					                <tr>
-					                    <th> Tâches Terminées </th>
-					                    <td> 10 </td>
-					                </tr>
-					                <tr>
-					                    <th> Tâches Validées </th>
-					                    <td> 10 </td>
-					                </tr>
+					            	<ui:repeat var="f" value="#{DashboardBean.userTasks}" varStatus="status">
+					            		<tr>
+					                    	<th> <h:outputText value="#{f.label}"/> </th>
+					                    	<td> <h:outputText value="#{f.count}"/> </td>
+					                	</tr>
+						            </ui:repeat>
 					            </tbody>
-					        </table>  
+					        </table> 
+					        <h:panelGroup rendered="#{empty DashboardBean.userTasks}">
+					        	<h6> Aucune données disponibles pour cette statistique.</h6>
+					        </h:panelGroup> 
 					   </div>
 					   <div class="g6">
         					<h3>Mes fonctions</h3>
@@ -54,6 +47,9 @@
 						            </tbody>
 						        </table>  
 					        </h:panelGroup>
+					        <h:panelGroup rendered="#{empty DashboardBean.userFunctions}">
+					        	<h6> Aucune données disponibles pour cette statistique.</h6>
+					        </h:panelGroup> 
 					   </div>
 					</div>
 					<div class="g12 widgets">
@@ -77,6 +73,9 @@
 					            </tr>
 					        </tbody>
 					    </table>
+					    <h:panelGroup rendered="#{empty DashboardBean.userWrkAmount}">
+					    	<h6> Aucune données disponibles pour cette statistique.</h6>
+					    </h:panelGroup> 
 					</div>
 	    		</section>
  			</ui:define>
