@@ -56,8 +56,8 @@
 							<section>
 								<label for="cdp"> Assignée à </label>
 								<div>
-									<h:selectOneMenu id="assignedTo" value="#{TaskBean.taskAssignedTo}" converter="#{userConverter}" required="true" requiredMessage="Spécifiez un niveau">
-										<f:selectItems value="#{input.usersItems}"/>
+									<h:selectOneMenu id="assignedTo" value="#{TaskBean.taskAssignedTo}" required="true" requiredMessage="Spécifiez un niveau">
+										<f:selectItems value="#{input.usersItemsId}"/>
 									</h:selectOneMenu>
                                     <h:message for="assignedTo" class='error-message'></h:message>
 								</div>
