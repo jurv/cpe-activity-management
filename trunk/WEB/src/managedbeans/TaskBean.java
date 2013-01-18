@@ -6,6 +6,7 @@ import java.util.Date;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
@@ -18,7 +19,7 @@ import com.cpeeterprise.BeanUserRemote;
 import com.cpeeterprise.BeanWorkPieceRemote;
 
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class TaskBean {
 	
 	@EJB
