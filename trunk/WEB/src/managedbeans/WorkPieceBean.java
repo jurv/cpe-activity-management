@@ -23,11 +23,16 @@ public class WorkPieceBean {
 	@EJB
 	public BeanWorkPieceRemote workPieceRemote;
 	
+	@EJB
+	public BeanTaskRemote taskRemote;
+	
 	private String workPieceComment = "";
 	private int workPieceTskId = 0;
+	private int taskTssId = 0;
 	private int workPieceUsrId = 0;
 	private Date workPieceDate = new Date();
 	private int workPieceDuration = 0;
+	
 	
 	private User currentUser = new User();	
 	
@@ -96,13 +101,17 @@ public class WorkPieceBean {
 		return workPieceDuration;
 	}
 
-
-
 	public void setWorkPieceDuration(int workPieceDuration) {
 		this.workPieceDuration = workPieceDuration;
 	}
 
+	public int getTaskTssId() {
+		return taskTssId;
+	}
 
+	public void setTaskTssId(int workPieceTssId) {
+		this.taskTssId = workPieceTssId;
+	}
 
 	public void createWorkPiece()
 	{
@@ -116,6 +125,10 @@ public class WorkPieceBean {
 		workPiece.setWrkDuration(this.workPieceDuration);
 			
 		workPieceRemote.persist(workPiece);
+		
+		Task task = taskRemote.findTask(this.workPieceTskId);
+		task.setTssId(this.taskTssId);
+		taskRemote.update(task);
 	}	
 		
 	public User getCurrentUser() {
