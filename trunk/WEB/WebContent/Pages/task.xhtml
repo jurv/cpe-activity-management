@@ -64,6 +64,14 @@
 									<f:facet name="header">Durée (Heures)</f:facet>
 									<h:outputText value="#{p.wrkDuration}" />
 								</h:column>
+								<h:column>
+									<f:facet name="header">Actions</f:facet>
+									<h:form>
+										<h:link outcome="DetailsWorkPiece" value="Voir le détail" styleClass="btn small">
+											<f:param name="wpId" id="wpId" value="#{p.wrkId}" />
+										</h:link>
+									</h:form>
+								</h:column>
 							</h:dataTable>
         				</div>
         			</div>

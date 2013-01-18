@@ -18,11 +18,7 @@
     <managed-bean>
         <managed-bean-name>TaskBean</managed-bean-name>
         <managed-bean-class>managedbeans.TaskBean</managed-bean-class>
-        <managed-bean-scope>request</managed-bean-scope>
-        <managed-property>
-            <property-name>currentUser</property-name>
-            <value>#{LoginFormBean.current}</value>
-        </managed-property>
+        <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
     <managed-bean>
 		<managed-bean-name>CreateFunctionBean</managed-bean-name>
@@ -173,6 +169,15 @@
 		</managed-property>
 	</managed-bean>
 	<managed-bean>
+		<managed-bean-name>ViewWorkPieceBean</managed-bean-name>
+		<managed-bean-class>managedbeans.ViewWorkPieceBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>currentUser</property-name>
+			<value>#{LoginFormBean.current}</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
 		<managed-bean-name>ConnectedUsersBean</managed-bean-name>
 		<managed-bean-class>managedbeans.ConnectedUsersBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
@@ -264,6 +269,10 @@
 		<navigation-case>
 			<from-outcome>DetailsMessage</from-outcome>
 			<to-view-id>/Pages/viewmessage.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>DetailsWorkPiece</from-outcome>
+			<to-view-id>/Pages/viewworkpiece.xhtml</to-view-id>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>DetailsProject</from-outcome>

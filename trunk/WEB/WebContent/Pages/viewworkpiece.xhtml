@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets" 
+>
+    <h:body>
+ 
+    	<ui:composition template="../Template/template.xhtml">
+    		<ui:define name="content">
+    			<f:metadata>
+    				<f:event type="preRenderView" listener="#{ViewWorkPieceBean.initView}"/>
+				</f:metadata>
+    			<section id="content">
+	    			<h2> Détails de WorkPiece n° <h:outputText value="#{ViewWorkPieceBean.wp.wrkId}"/> </h2>
+	    			<p>
+	    				Voir le détails de WorkPiece n° <h:outputText value="#{ViewWorkPieceBean.wp.wrkId}"/>
+	    			</p>
+	    			<div class="tab">
+        				<ul>
+            				<li>
+            					<a href="#tabs-1">Détails du Work Piece</a>
+            				</li>
+        				</ul>
+        				<div id="tabs-1" style="margin:10px;">
+        					<h:form>
+		                        <fieldset>
+		                        	<section>
+		                                <label for="name"> N° </label>
+		                                <div>
+		                                    <h:outputText id="num" value="#{ViewWorkPieceBean.wp.wrkId}" />
+		                                </div>
+		                            </section>
+		                            <section>
+		                                <label for="name"> Date </label>
+		                                <div>
+		                                    <h:outputText id="date" value="#{ViewWorkPieceBean.wp.wrkDate}" />
+		                                </div>
+		                            </section>
+		                            <section>
+		                                <label for="name"> Utilisateur </label>
+		                                <div>
+		                                    <h:outputText id="user" value="#{ViewWorkPieceBean.wpUser.usrFirstname} #{ViewWorkPieceBean.wpUser.usrLastname}" />
+		                                </div>
+		                            </section>
+		                            <section>
+		                                <label for="comment"> Durée </label>
+		                                <div>
+		                                    <h:outputText id="duree" value="#{ViewWorkPieceBean.wp.wrkDuration}" />
+		                                </div>
+		                            </section>
+		                            <section>
+		                                <label for="time"> Commentaires </label>
+		                                <div>
+		                                	<blockquote>
+		                                    	<h:outputText id="time" value="#{ViewWorkPieceBean.wp.wrkComment}" />
+		                                    </blockquote>
+		                                </div>
+		                            </section>
+		                        </fieldset>
+							</h:form>
+        				</div>
+        			</div>
+				</section>
+    		</ui:define>
+    	</ui:composition>    	
+    </h:body>
+ 
+</html>
