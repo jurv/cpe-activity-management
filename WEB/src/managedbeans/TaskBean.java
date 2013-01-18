@@ -27,7 +27,7 @@ public class TaskBean {
 	public BeanWorkPieceRemote workPieceRemote;
 	@EJB
 	public BeanUserRemote userRemote;
-	
+	private Boolean isLoaded = false;
 	private String taskName = "";
 	private String taskComment = "";
 	private int taskPrjId = 0;
@@ -35,6 +35,7 @@ public class TaskBean {
 	private int taskAssignedTo =0 ;
 	private int taskId = 0;
 	private int taskTstId = 0;
+	private User currentUser;
 	private ArrayList<WorkPiece> wps = new ArrayList<WorkPiece>();
 	
 	//Constantes
@@ -54,7 +55,7 @@ public class TaskBean {
 		task.setTskLabel(this.taskName);
 //		task.setTskLevel();
 		task.setTssId(ID_STA_NOTSTARTED);
-		task.setUsrAssignedbyId(1);
+		task.setUsrAssignedbyId(this.currentUser.getUsrId());
 		task.setUser(userRemote.findUser((this.taskAssignedTo)));
 		task.setTstId(this.taskTstId);
 		
@@ -63,6 +64,13 @@ public class TaskBean {
 		return nextPage;
 	}
 		
+	public User getCurrentUser() {
+		return currentUser;
+	}
+
+	public void setCurrentUser(User currentUser) {
+		this.currentUser = currentUser;
+	}
 	public int getTaskTstId() {
 		return taskTstId;
 	}
@@ -151,17 +159,21 @@ public class TaskBean {
 	}
 	
 	public void loadTask(){
-		this.taskId = Integer.parseInt((String)FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("tskIdDet"));
-		Task tsk = taskRemote.findTask(this.taskId);
-		this.taskAssignedTo = tsk.getUser().getUsrId();
-		this.taskComment    = tsk.getTskDescription();
-		this.taskDuration   = tsk.getTskDuration();
-		this.taskName       = tsk.getTskLabel();
-		this.taskPrjId      = tsk.getPrjId();
 		
-		if(this.getWps().size() == 0) {
-			this.getWps().clear();
-			this.getWps().addAll(workPieceRemote.findWorkPiecesByTask(this.taskId));
+		if (!this.isLoaded){
+			this.taskId = Integer.parseInt((String)FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("tskIdDet"));
+			Task tsk = taskRemote.findTask(this.taskId);
+			//this.taskAssignedTo = tsk.getUser().getUsrId();
+			this.taskComment    = tsk.getTskDescription();
+			this.taskDuration   = tsk.getTskDuration();
+			this.taskName       = tsk.getTskLabel();
+			this.taskPrjId      = tsk.getPrjId();
+			
+			if(this.getWps().size() == 0) {
+				this.getWps().clear();
+				this.getWps().addAll(workPieceRemote.findWorkPiecesByTask(this.taskId));
+			}
+			this.isLoaded = true;
 		}
 	}
 
