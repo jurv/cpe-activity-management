@@ -116,9 +116,12 @@ public class BeanUser implements BeanUserRemote {
 		msg.addAll(em.createQuery("select m from Message m where usr_sender_id = " + usrId + " and prj_id = " + prjId + " ").getResultList());
 		msg.addAll(em.createQuery("select m from Message m where usr_receiver_id = " + usrId + " and prj_id = " + prjId + " ").getResultList());
 		for(Message m : msg) {
-			usrIds += separator + m.getSender().getUsrId();
-			separator = ",";
+			if(m.getSender() != null && m.getSender().getUsrId() > 0) {
+				usrIds += separator + m.getSender().getUsrId();
+				separator = ",";
+			}
 		}
+
 		return (List<User>) em.createQuery("select t from User t where usr_id IN (" + usrIds + ") and usr_id <> " + usrId)
 				.getResultList();
 	}
