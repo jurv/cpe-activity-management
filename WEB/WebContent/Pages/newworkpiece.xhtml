@@ -24,6 +24,15 @@
 								</div>
 							</section>
 							<section>
+                                <label for="status">Statut de la tâche</label>
+                                <div>
+                                    <h:selectOneMenu id="status" value="#{WorkPieceBean.taskTssId}" required="true" requiredMessage="Spécifiez un statut">
+                                        <f:selectItems value="#{input.tssItems}"/>
+                                    </h:selectOneMenu>
+                                    <h:message for="status" class='error-message'></h:message>
+                                </div>
+                            </section>
+							<section>
 								<label for="comment"> Commentaires </label>
 								<div>
 									<h:inputTextarea id="comment" value="#{WorkPieceBean.workPieceComment}" />

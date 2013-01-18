@@ -11,6 +11,7 @@ import javax.faces.model.SelectItem;
 import model.Customer;
 import model.Project;
 import model.Function;
+import model.TaskStatus;
 import model.TaskType;
 import model.User;
 import model.WorkPiece;
@@ -21,6 +22,7 @@ import com.cpeeterprise.BeanCustomerRemote;
 import com.cpeeterprise.BeanProjectRemote;
 import com.cpeeterprise.BeanFunctionRemote;
 import com.cpeeterprise.BeanTaskRemote;
+import com.cpeeterprise.BeanTaskStatusRemote;
 import com.cpeeterprise.BeanTaskTypeRemote;
 import com.cpeeterprise.BeanUserRemote;
 import com.cpeeterprise.BeanWorkPieceRemote;
@@ -50,6 +52,10 @@ public class InputBean {
 	@EJB
 	public BeanTaskTypeRemote taskTypeRemote;
 	
+	@EJB
+	public BeanTaskStatusRemote taskStatusRemote;
+	
+
 	
 	private List<SelectItem> customersItems = new ArrayList<SelectItem>();
 	
@@ -65,6 +71,8 @@ public class InputBean {
 	private List<SelectItem> funcItems = new ArrayList<SelectItem>();
 	
 	private List<SelectItem> tstItems = new ArrayList<SelectItem>();
+	
+	private List<SelectItem> tssItems = new ArrayList<SelectItem>();
 	
 	
 	private User currentUser = new User();	
@@ -161,4 +169,13 @@ public class InputBean {
 		return tstItems;
 	}
 	
+	public List<SelectItem> getTssItems() {
+		if(this.tssItems.isEmpty()){
+			List<TaskStatus> tss = taskStatusRemote.findTaskStatus();
+			for (TaskStatus t:tss){
+				tssItems.add(new SelectItem(t.getTssId(),t.getTssLabel()));
+			}
+		}
+		return tssItems;
+	}
 }
