@@ -23,8 +23,9 @@
 									<h:outputText value="#{m.msgDate}"/>
 									:  
 									<strong>
-										<h:outputText value="#{ViewChatBean.currentUserChatter.usrFirstname} #{ViewChatBean.currentUserChatter.usrLastname}" rendered="#{ViewChatBean.currentUserChatter.usrId == m.usrSenderId}"/>
-   										<h:outputText value="#{ViewChatBean.currentUser.usrFirstname} #{ViewChatBean.currentUser.usrLastname}" rendered="#{ViewChatBean.currentUser.usrId == m.usrSenderId}"/>
+										<h:outputText value="#{ViewChatBean.currentUserChatter.usrFirstname} #{ViewChatBean.currentUserChatter.usrLastname}" rendered="#{ViewChatBean.currentUserChatter.usrId == m.sender.usrId}"/>
+   										<h:outputText value="#{ViewChatBean.currentUser.usrFirstname} #{ViewChatBean.currentUser.usrLastname}" rendered="#{ViewChatBean.currentUser.usrId == m.sender.usrId}"/>
+   										<h:outputText value="#{ViewChatBean.currentUserSrc.usrFirstname} #{ViewChatBean.currentUserSrc.usrLastname}" rendered="#{ViewChatBean.currentUserSrc.usrId == m.sender.usrId}"/>
 									</strong>
 									:
 									<h:outputText value="#{m.msgContent}"/>
