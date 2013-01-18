@@ -2,6 +2,8 @@ package managedbeans;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -28,25 +30,36 @@ public class ViewChatBean {
 	
 	private User currentUser;
 	private User currentUserChatter;
+	private User currentUserSrc;
+	private boolean pageLoaded = false;
 	private ArrayList<Message> messagesList = new ArrayList<Message>();
 	
 	
 	public void initPage() {
-
-		// Récupération de l'utilisateur communiquant
-		String param = (String)FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("usrChatterId") ;
-		Integer usrChatterId = (param != null && param != "") ? Integer.parseInt(param) : 0;  
-		if(usrChatterId > 0)
-			this.currentUserChatter = userRemote.findUser(usrChatterId);
 		
-		// Récupération de l'utilisateur source, si celui-ci n'existe pas, 
-		// on prendra l'utilisateur courant
-		param = (String)FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("usrSourceId") ;
-		Integer usrSourceId = (param != null && param != "") ? Integer.parseInt(param) : 0; 
-	
-		// Récupération des messages
-		this.getMessagesList().clear();
-		this.getMessagesList().addAll(messageRemote.findMessagesForConv(((usrSourceId > 0)? usrSourceId : this.currentUser.getUsrId()), this.currentUserChatter.getUsrId()));
+		if(!pageLoaded) {
+
+			Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+			
+			// Récupération de l'utilisateur communiquant
+			String param = (String)params.get("usrChatterId") ;
+			Integer usrChatterId = (param != null && param != "") ? Integer.parseInt(param) : 0;  
+			if(usrChatterId > 0)
+				this.currentUserChatter = userRemote.findUser(usrChatterId);
+			
+			// Récupération de l'utilisateur source, si celui-ci n'existe pas, 
+			// on prendra l'utilisateur courant
+			param = "";
+			param = (String)params.get("usrSourceId") ;
+			Integer usrSourceId = (param != null && param != "") ? Integer.parseInt(param) : 0; 
+			if(usrSourceId > 0)
+				currentUserSrc = userRemote.findUser(usrSourceId);
+		
+			// Récupération des messages
+			this.getMessagesList().clear();
+			this.getMessagesList().addAll(messageRemote.findMessagesForConv(((usrSourceId > 0)? usrSourceId : this.currentUser.getUsrId()), this.currentUserChatter.getUsrId()));
+			pageLoaded = true;
+		}
 	}
 
 	public User getCurrentUser() {
@@ -71,5 +84,13 @@ public class ViewChatBean {
 
 	public void setMessagesList(ArrayList<Message> messagesList) {
 		this.messagesList = messagesList;
+	}
+
+	public User getCurrentUserSrc() {
+		return currentUserSrc;
+	}
+
+	public void setCurrentUserSrc(User currentUserSrc) {
+		this.currentUserSrc = currentUserSrc;
 	}
 }

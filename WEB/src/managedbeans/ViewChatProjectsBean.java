@@ -2,6 +2,7 @@ package managedbeans;
 
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -31,15 +32,17 @@ public class ViewChatProjectsBean {
 	private ArrayList<User> chatUsers = new ArrayList<User>();
 	public void initView() {
 		
+		Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+		
 		// Récupération du projet
-		String param = (String)FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("prjId") ;
+		String param = (String)params.get("prjId") ;
 		Integer prjId = (param != null && param != "") ? Integer.parseInt(param) : 0;  
 		if(prjId > 0)
 			this.currentProject = projectRemote.findProject(prjId);
 		
 		// On tente de récupérer l'id de l'utilisateur pour lequel on veut afficher les conversations
 		// Si on n'y arrive pas on prend l'utilisateur courant
-		param = (String)FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("usrChatterId") ;
+		param = (String)params.get("usrChatterId") ;
 		Integer usrChatterId =  (param != null && param != "") ? Integer.parseInt(param) : 0; 
 		this.getChatUsers().clear();
 		if(usrChatterId > 0)
